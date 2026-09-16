@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Comercial | Calendario de Uso de POS 2026</title>
+
+    <style>
+        /* =========================================================
+           VARIABLES GENERALES
+        ========================================================= */
+        :root {
+            --azul-oscuro: #123b5d;
+            --azul: #1769aa;
+            --azul-claro: #eaf4fb;
+
+            --dorado: #f2b705;
+            --dorado-claro: #fff7d6;
+
+            --verde: #16805c;
+            --verde-claro: #e8f7f1;
+
+            --rojo: #c62828;
+            --rojo-claro: #fdecec;
+
+            --gris-900: #1f2937;
+            --gris-700: #374151;
+            --gris-500: #6b7280;
+            --gris-300: #d1d5db;
+            --gris-200: #e5e7eb;
+            --gris-100: #f3f4f6;
+
+            --blanco: #ffffff;
+            --fondo: #f4f7fa;
+
+            --radio: 16px;
+            --sombra:
+                0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background: var(--fondo);
+            color: var(--gris-900);
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           CONTENEDOR PRINCIPAL
+        ========================================================= */
+        .contenedor {
+            width: min(1500px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 25px 0 40px;
+        }
+
+        /* =========================================================
+           ENCABEZADO
+        ========================================================= */
+        .encabezado {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            padding: 25px 30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--azul-oscuro),
+                    var(--azul)
+                );
+
+            color: white;
+
+            box-shadow: var(--sombra);
+
+            overflow: hidden;
+        }
+
+        .encabezado::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            right: -70px;
+            top: -90px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+        .logo {
+            width: 95px;
+            height: 95px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            border-radius: 18px;
+
+            color: var(--azul-oscuro);
+
+            font-size: 13px;
+            font-weight: 900;
+
+            text-align: center;
+
+            line-height: 1.1;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.15);
+
+            z-index: 2;
+
+            overflow: hidden;
+        }
+
+        /*
+        Cuando tengas el logo real puedes reemplazar
+        el contenido del div .logo por:
+
+        <img src="logo.png" alt="La Comercial">
+
+        */
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-texto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-texto small {
+            margin-top: 5px;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================================================
+           TITULO
+        ========================================================= */
+        .encabezado-contenido {
+            position: relative;
+            z-index: 2;
+        }
+
+        .encabezado h1 {
+            font-size: clamp(24px, 4vw, 34px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .encabezado p {
+            margin-top: 7px;
+
+            color: rgba(255,255,255,.86);
+
+            font-size: 14px;
+        }
+
+        .periodo {
+            display: inline-flex;
+
+            margin-top: 13px;
+
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.13);
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           BOTONES
+        ========================================================= */
+        .acciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin: 20px 0;
+        }
+
+        .btn {
+            border: 1px solid var(--gris-200);
+
+            background: white;
+
+            color: var(--gris-700);
+
+            padding: 11px 15px;
+
+            border-radius: 11px;
+
+            font-weight: 700;
+
+            transition:
+                transform .15s ease,
+                box-shadow .15s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 5px 14px rgba(0,0,0,.08);
+        }
+
+        .btn-principal {
+            background: var(--azul-oscuro);
+            color: white;
+            border-color: var(--azul-oscuro);
+        }
+
+        .btn-dorado {
+            background: var(--dorado);
+            color: #2d2400;
+            border-color: var(--dorado);
+        }
+
+        /* =========================================================
+           TARJETAS DE ESTADISTICAS
+        ========================================================= */
+        .estadisticas {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-bottom: 18px;
+        }
+
+        .estadistica {
+            background: white;
+
+            border-radius: var(--radio);
+
+            padding: 19px;
+
+            box-shadow: var(--sombra);
+
+            border: 1px solid rgba(0,0,0,.03);
+        }
+
+        .estadistica-icono {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: var(--azul-claro);
+
+            margin-bottom: 10px;
+
+            font-size: 18px;
+        }
+
+        .estadistica strong {
+            display: block;
+
+            font-size: 27px;
+
+            color: var(--azul-oscuro);
+        }
+
+        .estadistica span {
+            color: var(--gris-500);
+
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           FILTROS
+        ========================================================= */
+        .filtros {
+            display: grid;
+
+            grid-template-columns:
+                1.6fr
+                1fr
+                1fr
+                auto;
+
+            gap: 12px;
+
+            padding: 17px;
+
+            background: white;
+
+            border-radius: var(--radio);
+
+            box-shadow: var(--sombra);
+
+            margin-bottom: 18px;
+        }
+
+        .campo {
+            position: relative;
+        }
+
+        .campo label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: var(--gris-500);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+        }
+
+        .campo input,
+        .campo select {
+            width: 100%;
+
+            height: 43px;
+
+            border:
+                1px solid var(--gris-200);
+
+            border-radius: 10px;
+
+            padding:
+                0 12px;
+
+            background: white;
+
+            color: var(--gris-900);
+
+            outline: none;
+        }
+
+        .campo input:focus,
+        .campo select:focus {
+            border-color: var(--azul);
+
+            box-shadow:
+                0 0 0 3px rgba(23,105,170,.10);
+        }
+
+        .boton-limpiar {
+            align-self: end;
+
+            height: 43px;
+        }
+
+        /* =========================================================
+           NOTA DE REGLAS
+        ========================================================= */
+        .reglas {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            padding: 15px 17px;
+
+            margin-bottom: 18px;
+
+            background: var(--dorado-claro);
+
+            border-left:
+                5px solid var(--dorado);
+
+            border-radius: 10px;
+
+            color: #574800;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .reglas strong {
+            color: #3f3500;
+        }
+
+        /* =========================================================
+           TABLA
+        ========================================================= */
+        .tarjeta-tabla {
+            background: white;
+
+            border-radius: var(--radio);
+
+            box-shadow: var(--sombra);
+
+            overflow: hidden;
+        }
+
+        .tabla-cabecera {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 17px 20px;
+
+            border-bottom:
+                1px solid var(--gris-200);
+        }
+
+        .tabla-cabecera h2 {
+            font-size: 18px;
+
+            color: var(--azul-oscuro);
+        }
+
+        .tabla-cabecera span {
+            color: var(--gris-500);
+
+            font-size: 12px;
+        }
+
+        .tabla-contenedor {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            min-width: 1250px;
+
+            border-collapse: collapse;
+        }
+
+        thead th {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 5;
+
+            padding: 13px 10px;
+
+            background: #edf3f7;
+
+            color: var(--azul-oscuro);
+
+            border-bottom:
+                2px solid var(--gris-200);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 11px 9px;
+
+            border-bottom:
+                1px solid #edf0f3;
+
+            vertical-align: middle;
+
+            font-size: 12px;
+        }
+
+        tbody tr:hover td {
+            background: #f9fbfd;
+        }
+
+        .fecha {
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .dia {
+            font-weight: 700;
+        }
+
+        .fin-semana {
+            color: #9a5800;
+        }
+
+        .pos-celda {
+            min-width: 145px;
+        }
+
+        .pos-numero {
+            display: inline-block;
+
+            margin-bottom: 5px;
+
+            padding: 4px 7px;
+
+            border-radius: 999px;
+
+            background: var(--azul-claro);
+
+            color: var(--azul);
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+        .cobrador {
+            display: block;
+
+            font-weight: 700;
+
+            color: var(--gris-700);
+
+            line-height: 1.25;
+        }
+
+        /* =========================================================
+           MENSAJE SIN RESULTADOS
+        ========================================================= */
+        .sin-resultados {
+            padding: 40px;
+
+            text-align: center;
+
+            color: var(--gris-500);
+        }
+
+        /* =========================================================
+           RESUMEN
+        ========================================================= */
+        .resumen {
+            margin-top: 18px;
+
+            background: white;
+
+            border-radius: var(--radio);
+
+            box-shadow: var(--sombra);
+
+            overflow: hidden;
+        }
+
+        .resumen-cabecera {
+            padding: 18px 20px;
+
+            border-bottom:
+                1px solid var(--gris-200);
+        }
+
+        .resumen-cabecera h2 {
+            color: var(--azul-oscuro);
+
+            font-size: 18px;
+        }
+
+        .resumen-cabecera p {
+            margin-top: 4px;
+
+            color: var(--gris-500);
+
+            font-size: 12px;
+        }
+
+        .resumen-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fill, minmax(230px, 1fr));
+
+            gap: 10px;
+
+            padding: 18px;
+        }
+
+        .persona {
+            padding: 13px;
+
+            border:
+                1px solid var(--gris-200);
+
+            border-radius: 12px;
+
+            background: #fcfdfe;
+        }
+
+        .persona-nombre {
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            line-height: 1.3;
+        }
+
+        .persona-total {
+            display: inline-block;
+
+            margin-top: 7px;
+
+            color: var(--verde);
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           PIE
+        ========================================================= */
+        .pie {
+            padding: 20px 0 0;
+
+            text-align: center;
+
+            color: var(--gris-500);
+
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 1000px) {
+
+            .estadisticas {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .filtros {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .contenedor {
+                width: min(100% - 20px, 1500px);
+
+                padding-top: 10px;
+            }
+
+            .encabezado {
+                padding: 18px;
+
+                gap: 14px;
+
+                border-radius: 16px;
+            }
+
+            .logo {
+                width: 68px;
+                height: 68px;
+            }
+
+            .encabezado h1 {
+                font-size: 21px;
+            }
+
+            .encabezado p {
+                font-size: 12px;
+            }
+
+            .estadisticas {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 9px;
+            }
+
+            .estadistica {
+                padding: 14px;
+            }
+
+            .estadistica strong {
+                font-size: 22px;
+            }
+
+            .filtros {
+                grid-template-columns: 1fr;
+            }
+
+            .boton-limpiar {
+                width: 100%;
+            }
+
+        }
+
+        /* =========================================================
+           IMPRESIÓN
+        ========================================================= */
+        @media print {
+
+            @page {
+                size: landscape;
+                margin: 8mm;
+            }
+
+            body {
+                background: white;
+            }
+
+            .contenedor {
+                width: 100%;
+                padding: 0;
+            }
+
+            .encabezado {
+                border-radius: 0;
+
+                box-shadow: none;
+
+                padding: 15px;
+            }
+
+            .acciones,
+            .filtros,
+            .estadisticas,
+            .reglas,
+            .resumen {
+                display: none !important;
+            }
+
+            .tarjeta-tabla {
+                box-shadow: none;
+
+                border-radius: 0;
+            }
+
+            .tabla-cabecera {
+                padding: 10px 0;
+            }
+
+            table {
+                min-width: 0;
+            }
+
+            thead th {
+                position: static;
+
+                font-size: 8px;
+
+                padding: 5px;
+            }
+
+            tbody td {
+                font-size: 8px;
+
+                padding: 5px;
+            }
+
+            .pos-celda {
+                min-width: 0;
+            }
+
+            .pos-numero {
+                padding: 2px 4px;
+
+                font-size: 7px;
+            }
+
+            .cobrador {
+                font-size: 7px;
+            }
+
+            .pie {
+                font-size: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- =========================================================
+         ENCABEZADO
+    ========================================================== -->
+
+    <header class="encabezado">
+
+        <div class="logo">
+
+            <!--
+                AQUÍ COLOCAREMOS EL LOGO REAL.
+
+                Cuando tengas el archivo:
+
+                <img src="logo.png" alt="La Comercial">
+
+                Por ahora dejamos el nombre.
+            -->
+
+            <div class="logo-texto">
+                LA<br>
+                COMERCIAL
+
+                <small>POS</small>
+            </div>
+
+        </div>
+
+        <div class="encabezado-contenido">
+
+            <h1>
+                Calendario de Uso de POS
+            </h1>
+
+            <p>
+                Control y distribución diaria de los dispositivos POS
+            </p>
+
+            <div class="periodo">
+                📅 17 de septiembre — 31 de diciembre de 2026
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         ACCIONES
+    ========================================================== -->
+
+    <div class="acciones">
+
+        <button
+            class="btn btn-principal"
+            onclick="window.print()"
+        >
+            🖨️ Imprimir / Guardar PDF
+        </button>
+
+        <button
+            class="btn btn-dorado"
+            onclick="mostrarTodos()"
+        >
+            🔄 Mostrar todo
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         ESTADISTICAS
+    ========================================================== -->
+
+    <section class="estadisticas">
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono">
+                📅
+            </div>
+
+            <strong id="totalDias">
+                106
+            </strong>
+
+            <span>
+                Días programados
+            </span>
+
+        </div>
+
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono">
+                👥
+            </div>
+
+            <strong>
+                31
+            </strong>
+
+            <span>
+                Cobradores activos
+            </span>
+
+        </div>
+
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono">
+                💳
+            </div>
+
+            <strong>
+                7
+            </strong>
+
+            <span>
+                POS disponibles por día
+            </span>
+
+        </div>
+
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono">
+                🔄
+            </div>
+
+            <strong>
+                742
+            </strong>
+
+            <span>
+                Asignaciones del período
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         REGLAS
+    ========================================================== -->
+
+    <div class="reglas">
+
+        <div>
+            🔐
+        </div>
+
+        <div>
+
+            <strong>
+                Regla de rotación:
+            </strong>
+
+            Se mantiene el orden original de los cobradores.
+            Cada día se asignan 7 cobradores disponibles.
+            Si un cobrador está descansando, se salta y continúa
+            la rotación con el siguiente disponible.
+
+            Al llegar al último cobrador,
+            la rotación vuelve automáticamente al primero.
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         FILTROS
+    ========================================================== -->
+
+    <section class="filtros">
+
+        <div class="campo">
+
+            <label>
+                Buscar cobrador
+            </label>
+
+            <input
+                type="search"
+                id="buscar"
+                placeholder="Escriba el nombre..."
+                oninput="renderizar()"
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Día
+            </label>
+
+            <select
+                id="filtroDia"
+                onchange="renderizar()"
+            >
+
+                <option value="">
+                    Todos los días
+                </option>
+
+                <option value="LUNES">
+                    Lunes
+                </option>
+
+                <option value="MARTES">
+                    Martes
+                </option>
+
+                <option value="MIERCOLES">
+                    Miércoles
+                </option>
+
+                <option value="JUEVES">
+                    Jueves
+                </option>
+
+                <option value="VIERNES">
+                    Viernes
+                </option>
+
+                <option value="SABADO">
+                    Sábado
+                </option>
+
+                <option value="DOMINGO">
+                    Domingo
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                POS
+            </label>
+
+            <select
+                id="filtroPos"
+                onchange="renderizar()"
+            >
+
+                <option value="">
+                    Todos los POS
+                </option>
+
+                <option value="0">
+                    POS 1
+                </option>
+
+                <option value="1">
+                    POS 2
+                </option>
+
+                <option value="2">
+                    POS 3
+                </option>
+
+                <option value="3">
+                    POS 4
+                </option>
+
+                <option value="4">
+                    POS 5
+                </option>
+
+                <option value="5">
+                    POS 6
+                </option>
+
+                <option value="6">
+                    POS 7
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="btn boton-limpiar"
+            onclick="limpiarFiltros()"
+        >
+            Limpiar filtros
+        </button>
+
+    </section>
+
+
+    <!-- =========================================================
+         TABLA
+    ========================================================== -->
+
+    <section class="tarjeta-tabla">
+
+        <div class="tabla-cabecera">
+
+            <div>
+
+                <h2>
+                    📋 Calendario de asignaciones
+                </h2>
+
+                <span>
+                    Cada fila representa un día de operación
+                </span>
+
+            </div>
+
+            <span id="contadorResultados">
+                106 días
+            </span>
+
+        </div>
+
+
+        <div class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Día
+                        </th>
+
+                        <th>
+                            POS 1
+                        </th>
+
+                        <th>
+                            POS 2
+                        </th>
+
+                        <th>
+                            POS 3
+                        </th>
+
+                        <th>
+                            POS 4
+                        </th>
+
+                        <th>
+                            POS 5
+                        </th>
+
+                        <th>
+                            POS 6
+                        </th>
+
+                        <th>
+                            POS 7
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaCalendario">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         RESUMEN DE COBRADORES
+    ========================================================== -->
+
+    <section class="resumen">
+
+        <div class="resumen-cabecera">
+
+            <h2>
+                📊 Resumen de participación
+            </h2>
+
+            <p>
+                Cantidad de asignaciones de POS por cobrador durante el período.
+            </p>
+
+        </div>
+
+        <div
+            class="resumen-grid"
+            id="resumenCobradores"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PIE
+    ========================================================== -->
+
+    <footer class="pie">
+
+        La Comercial · Calendario interno de uso de POS · 2026
+
+        <br>
+
+        Sistema de rotación automática respetando días de descanso
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    /* =========================================================
+       COBRADORES
+    =========================================================
+
+       IMPORTANTE:
+
+       Este es el orden EXACTO que utilizaremos
+       después de excluir los 3 cobradores indicados.
+
+    ========================================================== */
+
+    const cobradores = [
+
+        {
+            nombre: "ALEX GRANDE",
+            descanso: ["VIERNES"]
+        },
+
+        {
+            nombre: "ARISTIDES ALVARADO",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "CARLOS MANUEL DIAZ ALVARADO",
+            descanso: ["MARTES"]
+        },
+
+        {
+            nombre: "CRISTIAN GAVIDIA CRUZ",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "DANIEL GARCIA RODRIGUEZ",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "DEYSI DEL CARMEN CORTEZ CENAS",
+            descanso: ["JUEVES"]
+        },
+
+        {
+            nombre: "FRAN MORAN",
+            descanso: []
+        },
+
+        {
+            nombre: "HARED JOSHUA NICARAGUA GRANERA",
+            descanso: []
+        },
+
+        {
+            nombre: "HELEN ADRIANA BENITEZ SANCHEZ",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "HENRY DANILO PAREDES MENDOZA",
+            descanso: ["MARTES", "VIERNES"]
+        },
+
+        {
+            nombre: "HERBETH WILLIAM MARAVILLA",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "HERIBERTO FUNES CANTOR",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "JOSE ALBERTO ORELLANA ORELLANA",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "JOSE ANGEL CRUZ GAVIDIA",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "JOSE ANTONIO LOPEZ RENDEROS",
+            descanso: ["JUEVES"]
+        },
+
+        {
+            nombre: "JOSE LUIS RAMOS",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "JOSE MERCEDES FLORES",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "MILTON JAVIER MELENDEZ",
+            descanso: ["JUEVES"]
+        },
+
+        {
+            nombre: "ORLANDO OVIDIO AQUINO",
+            descanso: ["JUEVES"]
+        },
+
+        {
+            nombre: "OSCAR ARMANDO PACHECO MELENDEZ",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "PEDRO ALFREDO MEJIA",
+            descanso: ["MIERCOLES"]
+        },
+
+        {
+            nombre: "ROBERTO PAREDES",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "ROXANA GUADALUPE MARTINEZ",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "SAMUEL DE JESUS LIRA",
+            descanso: ["MARTES"]
+        },
+
+        {
+            nombre: "SANTOS ERNESTO RIVERA GARCIA",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "SONIA MARISOL GARCIA",
+            descanso: ["DOMINGO"]
+        },
+
+        {
+            nombre: "SONIA MARROQUIN",
+            descanso: ["VIERNES"]
+        },
+
+        {
+            nombre: "WENDY ELIZABETH TEPAS",
+            descanso: ["LUNES"]
+        },
+
+        {
+            nombre: "ZULMA ARELY GARCIA DE FUNES",
+            descanso: ["MARTES"]
+        },
+
+        {
+            nombre: "INGRID MARTINEZ",
+            descanso: ["MARTES"]
+        },
+
+        {
+            nombre: "KATHERINE MARTINEZ",
+            descanso: ["DOMINGO"]
+        }
+
+    ];
+
+
+    /* =========================================================
+       DÍAS
+    ========================================================== */
+
+    const diasSemana = [
+
+        "DOMINGO",
+        "LUNES",
+        "MARTES",
+        "MIERCOLES",
+        "JUEVES",
+        "VIERNES",
+        "SABADO"
+
+    ];
+
+
+    /* =========================================================
+       GENERACIÓN DEL CALENDARIO
+    ========================================================== */
+
+    const calendario = [];
+
+    let puntero = 0;
+
+    const fechaInicio =
+        new Date(2026, 8, 17);
+
+    const fechaFin =
+        new Date(2026, 11, 31);
+
+
+    function nombreDia(fecha) {
+
+        return diasSemana[
+            fecha.getDay()
+        ];
+
+    }
+
+
+    function formatearFecha(fecha) {
+
+        const dia =
+            String(fecha.getDate()).padStart(2, "0");
+
+        const mes =
+            String(fecha.getMonth() + 1).padStart(2, "0");
+
+        const año =
+            fecha.getFullYear();
+
+        return `${dia}/${mes}/${año}`;
+
+    }
+
+
+    /*
+        Busca los siguientes 7 cobradores disponibles.
+
+        IMPORTANTE:
+
+        El puntero NO se reinicia cada día.
+        La rotación continúa donde terminó.
+    */
+
+    function obtenerCobradoresParaDia(dia) {
+
+        const seleccionados = [];
+
+        let intentos = 0;
+
+
+        while (
+            seleccionados.length < 7 &&
+            intentos < cobradores.length * 2
+        ) {
+
+            const indice =
+                puntero % cobradores.length;
+
+            const cobrador =
+                cobradores[indice];
+
+
+            puntero++;
+
+            intentos++;
+
+
+            /*
+                Si NO está descansando,
+                entra a la asignación.
+            */
+
+            if (
+                !cobrador.descanso.includes(dia)
+            ) {
+
+                seleccionados.push(
+                    cobrador.nombre
+                );
+
+            }
+
+        }
+
+
+        return seleccionados;
+
+    }
+
+
+    /* =========================================================
+       CREAR LOS 106 DÍAS
+    ========================================================== */
+
+    let fechaActual =
+        new Date(fechaInicio);
+
+
+    while (
+        fechaActual <= fechaFin
+    ) {
+
+        const dia =
+            nombreDia(fechaActual);
+
+
+        const asignados =
+            obtenerCobradoresParaDia(dia);
+
+
+        calendario.push({
+
+            fecha:
+                formatearFecha(fechaActual),
+
+            dia:
+                dia,
+
+            cobradores:
+                asignados
+
+        });
+
+
+        fechaActual.setDate(
+            fechaActual.getDate() + 1
+        );
+
+    }
+
+
+    /* =========================================================
+       ESCAPAR HTML
+    ========================================================== */
+
+    function escapar(texto) {
+
+        return String(texto)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    /* =========================================================
+       RENDERIZAR TABLA
+    ========================================================== */
+
+    function renderizar() {
+
+        const tbody =
+            document.getElementById(
+                "tablaCalendario"
+            );
+
+
+        const busqueda =
+            document
+                .getElementById("buscar")
+                .value
+                .trim()
+                .toUpperCase();
+
+
+        const filtroDia =
+            document
+                .getElementById("filtroDia")
+                .value;
+
+
+        const filtroPos =
+            document
+                .getElementById("filtroPos")
+                .value;
+
+
+        const resultados =
+            calendario.filter(fila => {
+
+
+                /*
+                    Filtrar por día
+                */
+
+                if (
+                    filtroDia &&
+                    fila.dia !== filtroDia
+                ) {
+
+                    return false;
+
+                }
+
+
+                /*
+                    Filtrar por cobrador
+                */
+
+                if (busqueda) {
+
+                    const existe =
+                        fila.cobradores.some(
+                            nombre =>
+                                nombre.includes(busqueda)
+                        );
+
+
+                    if (!existe) {
+
+                        return false;
+
+                    }
+
+                }
+
+
+                /*
+                    Filtrar por POS
+                */
+
+                if (filtroPos !== "") {
+
+                    const cobrador =
+                        fila.cobradores[
+                            Number(filtroPos)
+                        ];
+
+
+                    if (
+                        !cobrador
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    if (
+                        busqueda &&
+                        !cobrador.includes(busqueda)
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+
+                return true;
+
+            });
+
+
+        /* =====================================================
+           CONSTRUIR HTML
+        ====================================================== */
+
+        if (
+            resultados.length === 0
+        ) {
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="9"
+                        class="sin-resultados"
+                    >
+
+                        🔎
+                        <br><br>
+
+                        No encontramos
+                        asignaciones con
+                        esos filtros.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+        else {
+
+            tbody.innerHTML =
+                resultados.map(
+                    fila => {
+
+                        const finSemana =
+                            fila.dia === "SABADO" ||
+                            fila.dia === "DOMINGO";
+
+
+                        return `
+
+                            <tr>
+
+                                <td class="fecha">
+
+                                    ${escapar(
+                                        fila.fecha
+                                    )}
+
+                                </td>
+
+
+                                <td class="
+                                    dia
+                                    ${finSemana
+                                        ? "fin-semana"
+                                        : ""
+                                    }
+                                ">
+
+                                    ${escapar(
+                                        fila.dia
+                                    )}
+
+                                </td>
+
+
+                                ${fila.cobradores.map(
+                                    (nombre, indice) => `
+
+                                        <td class="pos-celda">
+
+                                            <span
+                                                class="pos-numero"
+                                            >
+
+                                                POS ${indice + 1}
+
+                                            </span>
+
+                                            <span
+                                                class="cobrador"
+                                            >
+
+                                                ${escapar(
+                                                    nombre
+                                                )}
+
+                                            </span>
+
+                                        </td>
+
+                                    `
+                                ).join("")}
+
+                            </tr>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+        document.getElementById(
+            "contadorResultados"
+        ).textContent =
+            `${resultados.length} día${
+                resultados.length === 1
+                    ? ""
+                    : "s"
+            }`;
+
+    }
+
+
+    /* =========================================================
+       RESUMEN DE ASIGNACIONES
+    ========================================================== */
+
+    function construirResumen() {
+
+        const contador = {};
+
+
+        cobradores.forEach(
+            cobrador => {
+
+                contador[
+                    cobrador.nombre
+                ] = 0;
+
+            }
+        );
+
+
+        calendario.forEach(
+            dia => {
+
+                dia.cobradores.forEach(
+                    nombre => {
+
+                        contador[nombre]++;
+
+                    }
+                );
+
+            }
+        );
+
+
+        const contenedor =
+            document.getElementById(
+                "resumenCobradores"
+            );
+
+
+        contenedor.innerHTML =
+            cobradores.map(
+                cobrador => `
+
+                    <div class="persona">
+
+                        <span class="persona-nombre">
+
+                            ${escapar(
+                                cobrador.nombre
+                            )}
+
+                        </span>
+
+                        <span class="persona-total">
+
+                            ${contador[
+                                cobrador.nombre
+                            ]}
+                            asignaciones
+
+                        </span>
+
+                    </div>
+
+                `
+            ).join("");
+
+    }
+
+
+    /* =========================================================
+       LIMPIAR FILTROS
+    ========================================================== */
+
+    function limpiarFiltros() {
+
+        document.getElementById(
+            "buscar"
+        ).value = "";
+
+
+        document.getElementById(
+            "filtroDia"
+        ).value = "";
+
+
+        document.getElementById(
+            "filtroPos"
+        ).value = "";
+
+
+        renderizar();
+
+    }
+
+
+    /* =========================================================
+       MOSTRAR TODO
+    ========================================================== */
+
+    function mostrarTodos() {
+
+        limpiarFiltros();
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+
+    /* =========================================================
+       INICIALIZAR
+    ========================================================== */
+
+    renderizar();
+
+    construirResumen();
+
+</script>
+
+</body>
+</html>
+
