@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>La Comercial | Calendario de Uso de POS 2026</title>
+    <title>Calendario de POS - La Comercial</title>
 
     <style>
-
-        /* =========================================================
-           VARIABLES
-        ========================================================= */
-
         :root {
-
             --azul-oscuro: #123b5d;
             --azul: #1769aa;
+            --azul-medio: #2185d0;
             --azul-claro: #eaf4fb;
 
             --dorado: #f2b705;
@@ -25,2143 +20,1317 @@
             --verde-claro: #e8f7f1;
 
             --rojo: #c62828;
-            --rojo-claro: #fdecec;
+            --rojo-claro: #fdeaea;
 
-            --gris-900: #1f2937;
-            --gris-700: #374151;
-            --gris-500: #6b7280;
-            --gris-300: #d1d5db;
-            --gris-200: #e5e7eb;
-            --gris-100: #f3f4f6;
+            --gris-oscuro: #344054;
+            --gris: #667085;
+            --gris-medio: #98a2b3;
+            --gris-claro: #eaecf0;
+            --fondo: #f5f7fa;
 
             --blanco: #ffffff;
 
-            --fondo: #f4f7fa;
-
             --radio: 16px;
-
-            --sombra:
-                0 10px 30px rgba(15, 23, 42, .08);
-
+            --sombra: 0 8px 25px rgba(18, 59, 93, 0.10);
+            --sombra-hover: 0 12px 30px rgba(18, 59, 93, 0.16);
         }
-
-
-        /* =========================================================
-           RESET
-        ========================================================= */
 
         * {
-
             box-sizing: border-box;
-
-            margin: 0;
-
-            padding: 0;
-
         }
-
 
         html {
-
             scroll-behavior: smooth;
-
         }
-
 
         body {
-
-            font-family:
-                "Segoe UI",
-                Roboto,
-                Arial,
-                sans-serif;
-
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
             background: var(--fondo);
-
-            color: var(--gris-900);
-
-            min-height: 100vh;
-
+            color: var(--gris-oscuro);
         }
-
-
-        button,
-        input {
-
-            font: inherit;
-
-        }
-
-
-        button {
-
-            cursor: pointer;
-
-        }
-
-
-        /* =========================================================
-           CONTENEDOR
-        ========================================================= */
-
-        .contenedor {
-
-            width:
-                min(
-                    1450px,
-                    calc(100% - 30px)
-                );
-
-            margin: 0 auto;
-
-            padding:
-                22px 0 40px;
-
-        }
-
 
         /* =========================================================
            ENCABEZADO
         ========================================================= */
 
         .encabezado {
-
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 22px;
-
-            padding: 25px 30px;
-
-            border-radius: 22px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--azul-oscuro),
-                    var(--azul)
-                );
-
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
             color: white;
-
-            box-shadow: var(--sombra);
-
-            overflow: hidden;
-
+            padding: 28px 20px;
+            box-shadow: 0 5px 20px rgba(18, 59, 93, 0.20);
         }
-
-
-        .encabezado::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 250px;
-
-            height: 250px;
-
-            right: -80px;
-
-            top: -100px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255,255,255,.08);
-
-        }
-
-
-        .encabezado::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 120px;
-
-            height: 120px;
-
-            left: 35%;
-
-            bottom: -80px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255,255,255,.04);
-
-        }
-
-
-        /* =========================================================
-           LOGO
-        ========================================================= */
-
-        .logo {
-
-            width: 95px;
-
-            height: 95px;
-
-            flex-shrink: 0;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: white;
-
-            border-radius: 18px;
-
-            box-shadow:
-                0 8px 20px rgba(0,0,0,.16);
-
-            overflow: hidden;
-
-            z-index: 2;
-
-        }
-
-
-        .logo img {
-
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: contain;
-
-            display: block;
-
-        }
-
-
-        /* =========================================================
-           TITULO
-        ========================================================= */
 
         .encabezado-contenido {
-
-            position: relative;
-
-            z-index: 2;
-
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 18px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
 
-        .encabezado h1 {
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
 
-            font-size:
-                clamp(
-                    24px,
-                    4vw,
-                    34px
-                );
-
+        .titulo-principal {
+            margin: 0 0 8px;
+            font-size: 32px;
             font-weight: 800;
-
-            letter-spacing: -.5px;
-
+            letter-spacing: -0.5px;
         }
 
-
-        .encabezado p {
-
-            margin-top: 7px;
-
-            color:
-                rgba(255,255,255,.86);
-
-            font-size: 14px;
-
+        .subtitulo {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.92;
         }
-
 
         .periodo {
-
             display: inline-flex;
-
-            margin-top: 13px;
-
-            padding:
-                7px 12px;
-
-            border-radius: 999px;
-
-            background:
-                rgba(255,255,255,.13);
-
-            font-size: 12px;
-
-            font-weight: 700;
-
+            align-items: center;
+            gap: 7px;
+            margin-top: 12px;
+            padding: 7px 13px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.14);
+            font-size: 13px;
+            font-weight: 600;
         }
 
+        /* =========================================================
+           CONTENEDOR
+        ========================================================= */
+
+        .contenedor {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 20px 45px;
+        }
 
         /* =========================================================
            ESTADISTICAS
         ========================================================= */
 
         .estadisticas {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 14px;
-
-            margin:
-                18px 0;
-
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
         }
-
 
         .estadistica {
-
-            background: white;
-
-            border:
-                1px solid #e7edf2;
-
-            border-radius:
-                var(--radio);
-
-            padding: 18px;
-
+            background: var(--blanco);
+            border-radius: var(--radio);
+            padding: 20px;
             box-shadow: var(--sombra);
-
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #eef1f5;
         }
-
 
         .estadistica-icono {
-
-            width: 40px;
-
-            height: 40px;
-
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
-            border-radius: 11px;
-
-            background:
-                var(--azul-claro);
-
-            margin-bottom: 9px;
-
-            font-size: 18px;
-
+            font-size: 25px;
+            flex-shrink: 0;
         }
 
+        .icono-azul {
+            background: var(--azul-claro);
+        }
 
-        .estadistica strong {
+        .icono-dorado {
+            background: var(--dorado-claro);
+        }
 
-            display: block;
+        .icono-verde {
+            background: var(--verde-claro);
+        }
 
-            color:
-                var(--azul-oscuro);
+        .icono-rojo {
+            background: var(--rojo-claro);
+        }
 
-            font-size: 27px;
-
+        .estadistica-numero {
+            font-size: 25px;
             font-weight: 800;
-
+            color: var(--azul-oscuro);
+            line-height: 1;
+            margin-bottom: 6px;
         }
 
-
-        .estadistica span {
-
-            display: block;
-
-            margin-top: 2px;
-
-            color:
-                var(--gris-500);
-
-            font-size: 12px;
-
+        .estadistica-label {
+            color: var(--gris);
+            font-size: 13px;
         }
-
 
         /* =========================================================
-           SELECTOR DE FECHA
+           CALENDARIO FILTRO
         ========================================================= */
 
-        .selector-fecha {
-
+        .panel-calendario {
             background: white;
-
-            border:
-                1px solid #e3e9ee;
-
-            border-radius: 18px;
-
-            padding: 18px;
-
+            border-radius: var(--radio);
             box-shadow: var(--sombra);
-
-            margin-bottom: 18px;
-
+            border: 1px solid #eef1f5;
+            margin-bottom: 28px;
+            overflow: hidden;
         }
 
-
-        .selector-titulo {
-
+        .panel-calendario-cabecera {
+            padding: 20px 22px;
+            background: linear-gradient(135deg, #f8fbff, #eef7fd);
+            border-bottom: 1px solid #dcecf8;
             display: flex;
-
-            align-items: center;
-
             justify-content: space-between;
-
-            gap: 15px;
-
-            margin-bottom: 13px;
-
-        }
-
-
-        .selector-titulo h2 {
-
-            color:
-                var(--azul-oscuro);
-
-            font-size: 18px;
-
-            font-weight: 800;
-
-        }
-
-
-        .selector-titulo span {
-
-            color:
-                var(--gris-500);
-
-            font-size: 11px;
-
-        }
-
-
-        .controles-fecha {
-
-            display: grid;
-
-            grid-template-columns:
-                45px
-                minmax(200px, 1fr)
-                45px;
-
-            gap: 10px;
-
             align-items: center;
-
+            gap: 15px;
         }
 
+        .titulo-calendario {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        .btn-fecha {
+        .titulo-calendario-icono {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--azul);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
 
-            height: 45px;
+        .titulo-calendario h2 {
+            margin: 0;
+            color: var(--azul-oscuro);
+            font-size: 19px;
+        }
 
-            border:
-                1px solid #dbe4ea;
+        .titulo-calendario p {
+            margin: 3px 0 0;
+            color: var(--gris);
+            font-size: 13px;
+        }
 
-            background:
-                #f7fafc;
+        .mes-navegacion {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-            color:
-                var(--azul-oscuro);
-
+        .boton-mes {
+            border: none;
+            width: 42px;
+            height: 42px;
             border-radius: 11px;
-
-            font-size: 20px;
-
-            font-weight: 800;
-
-            transition:
-                .15s ease;
-
-        }
-
-
-        .btn-fecha:hover {
-
-            background:
-                var(--azul-claro);
-
-            border-color:
-                #bdd9ea;
-
-            transform:
-                translateY(-1px);
-
-        }
-
-
-        #selectorCalendario {
-
-            width: 100%;
-
-            height: 45px;
-
-            padding:
-                0 13px;
-
-            border:
-                1px solid #dbe4ea;
-
-            border-radius: 11px;
-
             background: white;
-
-            color:
-                var(--gris-900);
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            outline: none;
-
+            color: var(--azul);
+            border: 1px solid #d6e6f2;
+            cursor: pointer;
+            font-size: 21px;
+            transition: 0.2s;
         }
 
-
-        #selectorCalendario:focus {
-
-            border-color:
-                var(--azul);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(23,105,170,.10);
-
+        .boton-mes:hover:not(:disabled) {
+            background: var(--azul);
+            color: white;
+            transform: translateY(-1px);
         }
 
+        .boton-mes:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .mes-actual {
+            min-width: 165px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            text-transform: capitalize;
+        }
+
+        .calendario-grid-contenedor {
+            padding: 20px;
+        }
+
+        .dias-semana {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .dia-semana {
+            text-align: center;
+            padding: 8px 4px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--gris);
+            text-transform: uppercase;
+        }
+
+        .dia-semana.domingo {
+            color: var(--rojo);
+        }
+
+        .fechas-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .fecha-vacia {
+            min-height: 52px;
+        }
+
+        .boton-fecha {
+            min-height: 58px;
+            border: 1px solid var(--gris-claro);
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            padding: 7px;
+            position: relative;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .boton-fecha:hover {
+            border-color: var(--azul);
+            background: var(--azul-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(23, 105, 170, 0.12);
+        }
+
+        .boton-fecha .numero {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+        }
+
+        .boton-fecha .mini-dia {
+            font-size: 9px;
+            color: var(--gris);
+            margin-top: 3px;
+        }
+
+        .boton-fecha.domingo {
+            background: #fffafa;
+        }
+
+        .boton-fecha.domingo .numero {
+            color: var(--rojo);
+        }
+
+        .boton-fecha.seleccionado {
+            background: var(--azul);
+            border-color: var(--azul);
+            box-shadow: 0 5px 14px rgba(23, 105, 170, 0.28);
+        }
+
+        .boton-fecha.seleccionado .numero,
+        .boton-fecha.seleccionado .mini-dia {
+            color: white;
+        }
+
+        .boton-fecha.inicio {
+            box-shadow: inset 0 0 0 2px var(--dorado);
+        }
+
+        .boton-fecha.fin {
+            box-shadow: inset 0 0 0 2px var(--verde);
+        }
+
+        .punto-dia {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--dorado);
+            position: absolute;
+            top: 6px;
+            right: 7px;
+        }
+
+        .boton-fecha.seleccionado .punto-dia {
+            background: white;
+        }
+
+        /* =========================================================
+           FECHA SELECCIONADA
+        ========================================================= */
 
         .fecha-seleccionada {
-
             display: flex;
-
             align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: white;
+            border-radius: var(--radio);
+            padding: 17px 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--azul);
+            box-shadow: var(--sombra);
+        }
 
+        .fecha-seleccionada-info {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .fecha-icono {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--dorado-claro);
+            display: flex;
+            align-items: center;
             justify-content: center;
-
-            gap: 8px;
-
-            margin-top: 12px;
-
-            padding: 9px;
-
-            border-radius: 10px;
-
-            background:
-                var(--azul-claro);
-
-            color:
-                var(--azul-oscuro);
-
-            font-size: 12px;
-
-            font-weight: 800;
-
+            font-size: 22px;
         }
 
+        .fecha-seleccionada-label {
+            color: var(--gris);
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .fecha-seleccionada-texto {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            text-transform: capitalize;
+        }
+
+        .fecha-indicador {
+            padding: 8px 13px;
+            background: var(--verde-claro);
+            color: var(--verde);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+        }
 
         /* =========================================================
-           BOTON HOY
-        ========================================================= */
-
-        .btn-hoy {
-
-            margin-top: 12px;
-
-            width: 100%;
-
-            height: 42px;
-
-            border: 0;
-
-            border-radius: 10px;
-
-            background:
-                var(--azul-oscuro);
-
-            color: white;
-
-            font-weight: 800;
-
-            font-size: 12px;
-
-        }
-
-
-        .btn-hoy:hover {
-
-            background:
-                var(--azul);
-
-        }
-
-
-        /* =========================================================
-           REGLA
+           REGLAS
         ========================================================= */
 
         .reglas {
-
-            display: flex;
-
-            align-items: flex-start;
-
-            gap: 12px;
-
-            padding: 15px 17px;
-
-            margin-bottom: 18px;
-
-            background:
-                var(--dorado-claro);
-
-            border-left:
-                5px solid var(--dorado);
-
-            border-radius: 10px;
-
-            color: #574800;
-
-            font-size: 13px;
-
-            line-height: 1.5;
-
-        }
-
-
-        .reglas strong {
-
-            color:
-                #3f3500;
-
-        }
-
-
-        /* =========================================================
-           CALENDARIO
-        ========================================================= */
-
-        .tarjeta-tabla {
-
-            background: white;
-
-            border:
-                1px solid #e3e9ee;
-
-            border-radius: 18px;
-
-            box-shadow: var(--sombra);
-
-            overflow: hidden;
-
-        }
-
-
-        .tabla-cabecera {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
+            background: linear-gradient(135deg, #fffdf3, #fff8dd);
+            border: 1px solid #f5df8c;
+            border-radius: var(--radio);
             padding: 18px 20px;
-
-            border-bottom:
-                1px solid var(--gris-200);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffffff,
-                    #f7fafc
-                );
-
+            margin-bottom: 25px;
         }
 
-
-        .tabla-cabecera h2 {
-
-            color:
-                var(--azul-oscuro);
-
-            font-size: 19px;
-
-            font-weight: 800;
-
-        }
-
-
-        .tabla-cabecera span {
-
-            color:
-                var(--gris-500);
-
-            font-size: 11px;
-
-        }
-
-
-        #contadorResultados {
-
-            display: inline-flex;
-
+        .reglas-titulo {
+            display: flex;
             align-items: center;
-
-            justify-content: center;
-
-            min-width: 80px;
-
-            padding:
-                7px 12px;
-
-            border-radius: 999px;
-
-            background:
-                var(--verde-claro);
-
-            color:
-                var(--verde);
-
-            font-size: 11px;
-
+            gap: 9px;
+            font-size: 15px;
             font-weight: 800;
-
+            color: #755800;
+            margin-bottom: 8px;
         }
 
+        .reglas p {
+            margin: 0;
+            color: #725f27;
+            font-size: 13px;
+            line-height: 1.6;
+        }
 
         /* =========================================================
            TABLA DESKTOP
         ========================================================= */
 
         .tabla-contenedor {
-
-            width: 100%;
-
-            overflow-x: auto;
-
+            background: white;
+            border-radius: var(--radio);
+            box-shadow: var(--sombra);
+            overflow: hidden;
+            border: 1px solid #e7ebef;
+            margin-bottom: 28px;
         }
 
+        .tabla-cabecera-titulo {
+            padding: 18px 20px;
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tabla-cabecera-titulo h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .contador {
+            background: rgba(255,255,255,0.15);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .tabla-scroll {
+            overflow-x: auto;
+        }
 
         table {
-
             width: 100%;
-
             border-collapse: collapse;
-
+            min-width: 1000px;
         }
-
 
         thead th {
-
-            padding:
-                14px 10px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #f5f8fb,
-                    #eaf0f5
-                );
-
-            color:
-                #24445f;
-
-            border-bottom:
-                2px solid #dce5ec;
-
-            font-size: 10px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing: .4px;
-
+            background: #f2f7fb;
+            color: var(--azul-oscuro);
+            padding: 14px 10px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-bottom: 2px solid #dce8f0;
             white-space: nowrap;
-
         }
 
-
-        thead th:first-child {
-
-            width: 120px;
-
+        thead th.pos-header {
+            background: var(--azul-claro);
+            color: var(--azul);
         }
-
-
-        thead th:nth-child(2) {
-
-            width: 110px;
-
-        }
-
 
         tbody td {
-
-            padding:
-                13px 10px;
-
-            border-bottom:
-                1px solid #edf0f3;
-
-            vertical-align: middle;
-
+            padding: 11px 9px;
+            border-bottom: 1px solid #edf0f3;
+            text-align: center;
             font-size: 12px;
-
+            vertical-align: middle;
         }
 
-
-        tbody tr:hover td {
-
-            background:
-                #f6fafc;
-
+        tbody tr {
+            transition: 0.2s;
         }
 
-
-        .fecha {
-
-            color:
-                var(--azul-oscuro);
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-            white-space: nowrap;
-
+        tbody tr:hover {
+            background: #f8fbfd;
         }
 
+        tbody tr.dia-domingo {
+            background: #fffafa;
+        }
 
-        .dia {
+        tbody tr.dia-domingo:hover {
+            background: #fff5f5;
+        }
 
-            color:
-                var(--azul);
+        .celda-fecha {
+            text-align: left;
+            min-width: 120px;
+            font-weight: 700;
+        }
 
-            font-size: 11px;
+        .fecha-numero-tabla {
+            display: block;
+            color: var(--azul-oscuro);
+            font-size: 13px;
+        }
 
-            font-weight: 800;
-
+        .fecha-dia-tabla {
+            display: block;
+            margin-top: 3px;
+            color: var(--gris);
+            font-size: 10px;
             text-transform: uppercase;
-
         }
 
-
-        .fin-semana {
-
-            color:
-                #a46600;
-
+        .celda-pos {
+            width: 12.5%;
         }
-
-
-        .pos-celda {
-
-            min-width: 145px;
-
-            padding:
-                13px 10px !important;
-
-            border-left:
-                1px solid #eef2f5;
-
-        }
-
-
-        .pos-numero {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            min-width: 48px;
-
-            padding:
-                5px 8px;
-
-            margin-bottom: 6px;
-
-            border-radius: 7px;
-
-            background:
-                #e8f3fa;
-
-            color:
-                var(--azul);
-
-            border:
-                1px solid #d5e8f4;
-
-            font-size: 9px;
-
-            font-weight: 900;
-
-        }
-
 
         .cobrador {
-
-            display: block;
-
-            color:
-                #263b4d;
-
-            font-size: 11px;
-
-            font-weight: 750;
-
-            line-height: 1.3;
-
+            display: inline-block;
+            padding: 7px 8px;
+            border-radius: 8px;
+            background: #f5f8fa;
+            color: var(--gris-oscuro);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 145px;
         }
 
+        .pos-1 .cobrador,
+        .pos-4 .cobrador,
+        .pos-7 .cobrador {
+            background: var(--azul-claro);
+            color: var(--azul-oscuro);
+        }
+
+        .pos-2 .cobrador,
+        .pos-5 .cobrador {
+            background: var(--dorado-claro);
+            color: #765c00;
+        }
+
+        .pos-3 .cobrador,
+        .pos-6 .cobrador {
+            background: var(--verde-claro);
+            color: #12674b;
+        }
+
+        .fila-inicio {
+            border-top: 3px solid var(--dorado);
+        }
+
+        .fila-fin {
+            border-bottom: 3px solid var(--verde);
+        }
 
         /* =========================================================
-           MENSAJE
+           SEPARADORES DE MES
         ========================================================= */
 
-        .sin-resultados {
-
-            padding: 50px 20px;
-
-            text-align: center;
-
-            color:
-                var(--gris-500);
-
+        .separador-mes {
+            scroll-margin-top: 20px;
         }
 
+        .separador-mes td {
+            background: linear-gradient(90deg, var(--azul-oscuro), var(--azul));
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           CARDS MOBILE
+        ========================================================= */
+
+        .cards-mobile {
+            display: none;
+        }
+
+        .dia-card {
+            background: white;
+            border-radius: var(--radio);
+            margin-bottom: 17px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            border: 1px solid #e7ebef;
+            scroll-margin-top: 20px;
+        }
+
+        .dia-card-cabecera {
+            padding: 15px 17px;
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dia-card-fecha {
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: capitalize;
+        }
+
+        .dia-card-numero {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .dia-card-badge {
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.14);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .pos-lista {
+            padding: 9px;
+        }
+
+        .pos-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 7px;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .pos-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .pos-numero {
+            width: 39px;
+            height: 39px;
+            border-radius: 10px;
+            background: var(--azul);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .pos-nombre {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--gris-oscuro);
+            line-height: 1.3;
+        }
+
+        .pos-item:nth-child(2n) .pos-numero {
+            background: var(--dorado);
+            color: #5d4800;
+        }
+
+        .pos-item:nth-child(3n) .pos-numero {
+            background: var(--verde);
+        }
 
         /* =========================================================
            RESUMEN
         ========================================================= */
 
         .resumen {
-
-            margin-top: 18px;
-
             background: white;
-
-            border:
-                1px solid #e3e9ee;
-
-            border-radius: 18px;
-
+            border-radius: var(--radio);
             box-shadow: var(--sombra);
-
+            border: 1px solid #e7ebef;
             overflow: hidden;
-
+            margin-bottom: 28px;
         }
 
-
-        .resumen-cabecera {
-
+        .resumen summary {
             padding: 18px 20px;
-
-            border-bottom:
-                1px solid var(--gris-200);
-
+            cursor: pointer;
+            color: var(--azul-oscuro);
+            font-weight: 800;
+            font-size: 15px;
+            user-select: none;
         }
 
-
-        .resumen-cabecera h2 {
-
-            color:
-                var(--azul-oscuro);
-
-            font-size: 18px;
-
+        .resumen summary:hover {
+            background: var(--azul-claro);
         }
 
-
-        .resumen-cabecera p {
-
-            margin-top: 4px;
-
-            color:
-                var(--gris-500);
-
-            font-size: 12px;
-
+        .resumen-contenido {
+            padding: 0 20px 20px;
         }
-
 
         .resumen-grid {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(230px,1fr)
-                );
-
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-
-            padding: 18px;
-
         }
 
-
-        .persona {
-
-            padding: 13px;
-
-            border:
-                1px solid var(--gris-200);
-
-            border-radius: 12px;
-
-            background:
-                #fcfdfe;
-
+        .resumen-persona {
+            padding: 11px;
+            background: #f8fafc;
+            border: 1px solid #edf0f3;
+            border-radius: 10px;
         }
 
-
-        .persona-nombre {
-
-            display: block;
-
-            font-size: 12px;
-
+        .resumen-persona-nombre {
+            font-size: 11px;
             font-weight: 800;
-
-            line-height: 1.3;
-
+            color: var(--gris-oscuro);
+            margin-bottom: 5px;
         }
 
-
-        .persona-total {
-
-            display: inline-block;
-
-            margin-top: 7px;
-
-            color:
-                var(--verde);
-
+        .resumen-persona-numero {
+            color: var(--azul);
             font-size: 12px;
-
-            font-weight: 700;
-
+            font-weight: 800;
         }
-
 
         /* =========================================================
-           PIE
+           FOOTER
         ========================================================= */
 
-        .pie {
-
-            padding:
-                20px 0 0;
-
+        footer {
             text-align: center;
-
-            color:
-                var(--gris-500);
-
-            font-size: 11px;
-
-            line-height: 1.5;
-
+            color: var(--gris);
+            font-size: 12px;
+            padding: 10px 0 20px;
         }
 
+        footer strong {
+            color: var(--azul-oscuro);
+        }
 
         /* =========================================================
-           TABLET
+           RESPONSIVE
         ========================================================= */
 
         @media (max-width: 1000px) {
-
             .estadisticas {
-
-                grid-template-columns:
-                    repeat(2,1fr);
-
+                grid-template-columns: repeat(2, 1fr);
             }
-
-        }
-
-
-        /* =========================================================
-           CELULAR
-        ========================================================= */
-
-        @media (max-width: 650px) {
-
-            body {
-
-                background:
-                    #f1f5f8;
-
-            }
-
-
-            .contenedor {
-
-                width:
-                    calc(100% - 12px);
-
-                padding:
-                    6px 0 25px;
-
-            }
-
-
-            /* HEADER */
-
-            .encabezado {
-
-                min-height: 115px;
-
-                padding: 15px;
-
-                gap: 12px;
-
-                border-radius: 16px;
-
-            }
-
-
-            .logo {
-
-                width: 62px;
-
-                height: 62px;
-
-                border-radius: 13px;
-
-            }
-
-
-            .encabezado h1 {
-
-                font-size: 19px;
-
-                line-height: 1.15;
-
-            }
-
-
-            .encabezado p {
-
-                font-size: 10px;
-
-                line-height: 1.3;
-
-            }
-
-
-            .periodo {
-
-                margin-top: 7px;
-
-                padding: 5px 8px;
-
-                font-size: 8px;
-
-            }
-
-
-            /* ESTADISTICAS */
-
-            .estadisticas {
-
-                gap: 8px;
-
-                margin-top: 10px;
-
-                margin-bottom: 10px;
-
-            }
-
-
-            .estadistica {
-
-                min-height: 98px;
-
-                padding: 11px;
-
-                border-radius: 13px;
-
-            }
-
-
-            .estadistica-icono {
-
-                width: 30px;
-
-                height: 30px;
-
-                margin-bottom: 6px;
-
-                font-size: 14px;
-
-            }
-
-
-            .estadistica strong {
-
-                font-size: 19px;
-
-            }
-
-
-            .estadistica span {
-
-                font-size: 9px;
-
-            }
-
-
-            /* SELECTOR */
-
-            .selector-fecha {
-
-                padding: 14px;
-
-                border-radius: 15px;
-
-                margin-bottom: 10px;
-
-            }
-
-
-            .selector-titulo {
-
-                display: block;
-
-                margin-bottom: 10px;
-
-            }
-
-
-            .selector-titulo h2 {
-
-                font-size: 15px;
-
-            }
-
-
-            .selector-titulo span {
-
-                display: block;
-
-                margin-top: 3px;
-
-                font-size: 9px;
-
-            }
-
-
-            .controles-fecha {
-
-                grid-template-columns:
-                    42px
-                    minmax(0,1fr)
-                    42px;
-
-                gap: 7px;
-
-            }
-
-
-            .btn-fecha {
-
-                height: 44px;
-
-                border-radius: 10px;
-
-                font-size: 18px;
-
-            }
-
-
-            #selectorCalendario {
-
-                height: 44px;
-
-                font-size: 13px;
-
-            }
-
-
-            .fecha-seleccionada {
-
-                margin-top: 9px;
-
-                padding: 8px;
-
-                font-size: 10px;
-
-            }
-
-
-            .btn-hoy {
-
-                margin-top: 8px;
-
-                height: 40px;
-
-                font-size: 11px;
-
-            }
-
-
-            /* REGLAS */
-
-            .reglas {
-
-                padding: 11px;
-
-                margin-bottom: 10px;
-
-                font-size: 10px;
-
-                border-left-width: 4px;
-
-            }
-
-
-            /* CALENDARIO */
-
-            .tarjeta-tabla {
-
-                border-radius: 15px;
-
-                overflow: hidden;
-
-            }
-
-
-            .tabla-cabecera {
-
-                padding: 14px;
-
-                display: flex;
-
-                align-items: center;
-
-            }
-
-
-            .tabla-cabecera h2 {
-
-                font-size: 15px;
-
-            }
-
-
-            .tabla-cabecera span {
-
-                font-size: 9px;
-
-            }
-
-
-            #contadorResultados {
-
-                min-width: 58px;
-
-                padding: 6px 8px;
-
-                font-size: 9px;
-
-            }
-
-
-            /* =====================================================
-               EN CELULAR MOSTRAMOS EL DÍA COMO TARJETA
-            ===================================================== */
-
-            .tabla-contenedor {
-
-                overflow: visible;
-
-            }
-
-
-            table,
-            tbody,
-            tr,
-            td {
-
-                display: block;
-
-            }
-
-
-            thead {
-
-                display: none;
-
-            }
-
-
-            table {
-
-                width: 100%;
-
-            }
-
-
-            tbody {
-
-                width: 100%;
-
-            }
-
-
-            tbody tr {
-
-                margin: 0;
-
-                background: white;
-
-            }
-
-
-            /* FECHA */
-
-            tbody td.fecha {
-
-                display: flex;
-
-                align-items: center;
-
-                min-height: 52px;
-
-                padding:
-                    14px 15px !important;
-
-                background:
-                    linear-gradient(
-                        135deg,
-                        var(--azul-oscuro),
-                        var(--azul)
-                    ) !important;
-
-                color: white;
-
-                border: 0;
-
-                font-size: 15px;
-
-                font-weight: 850;
-
-            }
-
-
-            /* DIA */
-
-            tbody td.dia {
-
-                display: block;
-
-                padding:
-                    8px 15px !important;
-
-                background:
-                    #f5f8fa !important;
-
-                color:
-                    var(--azul);
-
-                border: 0;
-
-                border-bottom:
-                    1px solid #e7edf1;
-
-                font-size: 10px;
-
-                font-weight: 850;
-
-                letter-spacing: .6px;
-
-            }
-
-
-            tbody td.dia.fin-semana {
-
-                color:
-                    #a46600;
-
-            }
-
-
-            /* POS */
-
-            tbody td.pos-celda {
-
-                display: flex;
-
-                align-items: center;
-
-                gap: 10px;
-
-                width: 100%;
-
-                min-width: 0;
-
-                min-height: 57px;
-
-                padding:
-                    9px 14px !important;
-
-                background: white !important;
-
-                border-left: 0;
-
-                border-bottom:
-                    1px solid #eef2f5;
-
-            }
-
-
-            tbody td.pos-celda:last-child {
-
-                border-bottom: 0;
-
-            }
-
-
-            tbody .pos-numero {
-
-                flex-shrink: 0;
-
-                width: 52px;
-
-                min-width: 52px;
-
-                margin: 0;
-
-                padding: 6px 5px;
-
-                border-radius: 8px;
-
-                font-size: 9px;
-
-                text-align: center;
-
-            }
-
-
-            tbody .cobrador {
-
-                flex: 1;
-
-                color:
-                    #263b4d;
-
-                font-size: 11px;
-
-                line-height: 1.25;
-
-                text-align: left;
-
-            }
-
-
-            /* RESUMEN */
-
-            .resumen {
-
-                margin-top: 10px;
-
-                border-radius: 15px;
-
-            }
-
-
-            .resumen-cabecera {
-
-                padding: 14px;
-
-            }
-
-
-            .resumen-cabecera h2 {
-
-                font-size: 15px;
-
-            }
-
 
             .resumen-grid {
-
-                grid-template-columns: 1fr;
-
-                padding: 11px;
-
-                gap: 7px;
-
+                grid-template-columns: repeat(3, 1fr);
             }
-
-
-            .persona {
-
-                padding: 11px;
-
-                border-radius: 10px;
-
-            }
-
-
-            .persona-nombre {
-
-                font-size: 10px;
-
-            }
-
-
-            .persona-total {
-
-                font-size: 10px;
-
-            }
-
-
-            /* PIE */
-
-            .pie {
-
-                padding:
-                    14px 10px 0;
-
-                font-size: 9px;
-
-            }
-
         }
 
-
-        /* =========================================================
-           CELULAR MUY PEQUEÑO
-        ========================================================= */
-
-        @media (max-width: 380px) {
+        @media (max-width: 700px) {
 
             .encabezado {
-
-                padding: 12px;
-
+                padding: 20px 15px;
             }
 
+            .encabezado-contenido {
+                gap: 15px;
+            }
 
             .logo {
-
-                width: 54px;
-
-                height: 54px;
-
+                width: 72px;
+                height: 72px;
+                border-radius: 14px;
             }
 
-
-            .encabezado h1 {
-
-                font-size: 17px;
-
+            .titulo-principal {
+                font-size: 22px;
+                margin-bottom: 5px;
             }
 
-
-            .encabezado p {
-
-                font-size: 9px;
-
+            .subtitulo {
+                font-size: 12px;
+                line-height: 1.4;
             }
-
 
             .periodo {
-
-                font-size: 7px;
-
-            }
-
-
-            .estadistica {
-
-                min-height: 92px;
-
-                padding: 9px;
-
-            }
-
-
-            .estadistica strong {
-
-                font-size: 17px;
-
-            }
-
-
-            .controles-fecha {
-
-                grid-template-columns:
-                    38px
-                    minmax(0,1fr)
-                    38px;
-
-            }
-
-
-            .btn-fecha {
-
-                font-size: 16px;
-
-            }
-
-
-            tbody td.pos-celda {
-
-                min-height: 53px;
-
-            }
-
-
-            tbody .cobrador {
-
                 font-size: 10px;
-
+                margin-top: 8px;
             }
-
-        }
-
-
-        /* =========================================================
-           IMPRESION
-        ========================================================= */
-
-        @media print {
-
-            @page {
-
-                size: landscape;
-
-                margin: 8mm;
-
-            }
-
-
-            body {
-
-                background: white;
-
-            }
-
 
             .contenedor {
-
-                width: 100%;
-
-                padding: 0;
-
+                padding: 15px 10px 35px;
             }
 
-
-            .encabezado {
-
-                border-radius: 0;
-
-                box-shadow: none;
-
-                padding: 15px;
-
+            .estadisticas {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 15px;
             }
 
-
-            .estadisticas,
-            .selector-fecha,
-            .reglas,
-            .resumen,
-            .pie {
-
-                display: none !important;
-
+            .estadistica {
+                padding: 13px;
+                gap: 9px;
+                border-radius: 13px;
             }
 
-
-            .tarjeta-tabla {
-
-                box-shadow: none;
-
-                border-radius: 0;
-
+            .estadistica-icono {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                font-size: 19px;
             }
 
-
-            .tabla-cabecera {
-
-                padding: 10px 0;
-
+            .estadistica-numero {
+                font-size: 19px;
             }
 
-
-            table {
-
-                min-width: 0;
-
+            .estadistica-label {
+                font-size: 10px;
             }
 
-
-            thead {
-
-                display: table-header-group;
-
+            .panel-calendario {
+                margin-bottom: 17px;
             }
 
-
-            table,
-            tbody,
-            tr,
-            td {
-
-                display: table;
-
+            .panel-calendario-cabecera {
+                padding: 14px;
+                display: block;
             }
 
-
-            tr {
-
-                display: table-row;
-
+            .titulo-calendario {
+                margin-bottom: 13px;
             }
 
-
-            td {
-
-                display: table-cell;
-
+            .titulo-calendario-icono {
+                width: 37px;
+                height: 37px;
+                font-size: 18px;
             }
 
-
-            thead th {
-
-                position: static;
-
-                font-size: 8px;
-
-                padding: 5px;
-
+            .titulo-calendario h2 {
+                font-size: 15px;
             }
 
-
-            tbody td {
-
-                font-size: 8px;
-
-                padding: 5px;
-
+            .titulo-calendario p {
+                font-size: 10px;
             }
 
-
-            .pos-celda {
-
-                min-width: 0;
-
+            .mes-navegacion {
+                justify-content: space-between;
             }
 
-
-            .pos-numero {
-
-                padding: 2px 4px;
-
-                font-size: 7px;
-
+            .mes-actual {
+                font-size: 15px;
             }
 
-
-            .cobrador {
-
-                font-size: 7px;
-
+            .boton-mes {
+                width: 38px;
+                height: 38px;
             }
 
+            .calendario-grid-contenedor {
+                padding: 10px;
+            }
+
+            .dias-semana,
+            .fechas-grid {
+                gap: 4px;
+            }
+
+            .dia-semana {
+                font-size: 9px;
+                padding: 5px 1px;
+            }
+
+            .boton-fecha {
+                min-height: 45px;
+                border-radius: 9px;
+                padding: 4px;
+            }
+
+            .boton-fecha .numero {
+                font-size: 14px;
+            }
+
+            .boton-fecha .mini-dia {
+                display: none;
+            }
+
+            .punto-dia {
+                width: 4px;
+                height: 4px;
+                top: 4px;
+                right: 5px;
+            }
+
+            .fecha-seleccionada {
+                padding: 13px;
+                margin-bottom: 15px;
+            }
+
+            .fecha-icono {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+
+            .fecha-seleccionada-texto {
+                font-size: 14px;
+            }
+
+            .fecha-indicador {
+                font-size: 9px;
+                padding: 6px 8px;
+            }
+
+            .reglas {
+                padding: 14px;
+                margin-bottom: 17px;
+            }
+
+            .reglas p {
+                font-size: 11px;
+            }
+
+            .tabla-contenedor {
+                display: none;
+            }
+
+            .cards-mobile {
+                display: block;
+            }
+
+            .tabla-cabecera-titulo {
+                padding: 14px;
+            }
+
+            .tabla-cabecera-titulo h2 {
+                font-size: 15px;
+            }
+
+            .contador {
+                font-size: 10px;
+            }
+
+            .resumen-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
+        @media (max-width: 400px) {
+
+            .logo {
+                width: 62px;
+                height: 62px;
+            }
+
+            .titulo-principal {
+                font-size: 19px;
+            }
+
+            .subtitulo {
+                font-size: 10px;
+            }
+
+            .estadistica {
+                padding: 10px;
+            }
+
+            .estadistica-icono {
+                width: 34px;
+                height: 34px;
+                font-size: 16px;
+            }
+
+            .estadistica-numero {
+                font-size: 17px;
+            }
+
+            .estadistica-label {
+                font-size: 9px;
+            }
+
+            .resumen-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
-<div class="contenedor">
+<!-- =============================================================
+     ENCABEZADO
+============================================================= -->
 
+<header class="encabezado">
 
-    <!-- =========================================================
-         ENCABEZADO
-    ========================================================== -->
-
-    <header class="encabezado">
+    <div class="encabezado-contenido">
 
         <div class="logo">
-
-            <img
-                src="logo.jpeg"
-                alt="La Comercial"
-            >
-
+            <img src="logo.jpeg" alt="La Comercial">
         </div>
 
-
-        <div class="encabezado-contenido">
-
-            <h1>
-                Calendario de Uso de POS
+        <div>
+            <h1 class="titulo-principal">
+                Calendario de POS
             </h1>
 
-            <p>
-                Control y distribución diaria de los dispositivos POS
+            <p class="subtitulo">
+                Distribución diaria de dispositivos POS para cobradores
             </p>
 
             <div class="periodo">
                 📅 17 de septiembre — 31 de diciembre de 2026
             </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================================================
-         ESTADISTICAS
-    ========================================================== -->
-
-    <section class="estadisticas">
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono">
-                📅
-            </div>
-
-            <strong>
-                106
-            </strong>
-
-            <span>
-                Días programados
-            </span>
-
-        </div>
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono">
-                👥
-            </div>
-
-            <strong>
-                31
-            </strong>
-
-            <span>
-                Cobradores activos
-            </span>
-
-        </div>
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono">
-                💳
-            </div>
-
-            <strong>
-                7
-            </strong>
-
-            <span>
-                POS disponibles por día
-            </span>
-
-        </div>
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono">
-                🔄
-            </div>
-
-            <strong>
-                742
-            </strong>
-
-            <span>
-                Asignaciones del período
-            </span>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =========================================================
-         SELECTOR DE FECHA
-    ========================================================== -->
-
-    <section class="selector-fecha">
-
-
-        <div class="selector-titulo">
-
-            <div>
-
-                <h2>
-                    📅 Consultar calendario
-                </h2>
-
-                <span>
-                    Seleccione directamente el día que desea consultar
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="controles-fecha">
-
-
-            <button
-                type="button"
-                class="btn-fecha"
-                onclick="diaAnterior()"
-                aria-label="Día anterior"
-            >
-                ‹
-            </button>
-
-
-            <input
-                type="date"
-                id="selectorCalendario"
-                min="2026-09-17"
-                max="2026-12-31"
-                onchange="mostrarFechaSeleccionada()"
-            >
-
-
-            <button
-                type="button"
-                class="btn-fecha"
-                onclick="diaSiguiente()"
-                aria-label="Día siguiente"
-            >
-                ›
-            </button>
-
-
-        </div>
-
-
-        <div
-            class="fecha-seleccionada"
-            id="fechaSeleccionadaTexto"
-        >
-            📌 Seleccione una fecha
-        </div>
-
-
-        <button
-            type="button"
-            class="btn-hoy"
-            onclick="irAFechaActual()"
-        >
-            📍 Ir a la fecha actual del calendario
-        </button>
-
-
-    </section>
-
-
-    <!-- =========================================================
-         REGLA
-    ========================================================== -->
-
-    <div class="reglas">
-
-        <div>
-            🔐
-        </div>
-
-        <div>
-
-            <strong>
-                Regla de rotación:
-            </strong>
-
-            Se mantiene el orden original de los cobradores.
-            Cada día se asignan 7 cobradores disponibles.
-            Si un cobrador está descansando, se salta y continúa
-            la rotación con el siguiente disponible.
-            Al llegar al último cobrador, la rotación vuelve
-            automáticamente al primero.
-
         </div>
 
     </div>
 
+</header>
+
+
+<main class="contenedor">
 
     <!-- =========================================================
-         CALENDARIO
-    ========================================================== -->
+         ESTADISTICAS
+    ========================================================= -->
 
-    <section class="tarjeta-tabla">
+    <section class="estadisticas">
 
+        <div class="estadistica">
 
-        <div class="tabla-cabecera">
-
-            <div>
-
-                <h2>
-                    📋 Asignación del día
-                </h2>
-
-                <span>
-                    Los 7 dispositivos POS disponibles
-                </span>
-
+            <div class="estadistica-icono icono-azul">
+                📅
             </div>
 
+            <div>
+                <div class="estadistica-numero">
+                    106
+                </div>
 
-            <span id="contadorResultados">
-                1 día
-            </span>
+                <div class="estadistica-label">
+                    Días programados
+                </div>
+            </div>
 
         </div>
 
 
-        <div class="tabla-contenedor">
+        <div class="estadistica">
 
+            <div class="estadistica-icono icono-dorado">
+                👥
+            </div>
+
+            <div>
+                <div class="estadistica-numero">
+                    31
+                </div>
+
+                <div class="estadistica-label">
+                    Cobradores activos
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono icono-verde">
+                💳
+            </div>
+
+            <div>
+                <div class="estadistica-numero">
+                    7
+                </div>
+
+                <div class="estadistica-label">
+                    POS disponibles por día
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="estadistica">
+
+            <div class="estadistica-icono icono-rojo">
+                🔄
+            </div>
+
+            <div>
+                <div class="estadistica-numero">
+                    742
+                </div>
+
+                <div class="estadistica-label">
+                    Asignaciones totales
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CALENDARIO
+    ========================================================= -->
+
+    <section class="panel-calendario">
+
+        <div class="panel-calendario-cabecera">
+
+            <div class="titulo-calendario">
+
+                <div class="titulo-calendario-icono">
+                    📆
+                </div>
+
+                <div>
+                    <h2>Calendario de fechas</h2>
+
+                    <p>
+                        Selecciona una fecha para localizarla rápidamente
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="mes-navegacion">
+
+                <button
+                    type="button"
+                    class="boton-mes"
+                    id="mesAnterior"
+                    aria-label="Mes anterior"
+                >
+                    ‹
+                </button>
+
+                <div
+                    class="mes-actual"
+                    id="mesActual"
+                >
+                    Septiembre 2026
+                </div>
+
+                <button
+                    type="button"
+                    class="boton-mes"
+                    id="mesSiguiente"
+                    aria-label="Mes siguiente"
+                >
+                    ›
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="calendario-grid-contenedor">
+
+            <div class="dias-semana">
+
+                <div class="dia-semana">LUN</div>
+                <div class="dia-semana">MAR</div>
+                <div class="dia-semana">MIÉ</div>
+                <div class="dia-semana">JUE</div>
+                <div class="dia-semana">VIE</div>
+                <div class="dia-semana">SÁB</div>
+                <div class="dia-semana domingo">DOM</div>
+
+            </div>
+
+
+            <div
+                class="fechas-grid"
+                id="fechasGrid"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FECHA SELECCIONADA
+    ========================================================= -->
+
+    <section class="fecha-seleccionada">
+
+        <div class="fecha-seleccionada-info">
+
+            <div class="fecha-icono">
+                📍
+            </div>
+
+            <div>
+
+                <div class="fecha-seleccionada-label">
+                    Última fecha seleccionada
+                </div>
+
+                <div
+                    class="fecha-seleccionada-texto"
+                    id="fechaSeleccionadaTexto"
+                >
+                    Jueves 17 de septiembre de 2026
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="fecha-indicador">
+            7 POS asignados
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         REGLAS
+    ============================================================= -->
+
+    <section class="reglas">
+
+        <div class="reglas-titulo">
+            💡 Reglas de asignación
+        </div>
+
+        <p>
+            Cada día se asignan exactamente 7 cobradores, uno por cada POS.
+            La rotación sigue el orden establecido de los 31 cobradores.
+            Cuando un cobrador se encuentra en su día de descanso, se omite
+            y se continúa con el siguiente disponible de la rotación.
+            Los sábados y domingos también forman parte de la programación.
+        </p>
+
+    </section>
+
+
+    <!-- =========================================================
+         TABLA DESKTOP
+    ============================================================= -->
+
+    <section class="tabla-contenedor">
+
+        <div class="tabla-cabecera-titulo">
+
+            <h2>
+                📋 Calendario completo de asignaciones
+            </h2>
+
+            <div class="contador">
+                106 días · 742 asignaciones
+            </div>
+
+        </div>
+
+
+        <div class="tabla-scroll">
 
             <table>
-
 
                 <thead>
 
@@ -2171,35 +1340,31 @@
                             Fecha
                         </th>
 
-                        <th>
-                            Día
-                        </th>
-
-                        <th>
+                        <th class="pos-header">
                             POS 1
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 2
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 3
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 4
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 5
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 6
                         </th>
 
-                        <th>
+                        <th class="pos-header">
                             POS 7
                         </th>
 
@@ -2207,75 +1372,90 @@
 
                 </thead>
 
-
                 <tbody id="tablaCalendario">
-                </tbody>
 
+                </tbody>
 
             </table>
 
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CARDS MOBILE
+    ============================================================= -->
+
+    <section class="cards-mobile">
+
+        <div class="tabla-contenedor">
+
+            <div class="tabla-cabecera-titulo">
+
+                <h2>
+                    📱 Asignaciones diarias
+                </h2>
+
+                <div class="contador">
+                    7 POS
+                </div>
+
+            </div>
 
         </div>
 
+
+        <div id="cardsCalendario">
+
+        </div>
 
     </section>
 
 
     <!-- =========================================================
          RESUMEN
-    ========================================================== -->
+    ============================================================= -->
 
-    <section class="resumen">
+    <details class="resumen">
 
+        <summary>
+            👥 Ver resumen de participación de cobradores
+        </summary>
 
-        <div class="resumen-cabecera">
+        <div class="resumen-contenido">
 
-            <h2>
-                📊 Resumen de participación
-            </h2>
-
-            <p>
-                Cantidad total de asignaciones de POS
-                por cobrador durante el período.
-            </p>
+            <div
+                class="resumen-grid"
+                id="resumenCobradores"
+            ></div>
 
         </div>
 
-
-        <div
-            class="resumen-grid"
-            id="resumenCobradores"
-        >
-        </div>
+    </details>
 
 
-    </section>
+</main>
 
 
-    <!-- =========================================================
-         PIE
-    ========================================================== -->
+<!-- =============================================================
+     FOOTER
+============================================================= -->
 
-    <footer class="pie">
+<footer>
 
-        La Comercial · Calendario interno de uso de POS · 2026
+    Calendario de POS ·
+    <strong>La Comercial</strong>
+    · 2026
 
-        <br>
-
-        Sistema de rotación automática respetando días de descanso
-
-    </footer>
-
-
-</div>
+</footer>
 
 
 <script>
 
-
     /* =========================================================
-       COBRADORES
-    ========================================================== */
+       COBRADORES ACTIVOS
+    ========================================================= */
 
     const cobradores = [
 
@@ -2438,11 +1618,10 @@
 
 
     /* =========================================================
-       DIAS
-    ========================================================== */
+       CONFIGURACION
+    ========================================================= */
 
-    const diasSemana = [
-
+    const nombresDias = [
         "DOMINGO",
         "LUNES",
         "MARTES",
@@ -2450,98 +1629,66 @@
         "JUEVES",
         "VIERNES",
         "SABADO"
+    ];
 
+    const nombresDiasCortos = [
+        "Dom",
+        "Lun",
+        "Mar",
+        "Mié",
+        "Jue",
+        "Vie",
+        "Sáb"
+    ];
+
+    const nombresMeses = [
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre"
     ];
 
 
+    const fechaInicio = new Date(
+        2026,
+        8,
+        17
+    );
+
+    const fechaFin = new Date(
+        2026,
+        11,
+        31
+    );
+
+
     /* =========================================================
-       FECHAS
-    ========================================================== */
-
-    const fechaInicio =
-        new Date(2026, 8, 17);
-
-
-    const fechaFin =
-        new Date(2026, 11, 31);
-
+       CALENDARIO PRINCIPAL
+    ========================================================= */
 
     const calendario = [];
-
 
     let puntero = 0;
 
 
-    /* =========================================================
-       NOMBRE DEL DIA
-    ========================================================== */
-
-    function nombreDia(fecha) {
-
-        return diasSemana[
-            fecha.getDay()
-        ];
-
-    }
-
-
-    /* =========================================================
-       FORMATO FECHA
-    ========================================================== */
-
-    function formatearFecha(fecha) {
-
-        const dia =
-            String(
-                fecha.getDate()
-            ).padStart(2,"0");
-
-
-        const mes =
-            String(
-                fecha.getMonth() + 1
-            ).padStart(2,"0");
-
-
-        const año =
-            fecha.getFullYear();
-
-
-        return `${dia}/${mes}/${año}`;
-
-    }
-
-
-    /* =========================================================
-       FORMATO PARA INPUT DATE
-    ========================================================== */
-
-    function formatoInput(fecha) {
-
-        const año =
-            fecha.getFullYear();
-
-
-        const mes =
-            String(
-                fecha.getMonth() + 1
-            ).padStart(2,"0");
-
-
-        const dia =
-            String(
-                fecha.getDate()
-            ).padStart(2,"0");
-
-
-        return `${año}-${mes}-${dia}`;
-
-    }
-
-
-    /* =========================================================
-       OBTENER 7 COBRADORES
-    ========================================================== */
+    /*
+     * IMPORTANTE:
+     *
+     * Se conserva la lógica de rotación solicitada:
+     *
+     * - Se toma el siguiente cobrador de la lista.
+     * - Si está descansando ese día, se salta.
+     * - El puntero continúa avanzando.
+     * - Se buscan 7 cobradores disponibles.
+     */
 
     function obtenerCobradoresParaDia(dia) {
 
@@ -2549,29 +1696,20 @@
 
         let intentos = 0;
 
-
         while (
-
             seleccionados.length < 7 &&
-
-            intentos <
-                cobradores.length * 2
-
+            intentos < cobradores.length * 2
         ) {
 
             const indice =
-                puntero %
-                cobradores.length;
-
+                puntero % cobradores.length;
 
             const cobrador =
                 cobradores[indice];
 
-
             puntero++;
 
             intentos++;
-
 
             if (
                 !cobrador.descanso.includes(dia)
@@ -2585,88 +1723,600 @@
 
         }
 
-
         return seleccionados;
-
     }
 
 
     /* =========================================================
-       GENERAR CALENDARIO COMPLETO
-    ========================================================== */
+       GENERAR LOS 106 DIAS
+    ========================================================= */
 
-    let fechaActual =
-        new Date(fechaInicio);
+    let fechaActual = new Date(fechaInicio);
 
+    while (fechaActual <= fechaFin) {
 
-    while (
-        fechaActual <= fechaFin
-    ) {
-
-        const dia =
-            nombreDia(fechaActual);
-
+        const diaSemana =
+            nombresDias[
+                fechaActual.getDay()
+            ];
 
         const asignados =
-            obtenerCobradoresParaDia(dia);
-
+            obtenerCobradoresParaDia(
+                diaSemana
+            );
 
         calendario.push({
 
-            fechaObjeto:
-                new Date(fechaActual),
+            fecha: new Date(fechaActual),
 
-            fecha:
-                formatearFecha(
+            iso:
+                convertirFechaISO(
                     fechaActual
                 ),
 
-            dia:
-                dia,
+            diaSemana: diaSemana,
 
-            cobradores:
-                asignados
+            asignados: asignados
 
         });
 
-
         fechaActual.setDate(
             fechaActual.getDate() + 1
+        );
+    }
+
+
+    /* =========================================================
+       FECHA ISO
+    ========================================================= */
+
+    function convertirFechaISO(fecha) {
+
+        const año =
+            fecha.getFullYear();
+
+        const mes =
+            String(
+                fecha.getMonth() + 1
+            ).padStart(2, "0");
+
+        const dia =
+            String(
+                fecha.getDate()
+            ).padStart(2, "0");
+
+        return `${año}-${mes}-${dia}`;
+    }
+
+
+    /* =========================================================
+       FORMATEAR FECHA
+    ========================================================= */
+
+    function fechaBonita(fecha) {
+
+        const dia =
+            fecha.getDate();
+
+        const mes =
+            nombresMeses[
+                fecha.getMonth()
+            ];
+
+        const año =
+            fecha.getFullYear();
+
+        const nombreDia =
+            nombresDiasCortos[
+                fecha.getDay()
+            ];
+
+        return `${nombreDia} ${dia} de ${mes} de ${año}`;
+    }
+
+
+    /* =========================================================
+       VARIABLES DEL CALENDARIO VISUAL
+    ========================================================= */
+
+    let añoCalendario = 2026;
+
+    let mesCalendario = 8;
+
+    let fechaSeleccionada =
+        convertirFechaISO(fechaInicio);
+
+
+    /* =========================================================
+       REFERENCIAS HTML
+    ========================================================= */
+
+    const fechasGrid =
+        document.getElementById(
+            "fechasGrid"
+        );
+
+    const mesActual =
+        document.getElementById(
+            "mesActual"
+        );
+
+    const mesAnterior =
+        document.getElementById(
+            "mesAnterior"
+        );
+
+    const mesSiguiente =
+        document.getElementById(
+            "mesSiguiente"
+        );
+
+    const fechaSeleccionadaTexto =
+        document.getElementById(
+            "fechaSeleccionadaTexto"
+        );
+
+    const tablaCalendario =
+        document.getElementById(
+            "tablaCalendario"
+        );
+
+    const cardsCalendario =
+        document.getElementById(
+            "cardsCalendario"
+        );
+
+    const resumenCobradores =
+        document.getElementById(
+            "resumenCobradores"
+        );
+
+
+    /* =========================================================
+       BUSCAR DIA
+    ========================================================= */
+
+    function buscarDia(iso) {
+
+        return calendario.find(
+            item => item.iso === iso
         );
 
     }
 
 
     /* =========================================================
+       GENERAR CALENDARIO DE MESES
+    ========================================================= */
+
+    function generarCalendarioVisual() {
+
+        fechasGrid.innerHTML = "";
+
+        mesActual.textContent =
+            `${nombresMeses[mesCalendario]} ${añoCalendario}`;
+
+
+        /*
+         * JS usa domingo = 0.
+         * Nuestro calendario comienza lunes.
+         */
+
+        const primerDia =
+            new Date(
+                añoCalendario,
+                mesCalendario,
+                1
+            );
+
+        let posicionPrimerDia =
+            primerDia.getDay();
+
+        if (posicionPrimerDia === 0) {
+            posicionPrimerDia = 6;
+        } else {
+            posicionPrimerDia--;
+        }
+
+
+        /*
+         * Espacios vacíos antes del día 1
+         */
+
+        for (
+            let i = 0;
+            i < posicionPrimerDia;
+            i++
+        ) {
+
+            const vacio =
+                document.createElement(
+                    "div"
+                );
+
+            vacio.className =
+                "fecha-vacia";
+
+            fechasGrid.appendChild(
+                vacio
+            );
+        }
+
+
+        /*
+         * Cantidad de días del mes
+         */
+
+        const cantidadDias =
+            new Date(
+                añoCalendario,
+                mesCalendario + 1,
+                0
+            ).getDate();
+
+
+        for (
+            let dia = 1;
+            dia <= cantidadDias;
+            dia++
+        ) {
+
+            const fecha =
+                new Date(
+                    añoCalendario,
+                    mesCalendario,
+                    dia
+                );
+
+            const iso =
+                convertirFechaISO(
+                    fecha
+                );
+
+
+            /*
+             * Solo permitimos fechas
+             * dentro del período.
+             */
+
+            const estaDentro =
+                fecha >= fechaInicio &&
+                fecha <= fechaFin;
+
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+            boton.type = "button";
+
+            boton.className =
+                "boton-fecha";
+
+
+            if (!estaDentro) {
+
+                boton.disabled = true;
+
+                boton.style.opacity = "0.28";
+
+                boton.style.cursor =
+                    "not-allowed";
+
+            }
+
+
+            if (
+                fecha.getDay() === 0
+            ) {
+
+                boton.classList.add(
+                    "domingo"
+                );
+
+            }
+
+
+            if (
+                iso === fechaSeleccionada
+            ) {
+
+                boton.classList.add(
+                    "seleccionado"
+                );
+
+            }
+
+
+            if (
+                iso ===
+                convertirFechaISO(
+                    fechaInicio
+                )
+            ) {
+
+                boton.classList.add(
+                    "inicio"
+                );
+
+            }
+
+
+            if (
+                iso ===
+                convertirFechaISO(
+                    fechaFin
+                )
+            ) {
+
+                boton.classList.add(
+                    "fin"
+                );
+
+            }
+
+
+            boton.innerHTML = `
+
+                <span class="numero">
+                    ${dia}
+                </span>
+
+                <span class="mini-dia">
+                    ${nombresDiasCortos[fecha.getDay()]}
+                </span>
+
+                ${
+                    estaDentro
+                        ? '<span class="punto-dia"></span>'
+                        : ''
+                }
+
+            `;
+
+
+            if (estaDentro) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        seleccionarFecha(
+                            iso
+                        );
+
+                    }
+                );
+
+            }
+
+
+            fechasGrid.appendChild(
+                boton
+            );
+
+        }
+
+
+        actualizarBotonesMes();
+
+    }
+
+
+    /* =========================================================
+       ACTIVAR / DESACTIVAR MESES
+    ========================================================= */
+
+    function actualizarBotonesMes() {
+
+        const mesInicio =
+            fechaInicio.getFullYear() * 12 +
+            fechaInicio.getMonth();
+
+        const mesFin =
+            fechaFin.getFullYear() * 12 +
+            fechaFin.getMonth();
+
+        const mesActualNumero =
+            añoCalendario * 12 +
+            mesCalendario;
+
+
+        mesAnterior.disabled =
+            mesActualNumero <= mesInicio;
+
+
+        mesSiguiente.disabled =
+            mesActualNumero >= mesFin;
+
+    }
+
+
+    /* =========================================================
+       CAMBIAR MES
+    ========================================================= */
+
+    mesAnterior.addEventListener(
+        "click",
+        function () {
+
+            if (
+                mesCalendario === 0
+            ) {
+
+                mesCalendario = 11;
+
+                añoCalendario--;
+
+            } else {
+
+                mesCalendario--;
+
+            }
+
+            generarCalendarioVisual();
+
+        }
+    );
+
+
+    mesSiguiente.addEventListener(
+        "click",
+        function () {
+
+            if (
+                mesCalendario === 11
+            ) {
+
+                mesCalendario = 0;
+
+                añoCalendario++;
+
+            } else {
+
+                mesCalendario++;
+
+            }
+
+            generarCalendarioVisual();
+
+        }
+    );
+
+
+    /* =========================================================
+       SELECCIONAR FECHA
+    ========================================================= */
+
+    function seleccionarFecha(iso) {
+
+        const dia =
+            buscarDia(iso);
+
+        if (!dia) {
+            return;
+        }
+
+        fechaSeleccionada = iso;
+
+        fechaSeleccionadaTexto.textContent =
+            fechaBonita(
+                dia.fecha
+            );
+
+
+        /*
+         * Regeneramos el calendario
+         * para marcar la fecha.
+         */
+
+        generarCalendarioVisual();
+
+
+        /*
+         * Buscamos la fila correspondiente
+         * en desktop.
+         */
+
+        const fila =
+            document.querySelector(
+                `[data-fecha="${iso}"]`
+            );
+
+
+        if (fila) {
+
+            fila.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+
+            fila.style.transition =
+                "background 0.3s";
+
+            fila.style.background =
+                "#fff7d6";
+
+
+            setTimeout(
+                function () {
+
+                    fila.style.background = "";
+
+                },
+                1800
+            );
+
+        }
+
+
+        /*
+         * En móvil buscamos la tarjeta.
+         */
+
+        const card =
+            document.querySelector(
+                `.dia-card[data-fecha="${iso}"]`
+            );
+
+
+        if (card) {
+
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+
+            card.style.transition =
+                "box-shadow 0.3s";
+
+            card.style.boxShadow =
+                "0 0 0 3px #f2b705, 0 12px 30px rgba(18,59,93,.16)";
+
+
+            setTimeout(
+                function () {
+
+                    card.style.boxShadow =
+                        "";
+
+                },
+                1800
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
        ESCAPAR HTML
-    ========================================================== */
+    ========================================================= */
 
     function escapar(texto) {
 
         return String(texto)
-
-            .replaceAll(
-                "&",
+            .replace(
+                /&/g,
                 "&amp;"
             )
-
-            .replaceAll(
-                "<",
+            .replace(
+                /</g,
                 "&lt;"
             )
-
-            .replaceAll(
-                ">",
+            .replace(
+                />/g,
                 "&gt;"
             )
-
-            .replaceAll(
-                '"',
+            .replace(
+                /"/g,
                 "&quot;"
             )
-
-            .replaceAll(
-                "'",
+            .replace(
+                /'/g,
                 "&#039;"
             );
 
@@ -2674,362 +2324,288 @@
 
 
     /* =========================================================
-       RENDERIZAR FECHA
-    ========================================================== */
+       GENERAR TABLA DESKTOP
+    ========================================================= */
 
-    function mostrarFechaSeleccionada() {
+    function generarTabla() {
 
-        const input =
-            document.getElementById(
-                "selectorCalendario"
-            );
+        tablaCalendario.innerHTML = "";
 
-
-        if (!input.value) {
-
-            return;
-
-        }
+        let ultimoMes = -1;
 
 
-        const fechaSeleccionada =
-            new Date(
-                input.value + "T00:00:00"
-            );
+        calendario.forEach(
+            function (item) {
+
+                /*
+                 * Separador de mes
+                 */
+
+                if (
+                    item.fecha.getMonth() !==
+                    ultimoMes
+                ) {
+
+                    ultimoMes =
+                        item.fecha.getMonth();
 
 
-        const fila =
-            calendario.find(
-                item =>
-                    formatoInput(
-                        item.fechaObjeto
-                    ) === input.value
-            );
+                    const separador =
+                        document.createElement(
+                            "tr"
+                        );
+
+                    separador.className =
+                        "separador-mes";
 
 
-        if (!fila) {
+                    separador.innerHTML = `
 
-            document.getElementById(
-                "tablaCalendario"
-            ).innerHTML = `
+                        <td colspan="8">
 
-                <tr>
-
-                    <td
-                        colspan="9"
-                        class="sin-resultados"
-                    >
-
-                        📅
-
-                        <br><br>
-
-                        Esta fecha no pertenece
-                        al período programado.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-            return;
-
-        }
-
-
-        renderizarFila(fila);
-
-
-        document.getElementById(
-            "fechaSeleccionadaTexto"
-        ).innerHTML =
-
-            `📌 ${escapar(
-                fila.fecha
-            )} · ${escapar(
-                fila.dia
-            )}`;
-
-
-        document.getElementById(
-            "contadorResultados"
-        ).textContent =
-            "1 día";
-
-
-        /*
-            En teléfono llevamos
-            automáticamente al calendario.
-        */
-
-        if (
-            window.innerWidth <= 650
-        ) {
-
-            document
-                .querySelector(
-                    ".tarjeta-tabla"
-                )
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-        }
-
-    }
-
-
-    /* =========================================================
-       RENDERIZAR UNA SOLA FILA
-    ========================================================== */
-
-    function renderizarFila(fila) {
-
-        const tbody =
-            document.getElementById(
-                "tablaCalendario"
-            );
-
-
-        const finSemana =
-            fila.dia === "SABADO" ||
-            fila.dia === "DOMINGO";
-
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td class="fecha">
-
-                    ${escapar(
-                        fila.fecha
-                    )}
-
-                </td>
-
-
-                <td class="
-                    dia
-                    ${
-                        finSemana
-                            ? "fin-semana"
-                            : ""
-                    }
-                ">
-
-                    ${escapar(
-                        fila.dia
-                    )}
-
-                </td>
-
-
-                ${fila.cobradores.map(
-                    (nombre, indice) => `
-
-                        <td class="pos-celda">
-
-                            <span class="pos-numero">
-
-                                POS ${indice + 1}
-
-                            </span>
-
-
-                            <span class="cobrador">
-
-                                ${escapar(
-                                    nombre
-                                )}
-
-                            </span>
+                            📅
+                            ${nombresMeses[
+                                item.fecha.getMonth()
+                            ].toUpperCase()}
+                            ${item.fecha.getFullYear()}
 
                         </td>
 
-                    `
-                ).join("")}
+                    `;
 
-            </tr>
+                    tablaCalendario.appendChild(
+                        separador
+                    );
 
-        `;
-
-    }
-
-
-    /* =========================================================
-       DIA ANTERIOR
-    ========================================================== */
-
-    function diaAnterior() {
-
-        const input =
-            document.getElementById(
-                "selectorCalendario"
-            );
+                }
 
 
-        if (!input.value) {
-
-            input.value =
-                "2026-09-17";
-
-        }
+                const tr =
+                    document.createElement(
+                        "tr"
+                    );
 
 
-        const fecha =
-            new Date(
-                input.value + "T00:00:00"
-            );
+                tr.dataset.fecha =
+                    item.iso;
 
 
-        fecha.setDate(
-            fecha.getDate() - 1
+                if (
+                    item.fecha.getDay() === 0
+                ) {
+
+                    tr.classList.add(
+                        "dia-domingo"
+                    );
+
+                }
+
+
+                if (
+                    item.iso ===
+                    convertirFechaISO(
+                        fechaInicio
+                    )
+                ) {
+
+                    tr.classList.add(
+                        "fila-inicio"
+                    );
+
+                }
+
+
+                if (
+                    item.iso ===
+                    convertirFechaISO(
+                        fechaFin
+                    )
+                ) {
+
+                    tr.classList.add(
+                        "fila-fin"
+                    );
+
+                }
+
+
+                let html = `
+
+                    <td class="celda-fecha">
+
+                        <span class="fecha-numero-tabla">
+                            ${String(
+                                item.fecha.getDate()
+                            ).padStart(2, "0")}
+                            /
+                            ${String(
+                                item.fecha.getMonth() + 1
+                            ).padStart(2, "0")}
+                            /
+                            ${item.fecha.getFullYear()}
+                        </span>
+
+                        <span class="fecha-dia-tabla">
+                            ${item.diaSemana}
+                        </span>
+
+                    </td>
+
+                `;
+
+
+                item.asignados.forEach(
+                    function (
+                        nombre,
+                        indice
+                    ) {
+
+                        html += `
+
+                            <td class="celda-pos pos-${indice + 1}">
+
+                                <span class="cobrador">
+
+                                    ${escapar(
+                                        nombre
+                                    )}
+
+                                </span>
+
+                            </td>
+
+                        `;
+
+                    }
+                );
+
+
+                tr.innerHTML = html;
+
+                tablaCalendario.appendChild(
+                    tr
+                );
+
+            }
         );
 
-
-        if (
-            fecha < fechaInicio
-        ) {
-
-            fecha.setTime(
-                fechaInicio.getTime()
-            );
-
-        }
-
-
-        input.value =
-            formatoInput(fecha);
-
-
-        mostrarFechaSeleccionada();
-
     }
 
 
     /* =========================================================
-       DIA SIGUIENTE
-    ========================================================== */
+       GENERAR CARDS MOBILE
+    ========================================================= */
 
-    function diaSiguiente() {
+    function generarCardsMobile() {
 
-        const input =
-            document.getElementById(
-                "selectorCalendario"
-            );
+        cardsCalendario.innerHTML = "";
 
 
-        if (!input.value) {
+        calendario.forEach(
+            function (item) {
 
-            input.value =
-                "2026-09-17";
-
-        }
-
-
-        const fecha =
-            new Date(
-                input.value + "T00:00:00"
-            );
+                const card =
+                    document.createElement(
+                        "article"
+                    );
 
 
-        fecha.setDate(
-            fecha.getDate() + 1
+                card.className =
+                    "dia-card";
+
+
+                card.dataset.fecha =
+                    item.iso;
+
+
+                let listaPOS = "";
+
+
+                item.asignados.forEach(
+                    function (
+                        nombre,
+                        indice
+                    ) {
+
+                        listaPOS += `
+
+                            <div class="pos-item">
+
+                                <div class="pos-numero">
+                                    POS ${indice + 1}
+                                </div>
+
+                                <div class="pos-nombre">
+                                    ${escapar(
+                                        nombre
+                                    )}
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                card.innerHTML = `
+
+                    <div class="dia-card-cabecera">
+
+                        <div>
+
+                            <div class="dia-card-fecha">
+                                ${fechaBonita(
+                                    item.fecha
+                                )}
+                            </div>
+
+                            <div class="dia-card-numero">
+                                ${item.iso}
+                            </div>
+
+                        </div>
+
+                        <div class="dia-card-badge">
+                            7 POS
+                        </div>
+
+                    </div>
+
+
+                    <div class="pos-lista">
+
+                        ${listaPOS}
+
+                    </div>
+
+                `;
+
+
+                cardsCalendario.appendChild(
+                    card
+                );
+
+            }
         );
 
-
-        if (
-            fecha > fechaFin
-        ) {
-
-            fecha.setTime(
-                fechaFin.getTime()
-            );
-
-        }
-
-
-        input.value =
-            formatoInput(fecha);
-
-
-        mostrarFechaSeleccionada();
-
     }
 
 
     /* =========================================================
-       IR A FECHA INICIAL DEL CALENDARIO
-    ========================================================== */
+       RESUMEN DE COBRADORES
+    ========================================================= */
 
-    function irAFechaActual() {
+    function generarResumen() {
 
-        const hoy =
-            new Date();
-
-
-        let fechaObjetivo;
-
-
-        if (
-            hoy < fechaInicio
-        ) {
-
-            fechaObjetivo =
-                new Date(fechaInicio);
-
-        }
-
-        else if (
-            hoy > fechaFin
-        ) {
-
-            fechaObjetivo =
-                new Date(fechaFin);
-
-        }
-
-        else {
-
-            fechaObjetivo =
-                new Date(hoy);
-
-        }
-
-
-        const input =
-            document.getElementById(
-                "selectorCalendario"
-            );
-
-
-        input.value =
-            formatoInput(
-                fechaObjetivo
-            );
-
-
-        mostrarFechaSeleccionada();
-
-    }
-
-
-    /* =========================================================
-       RESUMEN
-    ========================================================== */
-
-    function construirResumen() {
-
-        const contador = {};
+        const participaciones = {};
 
 
         cobradores.forEach(
-            cobrador => {
+            function (cobrador) {
 
-                contador[
+                participaciones[
                     cobrador.nombre
                 ] = 0;
 
@@ -3038,12 +2614,12 @@
 
 
         calendario.forEach(
-            dia => {
+            function (dia) {
 
-                dia.cobradores.forEach(
-                    nombre => {
+                dia.asignados.forEach(
+                    function (nombre) {
 
-                        contador[
+                        participaciones[
                             nombre
                         ]++;
 
@@ -3054,82 +2630,72 @@
         );
 
 
-        const contenedor =
-            document.getElementById(
-                "resumenCobradores"
-            );
+        resumenCobradores.innerHTML = "";
 
 
-        contenedor.innerHTML =
-            cobradores.map(
-                cobrador => `
+        cobradores.forEach(
+            function (cobrador) {
 
-                    <div class="persona">
-
-                        <span
-                            class="persona-nombre"
-                        >
-
-                            ${escapar(
-                                cobrador.nombre
-                            )}
-
-                        </span>
+                const item =
+                    document.createElement(
+                        "div"
+                    );
 
 
-                        <span
-                            class="persona-total"
-                        >
+                item.className =
+                    "resumen-persona";
 
-                            ${
-                                contador[
-                                    cobrador.nombre
-                                ]
-                            }
-                            asignaciones
 
-                        </span>
+                item.innerHTML = `
 
+                    <div class="resumen-persona-nombre">
+                        ${escapar(
+                            cobrador.nombre
+                        )}
                     </div>
 
-                `
-            ).join("");
+                    <div class="resumen-persona-numero">
+                        ${participaciones[
+                            cobrador.nombre
+                        ]} asignaciones
+                    </div>
+
+                `;
+
+
+                resumenCobradores.appendChild(
+                    item
+                );
+
+            }
+        );
 
     }
 
 
     /* =========================================================
        INICIALIZAR
-    ========================================================== */
+    ========================================================= */
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function() {
+    generarTabla();
 
-            const input =
-                document.getElementById(
-                    "selectorCalendario"
-                );
+    generarCardsMobile();
 
+    generarResumen();
 
-            /*
-                Iniciamos mostrando
-                el primer día disponible:
-                17/09/2026
-            */
-
-            input.value =
-                "2026-09-17";
+    generarCalendarioVisual();
 
 
-            mostrarFechaSeleccionada();
+    /*
+     * Dejamos seleccionada inicialmente
+     * la primera fecha disponible:
+     * 17 de septiembre de 2026.
+     */
 
-
-            construirResumen();
-
-        }
-    );
-
+    fechaSeleccionadaTexto.textContent =
+        fechaBonita(
+            fechaInicio
+        );
 
 </script>
 
