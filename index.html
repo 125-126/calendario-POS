@@ -1048,6 +1048,97 @@
                 grid-template-columns: 1fr;
             }
         }
+
+
+
+        /* =========================================================
+   BOTÓN FLOTANTE IR AL INICIO
+========================================================= */
+
+.btn-inicio {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+
+    width: 58px;
+    height: 58px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--azul-oscuro),
+        var(--azul)
+    );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(18, 59, 93, 0.28);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.2s ease;
+
+    z-index: 9999;
+}
+
+.btn-inicio span {
+    display: none;
+}
+
+.btn-inicio.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.btn-inicio:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 28px rgba(18, 59, 93, 0.35);
+}
+
+.btn-inicio:active {
+    transform: scale(0.94);
+}
+
+
+/* En celular */
+
+@media (max-width: 700px) {
+
+    .btn-inicio {
+        width: 50px;
+        height: 50px;
+
+        right: 14px;
+        bottom: 14px;
+
+        font-size: 20px;
+    }
+
+}
+
+        
     </style>
 </head>
 
@@ -2697,7 +2788,75 @@
             fechaInicio
         );
 
-</script>
 
+    /* =========================================================
+   BOTÓN VOLVER AL INICIO
+========================================================= */
+
+const btnInicio =
+    document.getElementById("btnInicio");
+
+
+/*
+ * Mostrar el botón cuando
+ * el usuario haya bajado.
+ */
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (window.scrollY > 500) {
+
+            btnInicio.classList.add(
+                "visible"
+            );
+
+        } else {
+
+            btnInicio.classList.remove(
+                "visible"
+            );
+
+        }
+
+    }
+);
+
+
+/*
+ * Al presionarlo:
+ * regresar suavemente al inicio.
+ */
+
+btnInicio.addEventListener(
+    "click",
+    function () {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+</script>
+<!-- =========================================================
+     BOTÓN FLOTANTE IR AL INICIO
+========================================================= -->
+
+<button
+    type="button"
+    id="btnInicio"
+    class="btn-inicio"
+    aria-label="Volver al inicio"
+    title="Volver al inicio"
+>
+    ↑
+    <span>Inicio</span>
+</button>
 </body>
 </html>
