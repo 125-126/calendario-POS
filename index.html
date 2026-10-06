@@ -444,6 +444,11 @@
             font-weight: 800;
         }
 
+        .fecha-indicador.con-sin-asignacion {
+            background: var(--rojo-claro);
+            color: var(--rojo);
+        }
+
         /* =========================================================
            REGLAS
         ========================================================= */
@@ -641,6 +646,12 @@
             color: var(--rojo);
         }
 
+        .pos-item.sin-asignacion-item small {
+            font-size: 9px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
         .fila-inicio {
             border-top: 3px solid var(--dorado);
         }
@@ -763,6 +774,12 @@
             background: var(--verde);
         }
 
+        .pos-item.sin-asignacion-item:nth-child(2n) .pos-numero,
+        .pos-item.sin-asignacion-item:nth-child(3n) .pos-numero {
+            background: var(--rojo);
+            color: white;
+        }
+
         /* =========================================================
            RESUMEN
         ========================================================= */
@@ -839,6 +856,7 @@
         ========================================================= */
 
         @media (max-width: 1000px) {
+
             .estadisticas {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1003,6 +1021,7 @@
             .fecha-indicador {
                 font-size: 9px;
                 padding: 6px 8px;
+                text-align: center;
             }
 
             .reglas {
@@ -1212,7 +1231,10 @@
             </div>
 
             <div>
-                <div class="estadistica-numero">
+                <div
+                    class="estadistica-numero"
+                    id="estadisticaDias"
+                >
                     106
                 </div>
 
@@ -1231,7 +1253,10 @@
             </div>
 
             <div>
-                <div class="estadistica-numero">
+                <div
+                    class="estadistica-numero"
+                    id="estadisticaCobradores"
+                >
                     31
                 </div>
 
@@ -1250,12 +1275,15 @@
             </div>
 
             <div>
-                <div class="estadistica-numero">
+                <div
+                    class="estadistica-numero"
+                    id="estadisticaPOS"
+                >
                     7
                 </div>
 
                 <div class="estadistica-label">
-                    POS disponibles por día
+                    POS configurados
                 </div>
             </div>
 
@@ -1269,8 +1297,11 @@
             </div>
 
             <div>
-                <div class="estadistica-numero">
-                    742
+                <div
+                    class="estadistica-numero"
+                    id="estadisticaAsignaciones"
+                >
+                    0
                 </div>
 
                 <div class="estadistica-label">
@@ -1380,7 +1411,7 @@
             <div>
 
                 <div class="fecha-seleccionada-label">
-                    Última fecha seleccionada
+                    Fecha seleccionada
                 </div>
 
                 <div
@@ -1415,14 +1446,28 @@
         </div>
 
         <p id="textoReglas">
-            Del 17 de septiembre al 30 de septiembre se mantiene
-            la rotación normal de los cobradores. Durante octubre
-            y noviembre se utilizará la asignación especial de
-            7 cobradores fijos para los POS. Si un cobrador se
-            encuentra en su día de descanso, su POS queda
-            <strong>SIN ASIGNACIÓN</strong>. Para FRAN ALEXANDER
-            MORAN HERNANDEZ, el descanso de martes es alternado:
-            un martes sí y el siguiente martes no.
+
+            Del <strong>17 de septiembre al 30 de septiembre</strong>
+            se mantiene la rotación normal de los cobradores.
+
+            Durante <strong>octubre y noviembre de 2026</strong>,
+            los 7 POS tendrán asignados exclusivamente a los
+            7 cobradores definidos para este período.
+
+            Cada cobrador conserva su <strong>POS fijo</strong>.
+
+            Si el cobrador está en su día de descanso,
+            su POS queda <strong>SIN ASIGNACIÓN</strong> y
+            <strong>NO SE REEMPLAZA</strong> con otro cobrador.
+
+            FRAN ALEXANDER MORAN HERNANDEZ tiene descanso
+            de martes alternado:
+
+            <strong>
+                06 y 20 de octubre,
+                03 y 17 de noviembre.
+            </strong>
+
         </p>
 
     </section>
@@ -1519,8 +1564,11 @@
                     📱 Asignaciones diarias
                 </h2>
 
-                <div class="contador">
-                    7 POS
+                <div
+                    class="contador"
+                    id="contadorMobile"
+                >
+                    7 POS configurados
                 </div>
 
             </div>
@@ -1757,43 +1805,62 @@
 
 
     /* =========================================================
-       NUEVA ASIGNACION ESPECIAL
+       7 COBRADORES FIJOS PARA LOS POS
        OCTUBRE + NOVIEMBRE 2026
+
+       POS 1 -> CARLOS
+       POS 2 -> SONIA MARROQUIN DE CAMPOS
+       POS 3 -> SONIA MARISOL
+       POS 4 -> FRAN
+       POS 5 -> DANIEL
+       POS 6 -> HARED
+       POS 7 -> ORLANDO
+
+       IMPORTANTE:
+       Si descansan, se devuelve NULL.
+       NO SE REEMPLAZA.
     ========================================================= */
 
     const cobradoresPOSOctNov = [
 
         {
+            pos: 1,
             nombre: "CARLOS MANUEL DIAZ ALVARADO",
             descanso: "LUNES"
         },
 
         {
+            pos: 2,
             nombre: "SONIA MARROQUIN DE CAMPOS",
             descanso: "VIERNES"
         },
 
         {
+            pos: 3,
             nombre: "SONIA MARISOL GARCIA",
             descanso: "DOMINGO"
         },
 
         {
+            pos: 4,
             nombre: "FRAN ALEXANDER MORAN HERNANDEZ",
             descanso: "MARTES_ALTERNADO"
         },
 
         {
+            pos: 5,
             nombre: "DANIEL GARCIA RODRIGUEZ",
             descanso: "VIERNES"
         },
 
         {
+            pos: 6,
             nombre: "HARED JOSHUA NICARAGUA GRANERA",
             descanso: "SABADO"
         },
 
         {
+            pos: 7,
             nombre: "ORLANDO OVIDIO AQUINO",
             descanso: "JUEVES"
         }
@@ -1806,6 +1873,7 @@
     ========================================================= */
 
     const nombresDias = [
+
         "DOMINGO",
         "LUNES",
         "MARTES",
@@ -1813,10 +1881,12 @@
         "JUEVES",
         "VIERNES",
         "SABADO"
+
     ];
 
 
     const nombresDiasCortos = [
+
         "Dom",
         "Lun",
         "Mar",
@@ -1824,10 +1894,12 @@
         "Jue",
         "Vie",
         "Sáb"
+
     ];
 
 
     const nombresMeses = [
+
         "enero",
         "febrero",
         "marzo",
@@ -1840,43 +1912,45 @@
         "octubre",
         "noviembre",
         "diciembre"
+
     ];
 
 
-    const fechaInicio = new Date(
-        2026,
-        8,
-        17
-    );
+    const fechaInicio =
+        new Date(
+            2026,
+            8,
+            17
+        );
 
 
-    const fechaFin = new Date(
-        2026,
-        11,
-        31
-    );
+    const fechaFin =
+        new Date(
+            2026,
+            11,
+            31
+        );
 
 
-    /*
-     * PERÍODO ESPECIAL
-     *
-     * 01 de octubre de 2026
-     * hasta
-     * 30 de noviembre de 2026
-     */
+    /* =========================================================
+       PERIODO ESPECIAL
+       OCTUBRE + NOVIEMBRE
+    ========================================================= */
 
-    const fechaInicioEspecial = new Date(
-        2026,
-        9,
-        1
-    );
+    const fechaInicioEspecial =
+        new Date(
+            2026,
+            9,
+            1
+        );
 
 
-    const fechaFinEspecial = new Date(
-        2026,
-        10,
-        30
-    );
+    const fechaFinEspecial =
+        new Date(
+            2026,
+            10,
+            30
+        );
 
 
     /* =========================================================
@@ -1889,45 +1963,91 @@
 
 
     /* =========================================================
-       VERIFICAR SI ESTÁ EN OCTUBRE/NOVIEMBRE
+       CONVERTIR FECHA A ISO
     ========================================================= */
 
-    function esPeriodoEspecial(fecha) {
+    function convertirFechaISO(
+        fecha
+    ) {
+
+        const año =
+            fecha.getFullYear();
+
+        const mes =
+            String(
+                fecha.getMonth() + 1
+            ).padStart(
+                2,
+                "0"
+            );
+
+        const dia =
+            String(
+                fecha.getDate()
+            ).padStart(
+                2,
+                "0"
+            );
+
+        return `${año}-${mes}-${dia}`;
+
+    }
+
+
+    /* =========================================================
+       VERIFICAR SI ES PERIODO ESPECIAL
+    ========================================================= */
+
+    function esPeriodoEspecial(
+        fecha
+    ) {
 
         return (
-            fecha >= fechaInicioEspecial &&
-            fecha <= fechaFinEspecial
+
+            fecha >=
+                fechaInicioEspecial &&
+
+            fecha <=
+                fechaFinEspecial
+
         );
 
     }
 
 
     /* =========================================================
-       MARTES ALTERNADO DE FRAN
-       =========================================================
+       FRAN - MARTES ALTERNADO
        
-       PRIMER MARTES DE OCTUBRE 2026:
+       DESCANSA:
+       
        06/10/2026
-
-       Ese será el primer MARTES DE DESCANSO.
-
-       Después:
-       13/10 -> trabaja
-       20/10 -> descanso
-       27/10 -> trabaja
-
-       03/11 -> descanso
-       10/11 -> trabaja
-       17/11 -> descanso
-       24/11 -> trabaja
+       20/10/2026
+       03/11/2026
+       17/11/2026
+       
+       TRABAJA:
+       
+       13/10/2026
+       27/10/2026
+       10/11/2026
+       24/11/2026
     ========================================================= */
 
-    function franEstaDescansando(fecha) {
+    function franEstaDescansando(
+        fecha
+    ) {
+
+        /*
+         * Solo nos interesa cuando
+         * es martes.
+         */
 
         if (
             fecha.getDay() !== 2
         ) {
+
             return false;
+
         }
 
 
@@ -1939,38 +2059,45 @@
             );
 
 
-        const diferenciaMilisegundos =
+        const diferencia =
             fecha.getTime() -
             primerMartes.getTime();
 
 
-        const diferenciaDias =
+        const dias =
             Math.round(
-                diferenciaMilisegundos /
+                diferencia /
                 (1000 * 60 * 60 * 24)
             );
 
 
+        /*
+         * Cada 7 días aparece
+         * un nuevo martes.
+         */
+
         const numeroMartes =
             Math.floor(
-                diferenciaDias / 7
+                dias / 7
             );
 
 
         /*
-         * 0 = descanso
-         * 1 = trabaja
-         * 2 = descanso
-         * 3 = trabaja
+         * 0 -> descanso
+         * 1 -> trabaja
+         * 2 -> descanso
+         * 3 -> trabaja
          */
 
-        return numeroMartes % 2 === 0;
+        return (
+            numeroMartes % 2 === 0
+        );
 
     }
 
 
     /* =========================================================
-       VERIFICAR DESCANSO DE COBRADOR ESPECIAL
+       VERIFICAR SI COBRADOR ESPECIAL DESCANSA
     ========================================================= */
 
     function cobradorEspecialDescansa(
@@ -1984,6 +2111,10 @@
             ];
 
 
+        /*
+         * FRAN
+         */
+
         if (
             cobrador.descanso ===
             "MARTES_ALTERNADO"
@@ -1996,8 +2127,13 @@
         }
 
 
+        /*
+         * RESTO DE COBRADORES
+         */
+
         return (
-            cobrador.descanso === dia
+            cobrador.descanso ===
+            dia
         );
 
     }
@@ -2005,12 +2141,26 @@
 
     /* =========================================================
        OBTENER ASIGNACION ESPECIAL
+       
+       IMPORTANTE:
+       Siempre devuelve exactamente 7 posiciones.
+       
+       Si uno descansa:
+       
+       null
+       
+       No se mueve ningún otro cobrador.
     ========================================================= */
 
-    function obtenerAsignacionEspecial(fecha) {
+    function obtenerAsignacionEspecial(
+        fecha
+    ) {
 
         return cobradoresPOSOctNov.map(
-            function (cobrador) {
+
+            function (
+                cobrador
+            ) {
 
                 const estaDescansando =
                     cobradorEspecialDescansa(
@@ -2031,6 +2181,7 @@
                 return cobrador.nombre;
 
             }
+
         );
 
     }
@@ -2051,8 +2202,12 @@
 
 
         while (
+
             seleccionados.length < 7 &&
-            intentos < cobradores.length * 2
+
+            intentos <
+                cobradores.length * 2
+
         ) {
 
             const indice =
@@ -2061,7 +2216,9 @@
 
 
             const cobrador =
-                cobradores[indice];
+                cobradores[
+                    indice
+                ];
 
 
             puntero++;
@@ -2084,13 +2241,31 @@
         }
 
 
+        /*
+         * Por seguridad,
+         * rellenamos hasta 7
+         * solamente si la rotación
+         * normal no pudo hacerlo.
+         */
+
+        while (
+            seleccionados.length < 7
+        ) {
+
+            seleccionados.push(
+                null
+            );
+
+        }
+
+
         return seleccionados;
 
     }
 
 
     /* =========================================================
-       GENERAR LOS 106 DIAS
+       GENERAR TODOS LOS DIAS
     ========================================================= */
 
     let fechaActual =
@@ -2115,8 +2290,7 @@
         /*
          * OCTUBRE + NOVIEMBRE
          *
-         * Utilizamos los 7 cobradores
-         * especiales.
+         * USAR LOS 7 COBRADORES FIJOS.
          */
 
         if (
@@ -2133,8 +2307,9 @@
         } else {
 
             /*
-             * Fuera de octubre y noviembre
-             * continúa la rotación original.
+             * SEPTIEMBRE + DICIEMBRE
+             *
+             * ROTACION NORMAL.
              */
 
             asignados =
@@ -2174,38 +2349,70 @@
 
 
     /* =========================================================
-       FECHA ISO
+       CALCULAR ESTADISTICAS REALES
     ========================================================= */
 
-    function convertirFechaISO(
-        fecha
-    ) {
-
-        const año =
-            fecha.getFullYear();
+    const diasProgramados =
+        calendario.length;
 
 
-        const mes =
-            String(
-                fecha.getMonth() + 1
-            ).padStart(
-                2,
-                "0"
-            );
+    const asignacionesTotales =
+        calendario.reduce(
+
+            function (
+                total,
+                dia
+            ) {
+
+                return (
+                    total +
+                    dia.asignados.filter(
+                        nombre =>
+                            nombre !== null
+                    ).length
+                );
+
+            },
+
+            0
+
+        );
 
 
-        const dia =
-            String(
-                fecha.getDate()
-            ).padStart(
-                2,
-                "0"
-            );
+    document.getElementById(
+        "estadisticaDias"
+    ).textContent =
+        diasProgramados;
 
 
-        return `${año}-${mes}-${dia}`;
+    document.getElementById(
+        "estadisticaCobradores"
+    ).textContent =
+        cobradores.length;
 
-    }
+
+    document.getElementById(
+        "estadisticaPOS"
+    ).textContent =
+        "7";
+
+
+    document.getElementById(
+        "estadisticaAsignaciones"
+    ).textContent =
+        asignacionesTotales;
+
+
+    document.getElementById(
+        "contadorAsignaciones"
+    ).textContent =
+        `${diasProgramados} días · ${asignacionesTotales} asignaciones`;
+
+
+    document.getElementById(
+        "contadorMobile"
+    ).textContent =
+        "7 POS configurados";
 
 
     /* =========================================================
@@ -2331,7 +2538,54 @@
 
 
     /* =========================================================
-       GENERAR CALENDARIO DE MESES
+       ACTUALIZAR INDICADOR DE FECHA
+    ========================================================= */
+
+    function actualizarIndicadorFecha(
+        dia
+    ) {
+
+        const asignacionesValidas =
+            dia.asignados.filter(
+                nombre =>
+                    nombre !== null
+            ).length;
+
+
+        const sinAsignacion =
+            dia.asignados.filter(
+                nombre =>
+                    nombre === null
+            ).length;
+
+
+        if (
+            sinAsignacion > 0
+        ) {
+
+            fechaIndicador.textContent =
+                `${asignacionesValidas} POS asignados · ${sinAsignacion} sin asignación`;
+
+            fechaIndicador.classList.add(
+                "con-sin-asignacion"
+            );
+
+        } else {
+
+            fechaIndicador.textContent =
+                "7 POS asignados";
+
+            fechaIndicador.classList.remove(
+                "con-sin-asignacion"
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       GENERAR CALENDARIO VISUAL
     ========================================================= */
 
     function generarCalendarioVisual() {
@@ -2356,6 +2610,11 @@
         let posicionPrimerDia =
             primerDia.getDay();
 
+
+        /*
+         * Convertir domingo = 0
+         * a lunes = 0
+         */
 
         if (
             posicionPrimerDia === 0
@@ -2432,7 +2691,9 @@
                 );
 
 
-            boton.type = "button";
+            boton.type =
+                "button";
+
 
             boton.className =
                 "boton-fecha";
@@ -2442,7 +2703,8 @@
                 !estaDentro
             ) {
 
-                boton.disabled = true;
+                boton.disabled =
+                    true;
 
                 boton.style.opacity =
                     "0.28";
@@ -2576,17 +2838,19 @@
 
 
         mesAnterior.disabled =
-            mesActualNumero <= mesInicio;
+            mesActualNumero <=
+            mesInicio;
 
 
         mesSiguiente.disabled =
-            mesActualNumero >= mesFin;
+            mesActualNumero >=
+            mesFin;
 
     }
 
 
     /* =========================================================
-       CAMBIAR MES
+       CAMBIAR MES - ANTERIOR
     ========================================================= */
 
     mesAnterior.addEventListener(
@@ -2613,6 +2877,10 @@
         }
     );
 
+
+    /* =========================================================
+       CAMBIAR MES - SIGUIENTE
+    ========================================================= */
 
     mesSiguiente.addEventListener(
         "click",
@@ -2672,37 +2940,17 @@
             );
 
 
-        const asignacionesValidas =
-            dia.asignados.filter(
-                nombre =>
-                    nombre !== null
-            ).length;
-
-
-        const sinAsignacion =
-            dia.asignados.filter(
-                nombre =>
-                    nombre === null
-            ).length;
-
-
-        if (
-            sinAsignacion > 0
-        ) {
-
-            fechaIndicador.textContent =
-                `${asignacionesValidas} POS asignados · ${sinAsignacion} sin asignación`;
-
-        } else {
-
-            fechaIndicador.textContent =
-                "7 POS asignados";
-
-        }
+        actualizarIndicadorFecha(
+            dia
+        );
 
 
         generarCalendarioVisual();
 
+
+        /*
+         * BUSCAR FILA DESKTOP
+         */
 
         const fila =
             document.querySelector(
@@ -2715,8 +2963,13 @@
         ) {
 
             fila.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "center"
+
             });
 
 
@@ -2741,6 +2994,10 @@
         }
 
 
+        /*
+         * BUSCAR CARD MOBILE
+         */
+
         const card =
             document.querySelector(
                 `.dia-card[data-fecha="${iso}"]`
@@ -2752,8 +3009,13 @@
         ) {
 
             card.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "start"
+
             });
 
 
@@ -2828,7 +3090,14 @@
 
 
         calendario.forEach(
-            function (item) {
+
+            function (
+                item
+            ) {
+
+                /*
+                 * SEPARADOR DE MES
+                 */
 
                 if (
                     item.fecha.getMonth() !==
@@ -2870,6 +3139,10 @@
 
                 }
 
+
+                /*
+                 * FILA
+                 */
 
                 const tr =
                     document.createElement(
@@ -2932,14 +3205,18 @@
                                 2,
                                 "0"
                             )}
+
                             /
+
                             ${String(
                                 item.fecha.getMonth() + 1
                             ).padStart(
                                 2,
                                 "0"
                             )}
+
                             /
+
                             ${item.fecha.getFullYear()}
 
                         </span>
@@ -2955,52 +3232,62 @@
                 `;
 
 
-                item.asignados.forEach(
-                    function (
-                        nombre,
-                        indice
+                /*
+                 * SIEMPRE MOSTRAMOS
+                 * LOS 7 POS.
+                 */
+
+                for (
+                    let indice = 0;
+                    indice < 7;
+                    indice++
+                ) {
+
+                    const nombre =
+                        item.asignados[
+                            indice
+                        ];
+
+
+                    if (
+                        nombre === null
                     ) {
 
-                        if (
-                            nombre === null
-                        ) {
+                        html += `
 
-                            html += `
+                            <td class="celda-pos pos-${indice + 1}">
 
-                                <td class="celda-pos pos-${indice + 1}">
+                                <span class="sin-asignacion">
 
-                                    <span class="sin-asignacion">
+                                    SIN ASIGNACIÓN
 
-                                        SIN ASIGNACIÓN
+                                </span>
 
-                                    </span>
+                            </td>
 
-                                </td>
+                        `;
 
-                            `;
+                    } else {
 
-                        } else {
+                        html += `
 
-                            html += `
+                            <td class="celda-pos pos-${indice + 1}">
 
-                                <td class="celda-pos pos-${indice + 1}">
+                                <span class="cobrador">
 
-                                    <span class="cobrador">
+                                    ${escapar(
+                                        nombre
+                                    )}
 
-                                        ${escapar(
-                                            nombre
-                                        )}
+                                </span>
 
-                                    </span>
+                            </td>
 
-                                </td>
-
-                            `;
-
-                        }
+                        `;
 
                     }
-                );
+
+                }
 
 
                 tr.innerHTML =
@@ -3012,6 +3299,7 @@
                 );
 
             }
+
         );
 
     }
@@ -3027,7 +3315,10 @@
 
 
         calendario.forEach(
-            function (item) {
+
+            function (
+                item
+            ) {
 
                 const card =
                     document.createElement(
@@ -3046,86 +3337,101 @@
                 let listaPOS = "";
 
 
-                item.asignados.forEach(
-                    function (
-                        nombre,
-                        indice
+                /*
+                 * SIEMPRE GENERAR LOS 7 POS
+                 */
+
+                for (
+                    let indice = 0;
+                    indice < 7;
+                    indice++
+                ) {
+
+                    const nombre =
+                        item.asignados[
+                            indice
+                        ];
+
+
+                    if (
+                        nombre === null
                     ) {
 
-                        if (
-                            nombre === null
-                        ) {
+                        listaPOS += `
 
-                            listaPOS += `
+                            <div class="pos-item sin-asignacion-item">
 
-                                <div class="pos-item sin-asignacion-item">
+                                <div class="pos-numero">
 
-                                    <div class="pos-numero">
-
-                                        POS ${indice + 1}
-
-                                    </div>
-
-                                    <div class="pos-nombre">
-
-                                        SIN ASIGNACIÓN
-                                        <br>
-                                        <small>
-                                            Día de descanso
-                                        </small>
-
-                                    </div>
+                                    POS ${indice + 1}
 
                                 </div>
 
-                            `;
+                                <div class="pos-nombre">
 
-                        } else {
+                                    SIN ASIGNACIÓN
 
-                            listaPOS += `
+                                    <br>
 
-                                <div class="pos-item">
-
-                                    <div class="pos-numero">
-
-                                        POS ${indice + 1}
-
-                                    </div>
-
-                                    <div class="pos-nombre">
-
-                                        ${escapar(
-                                            nombre
-                                        )}
-
-                                    </div>
+                                    <small>
+                                        Día de descanso
+                                    </small>
 
                                 </div>
 
-                            `;
+                            </div>
 
-                        }
+                        `;
+
+                    } else {
+
+                        listaPOS += `
+
+                            <div class="pos-item">
+
+                                <div class="pos-numero">
+
+                                    POS ${indice + 1}
+
+                                </div>
+
+                                <div class="pos-nombre">
+
+                                    ${escapar(
+                                        nombre
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        `;
 
                     }
-                );
+
+                }
 
 
                 const cantidadAsignados =
                     item.asignados.filter(
+
                         nombre =>
                             nombre !== null
+
                     ).length;
 
 
                 const cantidadSinAsignacion =
                     item.asignados.filter(
+
                         nombre =>
                             nombre === null
+
                     ).length;
 
 
                 let badge =
-                    "7 POS";
+                    `${cantidadAsignados}/7 POS`;
 
 
                 if (
@@ -3133,7 +3439,7 @@
                 ) {
 
                     badge =
-                        `${cantidadAsignados} asignados`;
+                        `${cantidadAsignados}/7 POS`;
 
                 }
 
@@ -3183,6 +3489,7 @@
                 );
 
             }
+
         );
 
     }
@@ -3197,33 +3504,67 @@
         const participaciones = {};
 
 
+        /*
+         * COBRADORES ORIGINALES
+         */
+
         cobradores.forEach(
-            function (cobrador) {
+
+            function (
+                cobrador
+            ) {
 
                 participaciones[
                     cobrador.nombre
                 ] = 0;
 
             }
+
         );
 
+
+        /*
+         * 7 COBRADORES ESPECIALES
+         */
 
         cobradoresPOSOctNov.forEach(
-            function (cobrador) {
 
-                participaciones[
-                    cobrador.nombre
-                ] = 0;
+            function (
+                cobrador
+            ) {
+
+                if (
+                    participaciones[
+                        cobrador.nombre
+                    ] === undefined
+                ) {
+
+                    participaciones[
+                        cobrador.nombre
+                    ] = 0;
+
+                }
 
             }
+
         );
 
 
+        /*
+         * CONTAR PARTICIPACIONES
+         */
+
         calendario.forEach(
-            function (dia) {
+
+            function (
+                dia
+            ) {
 
                 dia.asignados.forEach(
-                    function (nombre) {
+
+                    function (
+                        nombre
+                    ) {
 
                         if (
                             nombre !== null
@@ -3249,17 +3590,20 @@
                         }
 
                     }
+
                 );
 
             }
+
         );
 
 
-        resumenCobradores.innerHTML = "";
+        resumenCobradores.innerHTML =
+            "";
 
 
         /*
-         * Mostrar primero los 7 especiales.
+         * ENCABEZADO ESPECIALES
          */
 
         const especiales =
@@ -3297,7 +3641,7 @@
 
 
         especiales.textContent =
-            "💳 Cobradores asignados a POS en octubre y noviembre";
+            "💳 Cobradores fijos de POS en octubre y noviembre";
 
 
         resumenCobradores.appendChild(
@@ -3305,8 +3649,15 @@
         );
 
 
+        /*
+         * MOSTRAR LOS 7 ESPECIALES
+         */
+
         cobradoresPOSOctNov.forEach(
-            function (cobrador) {
+
+            function (
+                cobrador
+            ) {
 
                 const item =
                     document.createElement(
@@ -3322,6 +3673,8 @@
 
                     <div class="resumen-persona-nombre">
 
+                        POS ${cobrador.pos}
+                        ·
                         ${escapar(
                             cobrador.nombre
                         )}
@@ -3344,11 +3697,12 @@
                 );
 
             }
+
         );
 
 
         /*
-         * Separador para cobradores originales.
+         * SEPARADOR ROTACION NORMAL
          */
 
         const originales =
@@ -3394,8 +3748,15 @@
         );
 
 
+        /*
+         * MOSTRAR COBRADORES ORIGINALES
+         */
+
         cobradores.forEach(
-            function (cobrador) {
+
+            function (
+                cobrador
+            ) {
 
                 const item =
                     document.createElement(
@@ -3433,6 +3794,7 @@
                 );
 
             }
+
         );
 
     }
@@ -3451,10 +3813,31 @@
     generarCalendarioVisual();
 
 
-    fechaSeleccionadaTexto.textContent =
-        fechaBonita(
-            fechaInicio
+    /*
+     * FECHA INICIAL
+     */
+
+    const diaInicial =
+        buscarDia(
+            fechaSeleccionada
         );
+
+
+    if (
+        diaInicial
+    ) {
+
+        fechaSeleccionadaTexto.textContent =
+            fechaBonita(
+                diaInicial.fecha
+            );
+
+
+        actualizarIndicadorFecha(
+            diaInicial
+        );
+
+    }
 
 
     /* =========================================================
