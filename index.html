@@ -613,6 +613,34 @@
             color: #12674b;
         }
 
+        /* =========================================================
+           SIN ASIGNACION
+        ========================================================= */
+
+        .sin-asignacion {
+            display: inline-block;
+            padding: 7px 9px;
+            border-radius: 8px;
+            background: var(--rojo-claro);
+            color: var(--rojo);
+            font-weight: 800;
+            font-size: 11px;
+            line-height: 1.25;
+        }
+
+        .pos-item.sin-asignacion-item {
+            background: var(--rojo-claro);
+        }
+
+        .pos-item.sin-asignacion-item .pos-numero {
+            background: var(--rojo);
+            color: white;
+        }
+
+        .pos-item.sin-asignacion-item .pos-nombre {
+            color: var(--rojo);
+        }
+
         .fila-inicio {
             border-top: 3px solid var(--dorado);
         }
@@ -1049,96 +1077,88 @@
             }
         }
 
-
-
         /* =========================================================
-   BOTÓN FLOTANTE IR AL INICIO
-========================================================= */
+           BOTÓN FLOTANTE IR AL INICIO
+        ========================================================= */
 
-.btn-inicio {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
+        .btn-inicio {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
 
-    width: 58px;
-    height: 58px;
+            width: 58px;
+            height: 58px;
 
-    border: none;
-    border-radius: 50%;
+            border: none;
+            border-radius: 50%;
 
-    background: linear-gradient(
-        135deg,
-        var(--azul-oscuro),
-        var(--azul)
-    );
+            background: linear-gradient(
+                135deg,
+                var(--azul-oscuro),
+                var(--azul)
+            );
 
-    color: white;
+            color: white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
 
-    font-size: 22px;
-    font-weight: 800;
+            font-size: 22px;
+            font-weight: 800;
 
-    cursor: pointer;
+            cursor: pointer;
 
-    box-shadow:
-        0 8px 22px rgba(18, 59, 93, 0.28);
+            box-shadow:
+                0 8px 22px rgba(18, 59, 93, 0.28);
 
-    opacity: 0;
-    visibility: hidden;
+            opacity: 0;
+            visibility: hidden;
 
-    transform: translateY(20px);
+            transform: translateY(20px);
 
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.2s ease;
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.2s ease;
 
-    z-index: 9999;
-}
+            z-index: 9999;
+        }
 
-.btn-inicio span {
-    display: none;
-}
+        .btn-inicio span {
+            display: none;
+        }
 
-.btn-inicio.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+        .btn-inicio.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
-.btn-inicio:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 12px 28px rgba(18, 59, 93, 0.35);
-}
+        .btn-inicio:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 28px rgba(18, 59, 93, 0.35);
+        }
 
-.btn-inicio:active {
-    transform: scale(0.94);
-}
+        .btn-inicio:active {
+            transform: scale(0.94);
+        }
 
+        @media (max-width: 700px) {
 
-/* En celular */
+            .btn-inicio {
+                width: 50px;
+                height: 50px;
 
-@media (max-width: 700px) {
+                right: 14px;
+                bottom: 14px;
 
-    .btn-inicio {
-        width: 50px;
-        height: 50px;
-
-        right: 14px;
-        bottom: 14px;
-
-        font-size: 20px;
-    }
-
-}
-
-        
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -1157,6 +1177,7 @@
         </div>
 
         <div>
+
             <h1 class="titulo-principal">
                 Calendario de POS
             </h1>
@@ -1168,6 +1189,7 @@
             <div class="periodo">
                 📅 17 de septiembre — 31 de diciembre de 2026
             </div>
+
         </div>
 
     </div>
@@ -1372,7 +1394,10 @@
 
         </div>
 
-        <div class="fecha-indicador">
+        <div
+            class="fecha-indicador"
+            id="fechaIndicador"
+        >
             7 POS asignados
         </div>
 
@@ -1389,12 +1414,15 @@
             💡 Reglas de asignación
         </div>
 
-        <p>
-            Cada día se asignan exactamente 7 cobradores, uno por cada POS.
-            La rotación sigue el orden establecido de los 31 cobradores.
-            Cuando un cobrador se encuentra en su día de descanso, se omite
-            y se continúa con el siguiente disponible de la rotación.
-            Los sábados y domingos también forman parte de la programación.
+        <p id="textoReglas">
+            Del 17 de septiembre al 30 de septiembre se mantiene
+            la rotación normal de los cobradores. Durante octubre
+            y noviembre se utilizará la asignación especial de
+            7 cobradores fijos para los POS. Si un cobrador se
+            encuentra en su día de descanso, su POS queda
+            <strong>SIN ASIGNACIÓN</strong>. Para FRAN ALEXANDER
+            MORAN HERNANDEZ, el descanso de martes es alternado:
+            un martes sí y el siguiente martes no.
         </p>
 
     </section>
@@ -1412,8 +1440,11 @@
                 📋 Calendario completo de asignaciones
             </h2>
 
-            <div class="contador">
-                106 días · 742 asignaciones
+            <div
+                class="contador"
+                id="contadorAsignaciones"
+            >
+                106 días
             </div>
 
         </div>
@@ -1541,9 +1572,10 @@
 
 </footer>
 
-<!-- =========================================================
-     BOTÓN FLOTANTE IR AL INICIO
-========================================================= -->
+
+<!-- =============================================================
+     BOTÓN FLOTANTE
+============================================================= -->
 
 <button
     type="button"
@@ -1555,10 +1587,13 @@
     ↑
     <span>Inicio</span>
 </button>
+
+
 <script>
 
     /* =========================================================
-       COBRADORES ACTIVOS
+       COBRADORES ORIGINALES
+       SEPTIEMBRE / DICIEMBRE
     ========================================================= */
 
     const cobradores = [
@@ -1678,11 +1713,10 @@
             descanso: ["DOMINGO"]
         },
 
-{
-nombre: "SAMUEL DE JESUS LIRA",
-descanso: ["MIERCOLES"]
-},
-
+        {
+            nombre: "SAMUEL DE JESUS LIRA",
+            descanso: ["MIERCOLES"]
+        },
 
         {
             nombre: "SANTOS ERNESTO RIVERA GARCIA",
@@ -1723,6 +1757,51 @@ descanso: ["MIERCOLES"]
 
 
     /* =========================================================
+       NUEVA ASIGNACION ESPECIAL
+       OCTUBRE + NOVIEMBRE 2026
+    ========================================================= */
+
+    const cobradoresPOSOctNov = [
+
+        {
+            nombre: "CARLOS MANUEL DIAZ ALVARADO",
+            descanso: "LUNES"
+        },
+
+        {
+            nombre: "SONIA MARROQUIN DE CAMPOS",
+            descanso: "VIERNES"
+        },
+
+        {
+            nombre: "SONIA MARISOL GARCIA",
+            descanso: "DOMINGO"
+        },
+
+        {
+            nombre: "FRAN ALEXANDER MORAN HERNANDEZ",
+            descanso: "MARTES_ALTERNADO"
+        },
+
+        {
+            nombre: "DANIEL GARCIA RODRIGUEZ",
+            descanso: "VIERNES"
+        },
+
+        {
+            nombre: "HARED JOSHUA NICARAGUA GRANERA",
+            descanso: "SABADO"
+        },
+
+        {
+            nombre: "ORLANDO OVIDIO AQUINO",
+            descanso: "JUEVES"
+        }
+
+    ];
+
+
+    /* =========================================================
        CONFIGURACION
     ========================================================= */
 
@@ -1736,6 +1815,7 @@ descanso: ["MIERCOLES"]
         "SABADO"
     ];
 
+
     const nombresDiasCortos = [
         "Dom",
         "Lun",
@@ -1745,6 +1825,7 @@ descanso: ["MIERCOLES"]
         "Vie",
         "Sáb"
     ];
+
 
     const nombresMeses = [
         "enero",
@@ -1768,10 +1849,33 @@ descanso: ["MIERCOLES"]
         17
     );
 
+
     const fechaFin = new Date(
         2026,
         11,
         31
+    );
+
+
+    /*
+     * PERÍODO ESPECIAL
+     *
+     * 01 de octubre de 2026
+     * hasta
+     * 30 de noviembre de 2026
+     */
+
+    const fechaInicioEspecial = new Date(
+        2026,
+        9,
+        1
+    );
+
+
+    const fechaFinEspecial = new Date(
+        2026,
+        10,
+        30
     );
 
 
@@ -1784,22 +1888,167 @@ descanso: ["MIERCOLES"]
     let puntero = 0;
 
 
-    /*
-     * IMPORTANTE:
-     *
-     * Se conserva la lógica de rotación solicitada:
-     *
-     * - Se toma el siguiente cobrador de la lista.
-     * - Si está descansando ese día, se salta.
-     * - El puntero continúa avanzando.
-     * - Se buscan 7 cobradores disponibles.
-     */
+    /* =========================================================
+       VERIFICAR SI ESTÁ EN OCTUBRE/NOVIEMBRE
+    ========================================================= */
 
-    function obtenerCobradoresParaDia(dia) {
+    function esPeriodoEspecial(fecha) {
+
+        return (
+            fecha >= fechaInicioEspecial &&
+            fecha <= fechaFinEspecial
+        );
+
+    }
+
+
+    /* =========================================================
+       MARTES ALTERNADO DE FRAN
+       =========================================================
+       
+       PRIMER MARTES DE OCTUBRE 2026:
+       06/10/2026
+
+       Ese será el primer MARTES DE DESCANSO.
+
+       Después:
+       13/10 -> trabaja
+       20/10 -> descanso
+       27/10 -> trabaja
+
+       03/11 -> descanso
+       10/11 -> trabaja
+       17/11 -> descanso
+       24/11 -> trabaja
+    ========================================================= */
+
+    function franEstaDescansando(fecha) {
+
+        if (
+            fecha.getDay() !== 2
+        ) {
+            return false;
+        }
+
+
+        const primerMartes =
+            new Date(
+                2026,
+                9,
+                6
+            );
+
+
+        const diferenciaMilisegundos =
+            fecha.getTime() -
+            primerMartes.getTime();
+
+
+        const diferenciaDias =
+            Math.round(
+                diferenciaMilisegundos /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const numeroMartes =
+            Math.floor(
+                diferenciaDias / 7
+            );
+
+
+        /*
+         * 0 = descanso
+         * 1 = trabaja
+         * 2 = descanso
+         * 3 = trabaja
+         */
+
+        return numeroMartes % 2 === 0;
+
+    }
+
+
+    /* =========================================================
+       VERIFICAR DESCANSO DE COBRADOR ESPECIAL
+    ========================================================= */
+
+    function cobradorEspecialDescansa(
+        cobrador,
+        fecha
+    ) {
+
+        const dia =
+            nombresDias[
+                fecha.getDay()
+            ];
+
+
+        if (
+            cobrador.descanso ===
+            "MARTES_ALTERNADO"
+        ) {
+
+            return franEstaDescansando(
+                fecha
+            );
+
+        }
+
+
+        return (
+            cobrador.descanso === dia
+        );
+
+    }
+
+
+    /* =========================================================
+       OBTENER ASIGNACION ESPECIAL
+    ========================================================= */
+
+    function obtenerAsignacionEspecial(fecha) {
+
+        return cobradoresPOSOctNov.map(
+            function (cobrador) {
+
+                const estaDescansando =
+                    cobradorEspecialDescansa(
+                        cobrador,
+                        fecha
+                    );
+
+
+                if (
+                    estaDescansando
+                ) {
+
+                    return null;
+
+                }
+
+
+                return cobrador.nombre;
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       ROTACION NORMAL
+       SEPTIEMBRE / DICIEMBRE
+    ========================================================= */
+
+    function obtenerCobradoresParaDia(
+        dia
+    ) {
 
         const seleccionados = [];
 
         let intentos = 0;
+
 
         while (
             seleccionados.length < 7 &&
@@ -1807,17 +2056,23 @@ descanso: ["MIERCOLES"]
         ) {
 
             const indice =
-                puntero % cobradores.length;
+                puntero %
+                cobradores.length;
+
 
             const cobrador =
                 cobradores[indice];
+
 
             puntero++;
 
             intentos++;
 
+
             if (
-                !cobrador.descanso.includes(dia)
+                !cobrador.descanso.includes(
+                    dia
+                )
             ) {
 
                 seleccionados.push(
@@ -1828,7 +2083,9 @@ descanso: ["MIERCOLES"]
 
         }
 
+
         return seleccionados;
+
     }
 
 
@@ -1836,38 +2093,83 @@ descanso: ["MIERCOLES"]
        GENERAR LOS 106 DIAS
     ========================================================= */
 
-    let fechaActual = new Date(fechaInicio);
+    let fechaActual =
+        new Date(
+            fechaInicio
+        );
 
-    while (fechaActual <= fechaFin) {
+
+    while (
+        fechaActual <= fechaFin
+    ) {
 
         const diaSemana =
             nombresDias[
                 fechaActual.getDay()
             ];
 
-        const asignados =
-            obtenerCobradoresParaDia(
-                diaSemana
-            );
+
+        let asignados;
+
+
+        /*
+         * OCTUBRE + NOVIEMBRE
+         *
+         * Utilizamos los 7 cobradores
+         * especiales.
+         */
+
+        if (
+            esPeriodoEspecial(
+                fechaActual
+            )
+        ) {
+
+            asignados =
+                obtenerAsignacionEspecial(
+                    fechaActual
+                );
+
+        } else {
+
+            /*
+             * Fuera de octubre y noviembre
+             * continúa la rotación original.
+             */
+
+            asignados =
+                obtenerCobradoresParaDia(
+                    diaSemana
+                );
+
+        }
+
 
         calendario.push({
 
-            fecha: new Date(fechaActual),
+            fecha:
+                new Date(
+                    fechaActual
+                ),
 
             iso:
                 convertirFechaISO(
                     fechaActual
                 ),
 
-            diaSemana: diaSemana,
+            diaSemana:
+                diaSemana,
 
-            asignados: asignados
+            asignados:
+                asignados
 
         });
+
 
         fechaActual.setDate(
             fechaActual.getDate() + 1
         );
+
     }
 
 
@@ -1875,22 +2177,34 @@ descanso: ["MIERCOLES"]
        FECHA ISO
     ========================================================= */
 
-    function convertirFechaISO(fecha) {
+    function convertirFechaISO(
+        fecha
+    ) {
 
         const año =
             fecha.getFullYear();
 
+
         const mes =
             String(
                 fecha.getMonth() + 1
-            ).padStart(2, "0");
+            ).padStart(
+                2,
+                "0"
+            );
+
 
         const dia =
             String(
                 fecha.getDate()
-            ).padStart(2, "0");
+            ).padStart(
+                2,
+                "0"
+            );
+
 
         return `${año}-${mes}-${dia}`;
+
     }
 
 
@@ -1898,25 +2212,32 @@ descanso: ["MIERCOLES"]
        FORMATEAR FECHA
     ========================================================= */
 
-    function fechaBonita(fecha) {
+    function fechaBonita(
+        fecha
+    ) {
 
         const dia =
             fecha.getDate();
+
 
         const mes =
             nombresMeses[
                 fecha.getMonth()
             ];
 
+
         const año =
             fecha.getFullYear();
+
 
         const nombreDia =
             nombresDiasCortos[
                 fecha.getDay()
             ];
 
+
         return `${nombreDia} ${dia} de ${mes} de ${año}`;
+
     }
 
 
@@ -1928,8 +2249,11 @@ descanso: ["MIERCOLES"]
 
     let mesCalendario = 8;
 
+
     let fechaSeleccionada =
-        convertirFechaISO(fechaInicio);
+        convertirFechaISO(
+            fechaInicio
+        );
 
 
     /* =========================================================
@@ -1941,35 +2265,48 @@ descanso: ["MIERCOLES"]
             "fechasGrid"
         );
 
+
     const mesActual =
         document.getElementById(
             "mesActual"
         );
+
 
     const mesAnterior =
         document.getElementById(
             "mesAnterior"
         );
 
+
     const mesSiguiente =
         document.getElementById(
             "mesSiguiente"
         );
+
 
     const fechaSeleccionadaTexto =
         document.getElementById(
             "fechaSeleccionadaTexto"
         );
 
+
+    const fechaIndicador =
+        document.getElementById(
+            "fechaIndicador"
+        );
+
+
     const tablaCalendario =
         document.getElementById(
             "tablaCalendario"
         );
 
+
     const cardsCalendario =
         document.getElementById(
             "cardsCalendario"
         );
+
 
     const resumenCobradores =
         document.getElementById(
@@ -1981,10 +2318,13 @@ descanso: ["MIERCOLES"]
        BUSCAR DIA
     ========================================================= */
 
-    function buscarDia(iso) {
+    function buscarDia(
+        iso
+    ) {
 
         return calendario.find(
-            item => item.iso === iso
+            item =>
+                item.iso === iso
         );
 
     }
@@ -1998,14 +2338,12 @@ descanso: ["MIERCOLES"]
 
         fechasGrid.innerHTML = "";
 
+
         mesActual.textContent =
-            `${nombresMeses[mesCalendario]} ${añoCalendario}`;
+            `${nombresMeses[
+                mesCalendario
+            ]} ${añoCalendario}`;
 
-
-        /*
-         * JS usa domingo = 0.
-         * Nuestro calendario comienza lunes.
-         */
 
         const primerDia =
             new Date(
@@ -2014,19 +2352,23 @@ descanso: ["MIERCOLES"]
                 1
             );
 
+
         let posicionPrimerDia =
             primerDia.getDay();
 
-        if (posicionPrimerDia === 0) {
+
+        if (
+            posicionPrimerDia === 0
+        ) {
+
             posicionPrimerDia = 6;
+
         } else {
+
             posicionPrimerDia--;
+
         }
 
-
-        /*
-         * Espacios vacíos antes del día 1
-         */
 
         for (
             let i = 0;
@@ -2039,18 +2381,17 @@ descanso: ["MIERCOLES"]
                     "div"
                 );
 
+
             vacio.className =
                 "fecha-vacia";
+
 
             fechasGrid.appendChild(
                 vacio
             );
+
         }
 
-
-        /*
-         * Cantidad de días del mes
-         */
 
         const cantidadDias =
             new Date(
@@ -2073,16 +2414,12 @@ descanso: ["MIERCOLES"]
                     dia
                 );
 
+
             const iso =
                 convertirFechaISO(
                     fecha
                 );
 
-
-            /*
-             * Solo permitimos fechas
-             * dentro del período.
-             */
 
             const estaDentro =
                 fecha >= fechaInicio &&
@@ -2094,17 +2431,21 @@ descanso: ["MIERCOLES"]
                     "button"
                 );
 
+
             boton.type = "button";
 
             boton.className =
                 "boton-fecha";
 
 
-            if (!estaDentro) {
+            if (
+                !estaDentro
+            ) {
 
                 boton.disabled = true;
 
-                boton.style.opacity = "0.28";
+                boton.style.opacity =
+                    "0.28";
 
                 boton.style.cursor =
                     "not-allowed";
@@ -2169,7 +2510,9 @@ descanso: ["MIERCOLES"]
                 </span>
 
                 <span class="mini-dia">
-                    ${nombresDiasCortos[fecha.getDay()]}
+                    ${nombresDiasCortos[
+                        fecha.getDay()
+                    ]}
                 </span>
 
                 ${
@@ -2181,7 +2524,9 @@ descanso: ["MIERCOLES"]
             `;
 
 
-            if (estaDentro) {
+            if (
+                estaDentro
+            ) {
 
                 boton.addEventListener(
                     "click",
@@ -2219,9 +2564,11 @@ descanso: ["MIERCOLES"]
             fechaInicio.getFullYear() * 12 +
             fechaInicio.getMonth();
 
+
         const mesFin =
             fechaFin.getFullYear() * 12 +
             fechaFin.getMonth();
+
 
         const mesActualNumero =
             añoCalendario * 12 +
@@ -2260,6 +2607,7 @@ descanso: ["MIERCOLES"]
 
             }
 
+
             generarCalendarioVisual();
 
         }
@@ -2284,6 +2632,7 @@ descanso: ["MIERCOLES"]
 
             }
 
+
             generarCalendarioVisual();
 
         }
@@ -2294,16 +2643,28 @@ descanso: ["MIERCOLES"]
        SELECCIONAR FECHA
     ========================================================= */
 
-    function seleccionarFecha(iso) {
+    function seleccionarFecha(
+        iso
+    ) {
 
         const dia =
-            buscarDia(iso);
+            buscarDia(
+                iso
+            );
 
-        if (!dia) {
+
+        if (
+            !dia
+        ) {
+
             return;
+
         }
 
-        fechaSeleccionada = iso;
+
+        fechaSeleccionada =
+            iso;
+
 
         fechaSeleccionadaTexto.textContent =
             fechaBonita(
@@ -2311,18 +2672,37 @@ descanso: ["MIERCOLES"]
             );
 
 
-        /*
-         * Regeneramos el calendario
-         * para marcar la fecha.
-         */
+        const asignacionesValidas =
+            dia.asignados.filter(
+                nombre =>
+                    nombre !== null
+            ).length;
+
+
+        const sinAsignacion =
+            dia.asignados.filter(
+                nombre =>
+                    nombre === null
+            ).length;
+
+
+        if (
+            sinAsignacion > 0
+        ) {
+
+            fechaIndicador.textContent =
+                `${asignacionesValidas} POS asignados · ${sinAsignacion} sin asignación`;
+
+        } else {
+
+            fechaIndicador.textContent =
+                "7 POS asignados";
+
+        }
+
 
         generarCalendarioVisual();
 
-
-        /*
-         * Buscamos la fila correspondiente
-         * en desktop.
-         */
 
         const fila =
             document.querySelector(
@@ -2330,7 +2710,9 @@ descanso: ["MIERCOLES"]
             );
 
 
-        if (fila) {
+        if (
+            fila
+        ) {
 
             fila.scrollIntoView({
                 behavior: "smooth",
@@ -2341,6 +2723,7 @@ descanso: ["MIERCOLES"]
             fila.style.transition =
                 "background 0.3s";
 
+
             fila.style.background =
                 "#fff7d6";
 
@@ -2348,7 +2731,8 @@ descanso: ["MIERCOLES"]
             setTimeout(
                 function () {
 
-                    fila.style.background = "";
+                    fila.style.background =
+                        "";
 
                 },
                 1800
@@ -2357,17 +2741,15 @@ descanso: ["MIERCOLES"]
         }
 
 
-        /*
-         * En móvil buscamos la tarjeta.
-         */
-
         const card =
             document.querySelector(
                 `.dia-card[data-fecha="${iso}"]`
             );
 
 
-        if (card) {
+        if (
+            card
+        ) {
 
             card.scrollIntoView({
                 behavior: "smooth",
@@ -2377,6 +2759,7 @@ descanso: ["MIERCOLES"]
 
             card.style.transition =
                 "box-shadow 0.3s";
+
 
             card.style.boxShadow =
                 "0 0 0 3px #f2b705, 0 12px 30px rgba(18,59,93,.16)";
@@ -2401,29 +2784,33 @@ descanso: ["MIERCOLES"]
        ESCAPAR HTML
     ========================================================= */
 
-    function escapar(texto) {
+    function escapar(
+        texto
+    ) {
 
-        return String(texto)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
+        return String(
+            texto
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
     }
 
@@ -2436,15 +2823,12 @@ descanso: ["MIERCOLES"]
 
         tablaCalendario.innerHTML = "";
 
+
         let ultimoMes = -1;
 
 
         calendario.forEach(
             function (item) {
-
-                /*
-                 * Separador de mes
-                 */
 
                 if (
                     item.fecha.getMonth() !==
@@ -2459,6 +2843,7 @@ descanso: ["MIERCOLES"]
                         document.createElement(
                             "tr"
                         );
+
 
                     separador.className =
                         "separador-mes";
@@ -2477,6 +2862,7 @@ descanso: ["MIERCOLES"]
                         </td>
 
                     `;
+
 
                     tablaCalendario.appendChild(
                         separador
@@ -2539,19 +2925,29 @@ descanso: ["MIERCOLES"]
                     <td class="celda-fecha">
 
                         <span class="fecha-numero-tabla">
+
                             ${String(
                                 item.fecha.getDate()
-                            ).padStart(2, "0")}
+                            ).padStart(
+                                2,
+                                "0"
+                            )}
                             /
                             ${String(
                                 item.fecha.getMonth() + 1
-                            ).padStart(2, "0")}
+                            ).padStart(
+                                2,
+                                "0"
+                            )}
                             /
                             ${item.fecha.getFullYear()}
+
                         </span>
 
                         <span class="fecha-dia-tabla">
+
                             ${item.diaSemana}
+
                         </span>
 
                     </td>
@@ -2565,27 +2961,51 @@ descanso: ["MIERCOLES"]
                         indice
                     ) {
 
-                        html += `
+                        if (
+                            nombre === null
+                        ) {
 
-                            <td class="celda-pos pos-${indice + 1}">
+                            html += `
 
-                                <span class="cobrador">
+                                <td class="celda-pos pos-${indice + 1}">
 
-                                    ${escapar(
-                                        nombre
-                                    )}
+                                    <span class="sin-asignacion">
 
-                                </span>
+                                        SIN ASIGNACIÓN
 
-                            </td>
+                                    </span>
 
-                        `;
+                                </td>
+
+                            `;
+
+                        } else {
+
+                            html += `
+
+                                <td class="celda-pos pos-${indice + 1}">
+
+                                    <span class="cobrador">
+
+                                        ${escapar(
+                                            nombre
+                                        )}
+
+                                    </span>
+
+                                </td>
+
+                            `;
+
+                        }
 
                     }
                 );
 
 
-                tr.innerHTML = html;
+                tr.innerHTML =
+                    html;
+
 
                 tablaCalendario.appendChild(
                     tr
@@ -2632,26 +3052,90 @@ descanso: ["MIERCOLES"]
                         indice
                     ) {
 
-                        listaPOS += `
+                        if (
+                            nombre === null
+                        ) {
 
-                            <div class="pos-item">
+                            listaPOS += `
 
-                                <div class="pos-numero">
-                                    POS ${indice + 1}
+                                <div class="pos-item sin-asignacion-item">
+
+                                    <div class="pos-numero">
+
+                                        POS ${indice + 1}
+
+                                    </div>
+
+                                    <div class="pos-nombre">
+
+                                        SIN ASIGNACIÓN
+                                        <br>
+                                        <small>
+                                            Día de descanso
+                                        </small>
+
+                                    </div>
+
                                 </div>
 
-                                <div class="pos-nombre">
-                                    ${escapar(
-                                        nombre
-                                    )}
+                            `;
+
+                        } else {
+
+                            listaPOS += `
+
+                                <div class="pos-item">
+
+                                    <div class="pos-numero">
+
+                                        POS ${indice + 1}
+
+                                    </div>
+
+                                    <div class="pos-nombre">
+
+                                        ${escapar(
+                                            nombre
+                                        )}
+
+                                    </div>
+
                                 </div>
 
-                            </div>
+                            `;
 
-                        `;
+                        }
 
                     }
                 );
+
+
+                const cantidadAsignados =
+                    item.asignados.filter(
+                        nombre =>
+                            nombre !== null
+                    ).length;
+
+
+                const cantidadSinAsignacion =
+                    item.asignados.filter(
+                        nombre =>
+                            nombre === null
+                    ).length;
+
+
+                let badge =
+                    "7 POS";
+
+
+                if (
+                    cantidadSinAsignacion > 0
+                ) {
+
+                    badge =
+                        `${cantidadAsignados} asignados`;
+
+                }
 
 
                 card.innerHTML = `
@@ -2661,19 +3145,25 @@ descanso: ["MIERCOLES"]
                         <div>
 
                             <div class="dia-card-fecha">
+
                                 ${fechaBonita(
                                     item.fecha
                                 )}
+
                             </div>
 
                             <div class="dia-card-numero">
+
                                 ${item.iso}
+
                             </div>
 
                         </div>
 
                         <div class="dia-card-badge">
-                            7 POS
+
+                            ${badge}
+
                         </div>
 
                     </div>
@@ -2718,15 +3208,45 @@ descanso: ["MIERCOLES"]
         );
 
 
+        cobradoresPOSOctNov.forEach(
+            function (cobrador) {
+
+                participaciones[
+                    cobrador.nombre
+                ] = 0;
+
+            }
+        );
+
+
         calendario.forEach(
             function (dia) {
 
                 dia.asignados.forEach(
                     function (nombre) {
 
-                        participaciones[
-                            nombre
-                        ]++;
+                        if (
+                            nombre !== null
+                        ) {
+
+                            if (
+                                participaciones[
+                                    nombre
+                                ] === undefined
+                            ) {
+
+                                participaciones[
+                                    nombre
+                                ] = 0;
+
+                            }
+
+
+                            participaciones[
+                                nombre
+                            ]++;
+
+                        }
 
                     }
                 );
@@ -2736,6 +3256,142 @@ descanso: ["MIERCOLES"]
 
 
         resumenCobradores.innerHTML = "";
+
+
+        /*
+         * Mostrar primero los 7 especiales.
+         */
+
+        const especiales =
+            document.createElement(
+                "div"
+            );
+
+
+        especiales.style.gridColumn =
+            "1 / -1";
+
+
+        especiales.style.padding =
+            "12px";
+
+
+        especiales.style.marginBottom =
+            "5px";
+
+
+        especiales.style.background =
+            "#eaf4fb";
+
+
+        especiales.style.borderRadius =
+            "10px";
+
+
+        especiales.style.color =
+            "#123b5d";
+
+
+        especiales.style.fontWeight =
+            "800";
+
+
+        especiales.textContent =
+            "💳 Cobradores asignados a POS en octubre y noviembre";
+
+
+        resumenCobradores.appendChild(
+            especiales
+        );
+
+
+        cobradoresPOSOctNov.forEach(
+            function (cobrador) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "resumen-persona";
+
+
+                item.innerHTML = `
+
+                    <div class="resumen-persona-nombre">
+
+                        ${escapar(
+                            cobrador.nombre
+                        )}
+
+                    </div>
+
+                    <div class="resumen-persona-numero">
+
+                        ${participaciones[
+                            cobrador.nombre
+                        ]} asignaciones
+
+                    </div>
+
+                `;
+
+
+                resumenCobradores.appendChild(
+                    item
+                );
+
+            }
+        );
+
+
+        /*
+         * Separador para cobradores originales.
+         */
+
+        const originales =
+            document.createElement(
+                "div"
+            );
+
+
+        originales.style.gridColumn =
+            "1 / -1";
+
+
+        originales.style.padding =
+            "12px";
+
+
+        originales.style.marginTop =
+            "10px";
+
+
+        originales.style.background =
+            "#f8fafc";
+
+
+        originales.style.borderRadius =
+            "10px";
+
+
+        originales.style.color =
+            "#344054";
+
+
+        originales.style.fontWeight =
+            "800";
+
+
+        originales.textContent =
+            "👥 Resumen de cobradores de la rotación normal";
+
+
+        resumenCobradores.appendChild(
+            originales
+        );
 
 
         cobradores.forEach(
@@ -2754,15 +3410,19 @@ descanso: ["MIERCOLES"]
                 item.innerHTML = `
 
                     <div class="resumen-persona-nombre">
+
                         ${escapar(
                             cobrador.nombre
                         )}
+
                     </div>
 
                     <div class="resumen-persona-numero">
+
                         ${participaciones[
                             cobrador.nombre
                         ]} asignaciones
+
                     </div>
 
                 `;
@@ -2791,12 +3451,6 @@ descanso: ["MIERCOLES"]
     generarCalendarioVisual();
 
 
-    /*
-     * Dejamos seleccionada inicialmente
-     * la primera fecha disponible:
-     * 17 de septiembre de 2026.
-     */
-
     fechaSeleccionadaTexto.textContent =
         fechaBonita(
             fechaInicio
@@ -2804,59 +3458,54 @@ descanso: ["MIERCOLES"]
 
 
     /* =========================================================
-   BOTÓN VOLVER AL INICIO
-========================================================= */
+       BOTÓN VOLVER AL INICIO
+    ========================================================= */
 
-const btnInicio =
-    document.getElementById("btnInicio");
+    const btnInicio =
+        document.getElementById(
+            "btnInicio"
+        );
 
 
-/*
- * Mostrar el botón cuando
- * el usuario haya bajado.
- */
+    window.addEventListener(
+        "scroll",
+        function () {
 
-window.addEventListener(
-    "scroll",
-    function () {
+            if (
+                window.scrollY > 500
+            ) {
 
-        if (window.scrollY > 500) {
+                btnInicio.classList.add(
+                    "visible"
+                );
 
-            btnInicio.classList.add(
-                "visible"
-            );
+            } else {
 
-        } else {
+                btnInicio.classList.remove(
+                    "visible"
+                );
 
-            btnInicio.classList.remove(
-                "visible"
-            );
+            }
 
         }
-
-    }
-);
+    );
 
 
-/*
- * Al presionarlo:
- * regresar suavemente al inicio.
- */
+    btnInicio.addEventListener(
+        "click",
+        function () {
 
-btnInicio.addEventListener(
-    "click",
-    function () {
+            window.scrollTo({
 
-        window.scrollTo({
+                top: 0,
 
-            top: 0,
+                behavior: "smooth"
 
-            behavior: "smooth"
+            });
 
-        });
+        }
+    );
 
-    }
-);
 </script>
 
 </body>
