@@ -1,3265 +1,1042 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Calendario de POS - La Comercial</title>
-
-    <style>
-        :root {
-            --azul-oscuro: #123b5d;
-            --azul: #1769aa;
-            --azul-medio: #2185d0;
-            --azul-claro: #eaf4fb;
-
-            --dorado: #f2b705;
-            --dorado-claro: #fff7d6;
-
-            --verde: #16805c;
-            --verde-claro: #e8f7f1;
-
-            --rojo: #c62828;
-            --rojo-claro: #fdeaea;
-
-            --gris-oscuro: #344054;
-            --gris: #667085;
-            --gris-medio: #98a2b3;
-            --gris-claro: #eaecf0;
-            --fondo: #f5f7fa;
-
-            --blanco: #ffffff;
-
-            --radio: 16px;
-            --sombra: 0 8px 25px rgba(18, 59, 93, 0.10);
-            --sombra-hover: 0 12px 30px rgba(18, 59, 93, 0.16);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--fondo);
-            color: var(--gris-oscuro);
-        }
-
-        /* =========================================================
-           ENCABEZADO
-        ========================================================= */
-
-        .encabezado {
-            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-            color: white;
-            padding: 28px 20px;
-            box-shadow: 0 5px 20px rgba(18, 59, 93, 0.20);
-        }
-
-        .encabezado-contenido {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            background: white;
-            border-radius: 18px;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .titulo-principal {
-            margin: 0 0 8px;
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitulo {
-            margin: 0;
-            font-size: 16px;
-            opacity: 0.92;
-        }
-
-        .periodo {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            margin-top: 12px;
-            padding: 7px 13px;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.14);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* =========================================================
-           CONTENEDOR
-        ========================================================= */
-
-        .contenedor {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 25px 20px 45px;
-        }
-
-        /* =========================================================
-           ESTADISTICAS
-        ========================================================= */
-
-        .estadisticas {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
-        }
-
-        .estadistica {
-            background: var(--blanco);
-            border-radius: var(--radio);
-            padding: 20px;
-            box-shadow: var(--sombra);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid #eef1f5;
-        }
-
-        .estadistica-icono {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-            flex-shrink: 0;
-        }
-
-        .icono-azul {
-            background: var(--azul-claro);
-        }
-
-        .icono-dorado {
-            background: var(--dorado-claro);
-        }
-
-        .icono-verde {
-            background: var(--verde-claro);
-        }
-
-        .icono-rojo {
-            background: var(--rojo-claro);
-        }
-
-        .estadistica-numero {
-            font-size: 25px;
-            font-weight: 800;
-            color: var(--azul-oscuro);
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .estadistica-label {
-            color: var(--gris);
-            font-size: 13px;
-        }
-
-        /* =========================================================
-           CALENDARIO FILTRO
-        ========================================================= */
-
-        .panel-calendario {
-            background: white;
-            border-radius: var(--radio);
-            box-shadow: var(--sombra);
-            border: 1px solid #eef1f5;
-            margin-bottom: 28px;
-            overflow: hidden;
-        }
-
-        .panel-calendario-cabecera {
-            padding: 20px 22px;
-            background: linear-gradient(135deg, #f8fbff, #eef7fd);
-            border-bottom: 1px solid #dcecf8;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .titulo-calendario {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .titulo-calendario-icono {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: var(--azul);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 21px;
-        }
-
-        .titulo-calendario h2 {
-            margin: 0;
-            color: var(--azul-oscuro);
-            font-size: 19px;
-        }
-
-        .titulo-calendario p {
-            margin: 3px 0 0;
-            color: var(--gris);
-            font-size: 13px;
-        }
-
-        .mes-navegacion {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .boton-mes {
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 11px;
-            background: white;
-            color: var(--azul);
-            border: 1px solid #d6e6f2;
-            cursor: pointer;
-            font-size: 21px;
-            transition: 0.2s;
-        }
-
-        .boton-mes:hover:not(:disabled) {
-            background: var(--azul);
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .boton-mes:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-
-        .mes-actual {
-            min-width: 165px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--azul-oscuro);
-            text-transform: capitalize;
-        }
-
-        .calendario-grid-contenedor {
-            padding: 20px;
-        }
-
-        .dias-semana {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .dia-semana {
-            text-align: center;
-            padding: 8px 4px;
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--gris);
-            text-transform: uppercase;
-        }
-
-        .dia-semana.domingo {
-            color: var(--rojo);
-        }
-
-        .fechas-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-        }
-
-        .fecha-vacia {
-            min-height: 52px;
-        }
-
-        .boton-fecha {
-            min-height: 58px;
-            border: 1px solid var(--gris-claro);
-            border-radius: 12px;
-            background: white;
-            cursor: pointer;
-            padding: 7px;
-            position: relative;
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .boton-fecha:hover {
-            border-color: var(--azul);
-            background: var(--azul-claro);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(23, 105, 170, 0.12);
-        }
-
-        .boton-fecha .numero {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--azul-oscuro);
-        }
-
-        .boton-fecha .mini-dia {
-            font-size: 9px;
-            color: var(--gris);
-            margin-top: 3px;
-        }
-
-        .boton-fecha.domingo {
-            background: #fffafa;
-        }
-
-        .boton-fecha.domingo .numero {
-            color: var(--rojo);
-        }
-
-        .boton-fecha.seleccionado {
-            background: var(--azul);
-            border-color: var(--azul);
-            box-shadow: 0 5px 14px rgba(23, 105, 170, 0.28);
-        }
-
-        .boton-fecha.seleccionado .numero,
-        .boton-fecha.seleccionado .mini-dia {
-            color: white;
-        }
-
-        .boton-fecha.inicio {
-            box-shadow: inset 0 0 0 2px var(--dorado);
-        }
-
-        .boton-fecha.fin {
-            box-shadow: inset 0 0 0 2px var(--verde);
-        }
-
-        .punto-dia {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--dorado);
-            position: absolute;
-            top: 6px;
-            right: 7px;
-        }
-
-        .boton-fecha.seleccionado .punto-dia {
-            background: white;
-        }
-
-        /* =========================================================
-           FECHA SELECCIONADA
-        ========================================================= */
-
-        .fecha-seleccionada {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            background: white;
-            border-radius: var(--radio);
-            padding: 17px 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--azul);
-            box-shadow: var(--sombra);
-        }
-
-        .fecha-seleccionada-info {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .fecha-icono {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: var(--dorado-claro);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .fecha-seleccionada-label {
-            color: var(--gris);
-            font-size: 12px;
-            margin-bottom: 3px;
-        }
-
-        .fecha-seleccionada-texto {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--azul-oscuro);
-            text-transform: capitalize;
-        }
-
-        .fecha-indicador {
-            padding: 8px 13px;
-            background: var(--verde-claro);
-            color: var(--verde);
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        /* =========================================================
-           REGLAS
-        ========================================================= */
-
-        .reglas {
-            background: linear-gradient(135deg, #fffdf3, #fff8dd);
-            border: 1px solid #f5df8c;
-            border-radius: var(--radio);
-            padding: 18px 20px;
-            margin-bottom: 25px;
-        }
-
-        .reglas-titulo {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 15px;
-            font-weight: 800;
-            color: #755800;
-            margin-bottom: 8px;
-        }
-
-        .reglas p {
-            margin: 0;
-            color: #725f27;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* =========================================================
-           TABLA DESKTOP
-        ========================================================= */
-
-        .tabla-contenedor {
-            background: white;
-            border-radius: var(--radio);
-            box-shadow: var(--sombra);
-            overflow: hidden;
-            border: 1px solid #e7ebef;
-            margin-bottom: 28px;
-        }
-
-        .tabla-cabecera-titulo {
-            padding: 18px 20px;
-            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .tabla-cabecera-titulo h2 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .contador {
-            background: rgba(255,255,255,0.15);
-            padding: 7px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .tabla-scroll {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 1000px;
-        }
-
-        thead th {
-            background: #f2f7fb;
-            color: var(--azul-oscuro);
-            padding: 14px 10px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-bottom: 2px solid #dce8f0;
-            white-space: nowrap;
-        }
-
-        thead th.pos-header {
-            background: var(--azul-claro);
-            color: var(--azul);
-        }
-
-        tbody td {
-            padding: 11px 9px;
-            border-bottom: 1px solid #edf0f3;
-            text-align: center;
-            font-size: 12px;
-            vertical-align: middle;
-        }
-
-        tbody tr {
-            transition: 0.2s;
-        }
-
-        tbody tr:hover {
-            background: #f8fbfd;
-        }
-
-        tbody tr.dia-domingo {
-            background: #fffafa;
-        }
-
-        tbody tr.dia-domingo:hover {
-            background: #fff5f5;
-        }
-
-        .celda-fecha {
-            text-align: left;
-            min-width: 120px;
-            font-weight: 700;
-        }
-
-        .fecha-numero-tabla {
-            display: block;
-            color: var(--azul-oscuro);
-            font-size: 13px;
-        }
-
-        .fecha-dia-tabla {
-            display: block;
-            margin-top: 3px;
-            color: var(--gris);
-            font-size: 10px;
-            text-transform: uppercase;
-        }
-
-        .celda-pos {
-            width: 12.5%;
-        }
-
-        .cobrador {
-            display: inline-block;
-            padding: 7px 8px;
-            border-radius: 8px;
-            background: #f5f8fa;
-            color: var(--gris-oscuro);
-            font-weight: 700;
-            line-height: 1.25;
-            max-width: 145px;
-        }
-
-        .pos-1 .cobrador,
-        .pos-4 .cobrador,
-        .pos-7 .cobrador {
-            background: var(--azul-claro);
-            color: var(--azul-oscuro);
-        }
-
-        .pos-2 .cobrador,
-        .pos-5 .cobrador {
-            background: var(--dorado-claro);
-            color: #765c00;
-        }
-
-        .pos-3 .cobrador,
-        .pos-6 .cobrador {
-            background: var(--verde-claro);
-            color: #12674b;
-        }
-
-        /* =========================================================
-           SIN ASIGNACION
-        ========================================================= */
-
-        .sin-asignacion {
-            display: inline-block;
-            padding: 7px 9px;
-            border-radius: 8px;
-            background: var(--rojo-claro);
-            color: var(--rojo);
-            font-weight: 800;
-            font-size: 11px;
-            line-height: 1.25;
-        }
-
-        .pos-item.sin-asignacion-item {
-            background: var(--rojo-claro);
-        }
-
-        .pos-item.sin-asignacion-item .pos-numero {
-            background: var(--rojo);
-            color: white;
-        }
-
-        .pos-item.sin-asignacion-item .pos-nombre {
-            color: var(--rojo);
-        }
-
-        .fila-inicio {
-            border-top: 3px solid var(--dorado);
-        }
-
-        .fila-fin {
-            border-bottom: 3px solid var(--verde);
-        }
-
-        /* =========================================================
-           SEPARADORES DE MES
-        ========================================================= */
-
-        .separador-mes {
-            scroll-margin-top: 20px;
-        }
-
-        .separador-mes td {
-            background: linear-gradient(90deg, var(--azul-oscuro), var(--azul));
-            color: white;
-            padding: 10px 15px;
-            text-align: left;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-        }
-
-        /* =========================================================
-           CARDS MOBILE
-        ========================================================= */
-
-        .cards-mobile {
-            display: none;
-        }
-
-        .dia-card {
-            background: white;
-            border-radius: var(--radio);
-            margin-bottom: 17px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            border: 1px solid #e7ebef;
-            scroll-margin-top: 20px;
-        }
-
-        .dia-card-cabecera {
-            padding: 15px 17px;
-            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dia-card-fecha {
-            font-size: 16px;
-            font-weight: 800;
-            text-transform: capitalize;
-        }
-
-        .dia-card-numero {
-            font-size: 12px;
-            opacity: 0.85;
-            margin-top: 3px;
-        }
-
-        .dia-card-badge {
-            padding: 6px 10px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.14);
-            font-size: 10px;
-            font-weight: 800;
-        }
-
-        .pos-lista {
-            padding: 9px;
-        }
-
-        .pos-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            margin-bottom: 7px;
-            border-radius: 10px;
-            background: #f8fafc;
-        }
-
-        .pos-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .pos-numero {
-            width: 39px;
-            height: 39px;
-            border-radius: 10px;
-            background: var(--azul);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 800;
-            flex-shrink: 0;
-        }
-
-        .pos-nombre {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--gris-oscuro);
-            line-height: 1.3;
-        }
-
-        .pos-item:nth-child(2n) .pos-numero {
-            background: var(--dorado);
-            color: #5d4800;
-        }
-
-        .pos-item:nth-child(3n) .pos-numero {
-            background: var(--verde);
-        }
-
-        /* =========================================================
-           RESUMEN
-        ========================================================= */
-
-        .resumen {
-            background: white;
-            border-radius: var(--radio);
-            box-shadow: var(--sombra);
-            border: 1px solid #e7ebef;
-            overflow: hidden;
-            margin-bottom: 28px;
-        }
-
-        .resumen summary {
-            padding: 18px 20px;
-            cursor: pointer;
-            color: var(--azul-oscuro);
-            font-weight: 800;
-            font-size: 15px;
-            user-select: none;
-        }
-
-        .resumen summary:hover {
-            background: var(--azul-claro);
-        }
-
-        .resumen-contenido {
-            padding: 0 20px 20px;
-        }
-
-        .resumen-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .resumen-persona {
-            padding: 11px;
-            background: #f8fafc;
-            border: 1px solid #edf0f3;
-            border-radius: 10px;
-        }
-
-        .resumen-persona-nombre {
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--gris-oscuro);
-            margin-bottom: 5px;
-        }
-
-        .resumen-persona-numero {
-            color: var(--azul);
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            text-align: center;
-            color: var(--gris);
-            font-size: 12px;
-            padding: 10px 0 20px;
-        }
-
-        footer strong {
-            color: var(--azul-oscuro);
-        }
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 1000px) {
-            .estadisticas {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .resumen-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 700px) {
-
-            .encabezado {
-                padding: 20px 15px;
-            }
-
-            .encabezado-contenido {
-                gap: 15px;
-            }
-
-            .logo {
-                width: 72px;
-                height: 72px;
-                border-radius: 14px;
-            }
-
-            .titulo-principal {
-                font-size: 22px;
-                margin-bottom: 5px;
-            }
-
-            .subtitulo {
-                font-size: 12px;
-                line-height: 1.4;
-            }
-
-            .periodo {
-                font-size: 10px;
-                margin-top: 8px;
-            }
-
-            .contenedor {
-                padding: 15px 10px 35px;
-            }
-
-            .estadisticas {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                margin-bottom: 15px;
-            }
-
-            .estadistica {
-                padding: 13px;
-                gap: 9px;
-                border-radius: 13px;
-            }
-
-            .estadistica-icono {
-                width: 40px;
-                height: 40px;
-                border-radius: 10px;
-                font-size: 19px;
-            }
-
-            .estadistica-numero {
-                font-size: 19px;
-            }
-
-            .estadistica-label {
-                font-size: 10px;
-            }
-
-            .panel-calendario {
-                margin-bottom: 17px;
-            }
-
-            .panel-calendario-cabecera {
-                padding: 14px;
-                display: block;
-            }
-
-            .titulo-calendario {
-                margin-bottom: 13px;
-            }
-
-            .titulo-calendario-icono {
-                width: 37px;
-                height: 37px;
-                font-size: 18px;
-            }
-
-            .titulo-calendario h2 {
-                font-size: 15px;
-            }
-
-            .titulo-calendario p {
-                font-size: 10px;
-            }
-
-            .mes-navegacion {
-                justify-content: space-between;
-            }
-
-            .mes-actual {
-                font-size: 15px;
-            }
-
-            .boton-mes {
-                width: 38px;
-                height: 38px;
-            }
-
-            .calendario-grid-contenedor {
-                padding: 10px;
-            }
-
-            .dias-semana,
-            .fechas-grid {
-                gap: 4px;
-            }
-
-            .dia-semana {
-                font-size: 9px;
-                padding: 5px 1px;
-            }
-
-            .boton-fecha {
-                min-height: 45px;
-                border-radius: 9px;
-                padding: 4px;
-            }
-
-            .boton-fecha .numero {
-                font-size: 14px;
-            }
-
-            .boton-fecha .mini-dia {
-                display: none;
-            }
-
-            .punto-dia {
-                width: 4px;
-                height: 4px;
-                top: 4px;
-                right: 5px;
-            }
-
-            .fecha-seleccionada {
-                padding: 13px;
-                margin-bottom: 15px;
-            }
-
-            .fecha-icono {
-                width: 38px;
-                height: 38px;
-                font-size: 18px;
-            }
-
-            .fecha-seleccionada-texto {
-                font-size: 14px;
-            }
-
-            .fecha-indicador {
-                font-size: 9px;
-                padding: 6px 8px;
-            }
-
-            .reglas {
-                padding: 14px;
-                margin-bottom: 17px;
-            }
-
-            .reglas p {
-                font-size: 11px;
-            }
-
-            .tabla-contenedor {
-                display: none;
-            }
-
-            .cards-mobile {
-                display: block;
-            }
-
-            .tabla-cabecera-titulo {
-                padding: 14px;
-            }
-
-            .tabla-cabecera-titulo h2 {
-                font-size: 15px;
-            }
-
-            .contador {
-                font-size: 10px;
-            }
-
-            .resumen-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 400px) {
-
-            .logo {
-                width: 62px;
-                height: 62px;
-            }
-
-            .titulo-principal {
-                font-size: 19px;
-            }
-
-            .subtitulo {
-                font-size: 10px;
-            }
-
-            .estadistica {
-                padding: 10px;
-            }
-
-            .estadistica-icono {
-                width: 34px;
-                height: 34px;
-                font-size: 16px;
-            }
-
-            .estadistica-numero {
-                font-size: 17px;
-            }
-
-            .estadistica-label {
-                font-size: 9px;
-            }
-
-            .resumen-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* =========================================================
-           BOTÓN FLOTANTE IR AL INICIO
-        ========================================================= */
-
-        .btn-inicio {
-            position: fixed;
-            right: 22px;
-            bottom: 22px;
-
-            width: 58px;
-            height: 58px;
-
-            border: none;
-            border-radius: 50%;
-
-            background: linear-gradient(
-                135deg,
-                var(--azul-oscuro),
-                var(--azul)
-            );
-
-            color: white;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-
-            font-size: 22px;
-            font-weight: 800;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 22px rgba(18, 59, 93, 0.28);
-
-            opacity: 0;
-            visibility: hidden;
-
-            transform: translateY(20px);
-
-            transition:
-                opacity 0.25s ease,
-                visibility 0.25s ease,
-                transform 0.25s ease,
-                box-shadow 0.2s ease;
-
-            z-index: 9999;
-        }
-
-        .btn-inicio span {
-            display: none;
-        }
-
-        .btn-inicio.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .btn-inicio:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 12px 28px rgba(18, 59, 93, 0.35);
-        }
-
-        .btn-inicio:active {
-            transform: scale(0.94);
-        }
-
-        @media (max-width: 700px) {
-
-            .btn-inicio {
-                width: 50px;
-                height: 50px;
-
-                right: 14px;
-                bottom: 14px;
-
-                font-size: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario de POS - La Comercial</title>
+
+<style>
+:root {
+    --azul-oscuro:#123b5d;
+    --azul:#1769aa;
+    --azul-medio:#2185d0;
+    --azul-claro:#eaf4fb;
+    --dorado:#f2b705;
+    --dorado-claro:#fff7d6;
+    --verde:#16805c;
+    --verde-claro:#e8f7f1;
+    --rojo:#c62828;
+    --rojo-claro:#fdeaea;
+    --gris-oscuro:#344054;
+    --gris:#667085;
+    --gris-medio:#98a2b3;
+    --gris-claro:#eaecf0;
+    --fondo:#f5f7fa;
+    --blanco:#fff;
+    --radio:16px;
+    --sombra:0 8px 25px rgba(18,59,93,.10);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--fondo);
+    color:var(--gris-oscuro);
+}
+
+.encabezado{
+    background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+    color:white;
+    padding:28px 20px;
+    box-shadow:0 5px 20px rgba(18,59,93,.20);
+}
+.encabezado-contenido{
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+.logo{
+    width:100px;
+    height:100px;
+    background:white;
+    border-radius:18px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:12px;
+}
+.titulo-principal{
+    margin:0 0 8px;
+    font-size:32px;
+    font-weight:800;
+}
+.subtitulo{margin:0;font-size:16px;opacity:.92}
+.periodo{
+    display:inline-flex;
+    margin-top:12px;
+    padding:7px 13px;
+    border-radius:30px;
+    background:rgba(255,255,255,.14);
+    font-size:13px;
+    font-weight:600;
+}
+.contenedor{
+    max-width:1400px;
+    margin:auto;
+    padding:25px 20px 45px;
+}
+
+.estadisticas{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+.estadistica{
+    background:white;
+    border-radius:var(--radio);
+    padding:20px;
+    box-shadow:var(--sombra);
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border:1px solid #eef1f5;
+}
+.estadistica-icono{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    flex-shrink:0;
+}
+.icono-azul{background:var(--azul-claro)}
+.icono-dorado{background:var(--dorado-claro)}
+.icono-verde{background:var(--verde-claro)}
+.icono-rojo{background:var(--rojo-claro)}
+.estadistica-numero{
+    font-size:25px;
+    font-weight:800;
+    color:var(--azul-oscuro);
+    margin-bottom:6px;
+}
+.estadistica-label{color:var(--gris);font-size:13px}
+
+.panel-calendario,.tabla-contenedor,.resumen{
+    background:white;
+    border-radius:var(--radio);
+    box-shadow:var(--sombra);
+    border:1px solid #eef1f5;
+    margin-bottom:28px;
+    overflow:hidden;
+}
+.panel-calendario-cabecera{
+    padding:20px 22px;
+    background:linear-gradient(135deg,#f8fbff,#eef7fd);
+    border-bottom:1px solid #dcecf8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+.titulo-calendario{display:flex;align-items:center;gap:10px}
+.titulo-calendario-icono{
+    width:42px;height:42px;border-radius:12px;
+    background:var(--azul);color:white;
+    display:flex;align-items:center;justify-content:center;font-size:21px;
+}
+.titulo-calendario h2{margin:0;color:var(--azul-oscuro);font-size:19px}
+.titulo-calendario p{margin:3px 0 0;color:var(--gris);font-size:13px}
+.mes-navegacion{display:flex;align-items:center;gap:10px}
+.boton-mes{
+    border:none;width:42px;height:42px;border-radius:11px;
+    background:white;color:var(--azul);border:1px solid #d6e6f2;
+    cursor:pointer;font-size:21px;
+}
+.boton-mes:hover:not(:disabled){background:var(--azul);color:white}
+.boton-mes:disabled{opacity:.35;cursor:not-allowed}
+.mes-actual{
+    min-width:165px;text-align:center;font-size:18px;
+    font-weight:800;color:var(--azul-oscuro);text-transform:capitalize;
+}
+.calendario-grid-contenedor{padding:20px}
+.dias-semana,.fechas-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;
+}
+.dias-semana{margin-bottom:8px}
+.dia-semana{
+    text-align:center;padding:8px 4px;font-size:12px;
+    font-weight:800;color:var(--gris);text-transform:uppercase;
+}
+.dia-semana.domingo{color:var(--rojo)}
+.fecha-vacia{min-height:52px}
+.boton-fecha{
+    min-height:58px;border:1px solid var(--gris-claro);
+    border-radius:12px;background:white;cursor:pointer;padding:7px;
+    position:relative;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+}
+.boton-fecha:hover:not(:disabled){
+    border-color:var(--azul);background:var(--azul-claro);
+}
+.boton-fecha .numero{font-size:17px;font-weight:800;color:var(--azul-oscuro)}
+.boton-fecha .mini-dia{font-size:9px;color:var(--gris);margin-top:3px}
+.boton-fecha.domingo{background:#fffafa}
+.boton-fecha.domingo .numero{color:var(--rojo)}
+.boton-fecha.seleccionado{background:var(--azul);border-color:var(--azul)}
+.boton-fecha.seleccionado .numero,.boton-fecha.seleccionado .mini-dia{color:white}
+.boton-fecha.inicio{box-shadow:inset 0 0 0 2px var(--dorado)}
+.boton-fecha.fin{box-shadow:inset 0 0 0 2px var(--verde)}
+.punto-dia{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--dorado);position:absolute;top:6px;right:7px;
+}
+.boton-fecha.seleccionado .punto-dia{background:white}
+
+.fecha-seleccionada{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:15px;background:white;border-radius:var(--radio);
+    padding:17px 20px;margin-bottom:20px;
+    border-left:5px solid var(--azul);box-shadow:var(--sombra);
+}
+.fecha-seleccionada-info{display:flex;align-items:center;gap:13px}
+.fecha-icono{
+    width:45px;height:45px;border-radius:12px;background:var(--dorado-claro);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.fecha-seleccionada-label{color:var(--gris);font-size:12px;margin-bottom:3px}
+.fecha-seleccionada-texto{
+    font-size:18px;font-weight:800;color:var(--azul-oscuro);text-transform:capitalize;
+}
+.fecha-indicador{
+    padding:8px 13px;background:var(--verde-claro);color:var(--verde);
+    border-radius:30px;font-size:12px;font-weight:800;
+}
+
+.reglas{
+    background:linear-gradient(135deg,#fffdf3,#fff8dd);
+    border:1px solid #f5df8c;border-radius:var(--radio);
+    padding:18px 20px;margin-bottom:25px;
+}
+.reglas-titulo{font-size:15px;font-weight:800;color:#755800;margin-bottom:8px}
+.reglas p{margin:0;color:#725f27;font-size:13px;line-height:1.6}
+
+.tabla-cabecera-titulo{
+    padding:18px 20px;
+    background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+    color:white;display:flex;justify-content:space-between;align-items:center;gap:15px;
+}
+.tabla-cabecera-titulo h2{margin:0;font-size:18px}
+.contador{
+    background:rgba(255,255,255,.15);
+    padding:7px 12px;border-radius:20px;font-size:12px;font-weight:700;
+}
+.tabla-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1450px}
+thead th{
+    background:#f2f7fb;color:var(--azul-oscuro);padding:14px 10px;
+    font-size:12px;font-weight:800;text-transform:uppercase;
+    border-bottom:2px solid #dce8f0;white-space:nowrap;
+}
+thead th.pos-header{background:var(--azul-claro);color:var(--azul)}
+tbody td{
+    padding:11px 9px;border-bottom:1px solid #edf0f3;
+    text-align:center;font-size:12px;vertical-align:middle;
+}
+tbody tr:hover{background:#f8fbfd}
+tbody tr.dia-domingo{background:#fffafa}
+.celda-fecha{text-align:left;min-width:120px;font-weight:700}
+.fecha-numero-tabla{display:block;color:var(--azul-oscuro);font-size:13px}
+.fecha-dia-tabla{display:block;margin-top:3px;color:var(--gris);font-size:10px}
+.celda-pos{width:9%;min-width:125px}
+.cobrador{
+    display:inline-block;padding:7px 8px;border-radius:8px;
+    background:#f5f8fa;color:var(--gris-oscuro);font-weight:700;
+    line-height:1.25;max-width:145px;
+}
+.pos-1 .cobrador,.pos-4 .cobrador,.pos-7 .cobrador,.pos-10 .cobrador{
+    background:var(--azul-claro);color:var(--azul-oscuro);
+}
+.pos-2 .cobrador,.pos-5 .cobrador,.pos-8 .cobrador{
+    background:var(--dorado-claro);color:#765c00;
+}
+.pos-3 .cobrador,.pos-6 .cobrador,.pos-9 .cobrador{
+    background:var(--verde-claro);color:#12674b;
+}
+.sin-asignacion{
+    display:inline-block;padding:7px 9px;border-radius:8px;
+    background:var(--rojo-claro);color:var(--rojo);
+    font-weight:800;font-size:11px;line-height:1.25;
+}
+.separador-mes td{
+    background:linear-gradient(90deg,var(--azul-oscuro),var(--azul));
+    color:white;padding:10px 15px;text-align:left;font-size:13px;
+    font-weight:800;letter-spacing:.3px;text-transform:uppercase;
+}
+.fila-inicio{border-top:3px solid var(--dorado)}
+.fila-fin{border-bottom:3px solid var(--verde)}
+.cards-mobile{display:none}
+.dia-card{
+    background:white;border-radius:var(--radio);margin-bottom:17px;
+    overflow:hidden;box-shadow:var(--sombra);border:1px solid #e7ebef;
+    scroll-margin-top:20px;
+}
+.dia-card-cabecera{
+    padding:15px 17px;background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+    color:white;display:flex;justify-content:space-between;align-items:center;
+}
+.dia-card-fecha{font-size:16px;font-weight:800;text-transform:capitalize}
+.dia-card-numero{font-size:12px;opacity:.85;margin-top:3px}
+.dia-card-badge{padding:6px 10px;border-radius:20px;background:rgba(255,255,255,.14);font-size:10px;font-weight:800}
+.pos-lista{padding:9px}
+.pos-item{display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:7px;border-radius:10px;background:#f8fafc}
+.pos-item:last-child{margin-bottom:0}
+.pos-numero{
+    min-width:45px;height:39px;border-radius:10px;background:var(--azul);
+    color:white;display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;flex-shrink:0;
+}
+.pos-nombre{font-size:12px;font-weight:800;color:var(--gris-oscuro);line-height:1.3}
+.sin-asignacion-item{background:var(--rojo-claro)}
+.sin-asignacion-item .pos-numero{background:var(--rojo);color:white}
+.sin-asignacion-item .pos-nombre{color:var(--rojo)}
+
+.resumen summary{
+    padding:18px 20px;cursor:pointer;color:var(--azul-oscuro);
+    font-weight:800;font-size:15px;user-select:none;
+}
+.resumen summary:hover{background:var(--azul-claro)}
+.resumen-contenido{padding:0 20px 20px}
+.resumen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.resumen-persona{padding:11px;background:#f8fafc;border:1px solid #edf0f3;border-radius:10px}
+.resumen-persona-nombre{font-size:11px;font-weight:800;color:var(--gris-oscuro);margin-bottom:5px}
+.resumen-persona-numero{color:var(--azul);font-size:12px;font-weight:800}
+footer{text-align:center;color:var(--gris);font-size:12px;padding:10px 0 20px}
+footer strong{color:var(--azul-oscuro)}
+
+.btn-inicio{
+    position:fixed;right:22px;bottom:22px;width:58px;height:58px;
+    border:none;border-radius:50%;
+    background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+    color:white;display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:800;cursor:pointer;
+    box-shadow:0 8px 22px rgba(18,59,93,.28);
+    opacity:0;visibility:hidden;transform:translateY(20px);
+    transition:opacity .25s,visibility .25s,transform .25s;
+    z-index:9999;
+}
+.btn-inicio.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.btn-inicio:hover{transform:translateY(-3px)}
+
+@media(max-width:1000px){
+    .estadisticas{grid-template-columns:repeat(2,1fr)}
+    .resumen-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:700px){
+    .encabezado{padding:20px 15px}
+    .encabezado-contenido{gap:15px}
+    .logo{width:72px;height:72px;border-radius:14px}
+    .titulo-principal{font-size:22px;margin-bottom:5px}
+    .subtitulo{font-size:12px;line-height:1.4}
+    .periodo{font-size:10px;margin-top:8px}
+    .contenedor{padding:15px 10px 35px}
+    .estadisticas{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:15px}
+    .estadistica{padding:13px;gap:9px;border-radius:13px}
+    .estadistica-icono{width:40px;height:40px;border-radius:10px;font-size:19px}
+    .estadistica-numero{font-size:19px}
+    .estadistica-label{font-size:10px}
+    .panel-calendario{margin-bottom:17px}
+    .panel-calendario-cabecera{padding:14px;display:block}
+    .titulo-calendario{margin-bottom:13px}
+    .titulo-calendario-icono{width:37px;height:37px;font-size:18px}
+    .titulo-calendario h2{font-size:15px}
+    .titulo-calendario p{font-size:10px}
+    .mes-navegacion{justify-content:space-between}
+    .mes-actual{font-size:15px}
+    .boton-mes{width:38px;height:38px}
+    .calendario-grid-contenedor{padding:10px}
+    .dias-semana,.fechas-grid{gap:4px}
+    .dia-semana{font-size:9px;padding:5px 1px}
+    .boton-fecha{min-height:45px;border-radius:9px;padding:4px}
+    .boton-fecha .numero{font-size:14px}
+    .boton-fecha .mini-dia{display:none}
+    .fecha-seleccionada{padding:13px;margin-bottom:15px;flex-wrap:wrap}
+    .fecha-icono{width:38px;height:38px;font-size:18px}
+    .fecha-seleccionada-texto{font-size:14px}
+    .fecha-indicador{font-size:9px;padding:6px 8px}
+    .reglas{padding:14px;margin-bottom:17px}
+    .reglas p{font-size:11px}
+    .tabla-contenedor{display:none}
+    .cards-mobile{display:block}
+    .tabla-cabecera-titulo{padding:14px}
+    .tabla-cabecera-titulo h2{font-size:15px}
+    .contador{font-size:10px}
+    .resumen-grid{grid-template-columns:repeat(2,1fr)}
+    .btn-inicio{width:50px;height:50px;right:14px;bottom:14px;font-size:20px}
+}
+@media(max-width:400px){
+    .logo{width:62px;height:62px}
+    .titulo-principal{font-size:19px}
+    .subtitulo{font-size:10px}
+    .estadistica{padding:10px}
+    .estadistica-icono{width:34px;height:34px;font-size:16px}
+    .estadistica-numero{font-size:17px}
+    .estadistica-label{font-size:9px}
+    .resumen-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
 <header class="encabezado">
-
     <div class="encabezado-contenido">
-
         <div class="logo">
             <img src="logo.jpeg" alt="La Comercial">
         </div>
-
         <div>
-
-            <h1 class="titulo-principal">
-                Calendario de POS
-            </h1>
-
-            <p class="subtitulo">
-                Distribución diaria de dispositivos POS para cobradores
-            </p>
-
-            <div class="periodo">
-                📅 01 de octubre — 30 de noviembre de 2026
-            </div>
-
+            <h1 class="titulo-principal">Calendario de POS</h1>
+            <p class="subtitulo">Distribución diaria de dispositivos POS para cobradores</p>
+            <div class="periodo">📅 01 de octubre — 30 de noviembre de 2026</div>
         </div>
-
     </div>
-
 </header>
-
 
 <main class="contenedor">
 
-    <!-- =========================================================
-         ESTADISTICAS
-    ========================================================= -->
+<section class="estadisticas">
+    <div class="estadistica">
+        <div class="estadistica-icono icono-azul">📅</div>
+        <div>
+            <div class="estadistica-numero" id="totalDias">61</div>
+            <div class="estadistica-label">Días programados</div>
+        </div>
+    </div>
+    <div class="estadistica">
+        <div class="estadistica-icono icono-dorado">👥</div>
+        <div>
+            <div class="estadistica-numero" id="totalCobradores">10</div>
+            <div class="estadistica-label">Cobradores POS</div>
+        </div>
+    </div>
+    <div class="estadistica">
+        <div class="estadistica-icono icono-verde">💳</div>
+        <div>
+            <div class="estadistica-numero" id="totalPOS">10</div>
+            <div class="estadistica-label">POS configurados</div>
+        </div>
+    </div>
+    <div class="estadistica">
+        <div class="estadistica-icono icono-rojo">🔄</div>
+        <div>
+            <div class="estadistica-numero" id="totalAsignaciones">0</div>
+            <div class="estadistica-label">Asignaciones totales</div>
+        </div>
+    </div>
+</section>
 
-    <section class="estadisticas">
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono icono-azul">
-                📅
-            </div>
-
+<section class="panel-calendario">
+    <div class="panel-calendario-cabecera">
+        <div class="titulo-calendario">
+            <div class="titulo-calendario-icono">📆</div>
             <div>
-                <div class="estadistica-numero" id="totalDias">
-                    61
-                </div>
-
-                <div class="estadistica-label">
-                    Días programados
-                </div>
+                <h2>Calendario de fechas</h2>
+                <p>Selecciona una fecha para localizarla rápidamente</p>
             </div>
-
         </div>
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono icono-dorado">
-                👥
-            </div>
-
-            <div>
-                <div class="estadistica-numero">
-                    8
-                </div>
-
-                <div class="estadistica-label">
-                    Cobradores POS
-                </div>
-            </div>
-
+        <div class="mes-navegacion">
+            <button type="button" class="boton-mes" id="mesAnterior" aria-label="Mes anterior">‹</button>
+            <div class="mes-actual" id="mesActual">Octubre 2026</div>
+            <button type="button" class="boton-mes" id="mesSiguiente" aria-label="Mes siguiente">›</button>
         </div>
-
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono icono-verde">
-                💳
-            </div>
-
-            <div>
-                <div class="estadistica-numero">
-                    8
-                </div>
-
-                <div class="estadistica-label">
-                    POS configurados
-                </div>
-            </div>
-
+    </div>
+    <div class="calendario-grid-contenedor">
+        <div class="dias-semana">
+            <div class="dia-semana">LUN</div>
+            <div class="dia-semana">MAR</div>
+            <div class="dia-semana">MIÉ</div>
+            <div class="dia-semana">JUE</div>
+            <div class="dia-semana">VIE</div>
+            <div class="dia-semana">SÁB</div>
+            <div class="dia-semana domingo">DOM</div>
         </div>
+        <div class="fechas-grid" id="fechasGrid"></div>
+    </div>
+</section>
 
-
-        <div class="estadistica">
-
-            <div class="estadistica-icono icono-rojo">
-                🔄
-            </div>
-
-            <div>
-                <div class="estadistica-numero" id="totalAsignaciones">
-                    422
-                </div>
-
-                <div class="estadistica-label">
-                    Asignaciones totales
-                </div>
-            </div>
-
+<section class="fecha-seleccionada">
+    <div class="fecha-seleccionada-info">
+        <div class="fecha-icono">📍</div>
+        <div>
+            <div class="fecha-seleccionada-label">Fecha seleccionada</div>
+            <div class="fecha-seleccionada-texto" id="fechaSeleccionadaTexto"></div>
         </div>
+    </div>
+    <div class="fecha-indicador" id="fechaIndicador"></div>
+</section>
 
-    </section>
+<section class="reglas">
+    <div class="reglas-titulo">💡 Reglas de asignación</div>
+    <p id="textoReglas">
+        Cada cobrador conserva siempre su misma posición POS.
+        Cuando un cobrador descansa, su posición queda en
+        <strong>SIN ASIGNACIÓN</strong> y no se reemplaza por otro cobrador.
+        Fran Alexander Moran Hernandez descansa martes alternados.
+        Katherin Martinez y Sonia Marisol Garcia descansan los domingos.
+        Santos Ernesto Rivera Garcia y Wendy Elizabeth Tepas Perez descansan los lunes.
+    </p>
+</section>
 
+<section class="tabla-contenedor">
+    <div class="tabla-cabecera-titulo">
+        <h2>📋 Calendario completo de asignaciones</h2>
+        <div class="contador" id="contadorAsignaciones">61 días</div>
+    </div>
+    <div class="tabla-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th class="pos-header">POS 1</th>
+                    <th class="pos-header">POS 2</th>
+                    <th class="pos-header">POS 3</th>
+                    <th class="pos-header">POS 4</th>
+                    <th class="pos-header">POS 5</th>
+                    <th class="pos-header">POS 6</th>
+                    <th class="pos-header">POS 7</th>
+                    <th class="pos-header">POS 8</th>
+                    <th class="pos-header">POS 9</th>
+                    <th class="pos-header">POS 10</th>
+                </tr>
+            </thead>
+            <tbody id="tablaCalendario"></tbody>
+        </table>
+    </div>
+</section>
 
-    <!-- =========================================================
-         CALENDARIO
-    ========================================================= -->
-
-    <section class="panel-calendario">
-
-        <div class="panel-calendario-cabecera">
-
-            <div class="titulo-calendario">
-
-                <div class="titulo-calendario-icono">
-                    📆
-                </div>
-
-                <div>
-                    <h2>Calendario de fechas</h2>
-
-                    <p>
-                        Selecciona una fecha para localizarla rápidamente
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="mes-navegacion">
-
-                <button
-                    type="button"
-                    class="boton-mes"
-                    id="mesAnterior"
-                    aria-label="Mes anterior"
-                >
-                    ‹
-                </button>
-
-                <div
-                    class="mes-actual"
-                    id="mesActual"
-                >
-                    Octubre 2026
-                </div>
-
-                <button
-                    type="button"
-                    class="boton-mes"
-                    id="mesSiguiente"
-                    aria-label="Mes siguiente"
-                >
-                    ›
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="calendario-grid-contenedor">
-
-            <div class="dias-semana">
-
-                <div class="dia-semana">LUN</div>
-                <div class="dia-semana">MAR</div>
-                <div class="dia-semana">MIÉ</div>
-                <div class="dia-semana">JUE</div>
-                <div class="dia-semana">VIE</div>
-                <div class="dia-semana">SÁB</div>
-                <div class="dia-semana domingo">DOM</div>
-
-            </div>
-
-
-            <div
-                class="fechas-grid"
-                id="fechasGrid"
-            ></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         FECHA SELECCIONADA
-    ========================================================= -->
-
-    <section class="fecha-seleccionada">
-
-        <div class="fecha-seleccionada-info">
-
-            <div class="fecha-icono">
-                📍
-            </div>
-
-            <div>
-
-                <div class="fecha-seleccionada-label">
-                    Última fecha seleccionada
-                </div>
-
-                <div
-                    class="fecha-seleccionada-texto"
-                    id="fechaSeleccionadaTexto"
-                >
-                    Jueves 1 de octubre de 2026
-                </div>
-
-            </div>
-
-        </div>
-
-        <div
-            class="fecha-indicador"
-            id="fechaIndicador"
-        >
-            6 POS asignados · 1 sin asignación.
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         REGLAS
-    ============================================================= -->
-
-    <section class="reglas">
-
-        <div class="reglas-titulo">
-            💡 Reglas de asignación
-        </div>
-
-        <p id="textoReglas">
-
-            Durante octubre y noviembre de 2026 se utilizarán
-            únicamente los 8 cobradores fijos asignados a los POS.
-            Cada cobrador conserva siempre su misma posición POS.
-            Cuando un cobrador se encuentra en su día de descanso,
-            su posición queda en <strong>SIN ASIGNACIÓN</strong>
-            y no se reemplaza por otro cobrador.
-            FRAN ALEXANDER MORAN HERNANDEZ tiene descanso de
-            <strong>MARTES SÍ Y MARTES NO</strong>.
-            KATHERIN MARTINEZ tiene descanso los
-            <strong>DOMINGOS</strong>.
-
-        </p>
-
-    </section>
-
-
-    <!-- =========================================================
-         TABLA DESKTOP
-    ============================================================= -->
-
-    <section class="tabla-contenedor">
-
+<section class="cards-mobile">
+    <div class="tabla-contenedor">
         <div class="tabla-cabecera-titulo">
-
-            <h2>
-                📋 Calendario completo de asignaciones
-            </h2>
-
-            <div
-                class="contador"
-                id="contadorAsignaciones"
-            >
-                61 días
-            </div>
-
+            <h2>📱 Asignaciones diarias</h2>
+            <div class="contador" id="contadorMobile">61 días</div>
         </div>
+    </div>
+    <div id="cardsCalendario"></div>
+</section>
 
-
-        <div class="tabla-scroll">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Fecha
-                        </th>
-
-                        <th class="pos-header">
-                            POS 1
-                        </th>
-
-                        <th class="pos-header">
-                            POS 2
-                        </th>
-
-                        <th class="pos-header">
-                            POS 3
-                        </th>
-
-                        <th class="pos-header">
-                            POS 4
-                        </th>
-
-                        <th class="pos-header">
-                            POS 5
-                        </th>
-
-                        <th class="pos-header">
-                            POS 6
-                        </th>
-
-                        <th class="pos-header">
-                            POS 7
-                        </th>
-
-                        <th class="pos-header">
-                            POS 8
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="tablaCalendario"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         CARDS MOBILE
-    ============================================================= -->
-
-    <section class="cards-mobile">
-
-        <div class="tabla-contenedor">
-
-            <div class="tabla-cabecera-titulo">
-
-                <h2>
-                    📱 Asignaciones diarias
-                </h2>
-
-                <div
-                    class="contador"
-                    id="contadorMobile"
-                >
-                    61 días
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div id="cardsCalendario"></div>
-
-    </section>
-
-
-    <!-- =========================================================
-         RESUMEN
-    ============================================================= -->
-
-    <details class="resumen">
-
-        <summary>
-            👥 Ver resumen de participación de cobradores
-        </summary>
-
-        <div class="resumen-contenido">
-
-            <div
-                class="resumen-grid"
-                id="resumenCobradores"
-            ></div>
-
-        </div>
-
-    </details>
-
+<details class="resumen">
+    <summary>👥 Ver resumen de participación de cobradores</summary>
+    <div class="resumen-contenido">
+        <div class="resumen-grid" id="resumenCobradores"></div>
+    </div>
+</details>
 
 </main>
 
+<footer>Calendario de POS · <strong>La Comercial</strong> · 2026</footer>
 
-<!-- =============================================================
-     FOOTER
-============================================================= -->
-
-<footer>
-
-    Calendario de POS ·
-    <strong>La Comercial</strong>
-    · 2026
-
-</footer>
-
-
-<!-- =============================================================
-     BOTÓN FLOTANTE
-============================================================= -->
-
-<button
-    type="button"
-    id="btnInicio"
-    class="btn-inicio"
-    aria-label="Volver al inicio"
-    title="Volver al inicio"
->
-    ↑
-    <span>Inicio</span>
-</button>
-
+<button type="button" id="btnInicio" class="btn-inicio"
+        aria-label="Volver al inicio" title="Volver al inicio">↑</button>
 
 <script>
+/* =========================================================
+   LOS 10 COBRADORES Y SUS DÍAS DE DESCANSO
+========================================================= */
 
-    /* =========================================================
-       COBRADORES FIJOS DE POS
-       OCTUBRE + NOVIEMBRE 2026
-    ========================================================= */
+const cobradoresPOS = [
+    { nombre: "CARLOS MANUEL DIAZ ALVARADO", descanso: "LUNES" },
+    { nombre: "SONIA MARROQUIN DE CAMPOS", descanso: "VIERNES" },
+    { nombre: "SONIA MARISOL GARCIA", descanso: "DOMINGO" },
+    { nombre: "FRAN ALEXANDER MORAN HERNANDEZ", descanso: "MARTES_ALTERNADO" },
+    { nombre: "DANIEL GARCIA RODRIGUEZ", descanso: "LUNES" },
+    { nombre: "HARED JOSHUA NICARAGUA GRANERA", descanso: "SABADO" },
+    { nombre: "ORLANDO OVIDIO AQUINO", descanso: "JUEVES" },
+    { nombre: "KATHERIN MARTINEZ", descanso: "DOMINGO" },
 
-    const cobradoresPOS = [
+    /* NUEVOS COBRADORES */
+    { nombre: "SANTOS ERNESTO RIVERA GARCIA", descanso: "LUNES" },
+    { nombre: "WENDY ELIZABETH TEPAS PEREZ", descanso: "LUNES" }
+];
 
-        {
-            nombre: "CARLOS MANUEL DIAZ ALVARADO",
-            descanso: "LUNES"
-        },
+const nombresDias = [
+    "DOMINGO", "LUNES", "MARTES", "MIERCOLES",
+    "JUEVES", "VIERNES", "SABADO"
+];
 
-        {
-            nombre: "SONIA MARROQUIN DE CAMPOS",
-            descanso: "VIERNES"
-        },
+const nombresDiasCortos = [
+    "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
+];
 
-        {
-            nombre: "SONIA MARISOL GARCIA",
-            descanso: "DOMINGO"
-        },
+const nombresMeses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
 
-        {
-            nombre: "FRAN ALEXANDER MORAN HERNANDEZ",
-            descanso: "MARTES_ALTERNADO"
-        },
+const fechaInicio = new Date(2026, 9, 1);
+const fechaFin = new Date(2026, 10, 30);
 
-        {
-            nombre: "DANIEL GARCIA RODRIGUEZ",
-            descanso: "LUNES"
-        },
+/* =========================================================
+   DESCANSO DE FRAN: MARTES ALTERNADOS
+   Descansa: 6 y 20 de octubre; 3 y 17 de noviembre.
+========================================================= */
 
-        {
-            nombre: "HARED JOSHUA NICARAGUA GRANERA",
-            descanso: "SABADO"
-        },
+function franEstaDescansando(fecha) {
+    if (fecha.getDay() !== 2) return false;
 
-        {
-            nombre: "ORLANDO OVIDIO AQUINO",
-            descanso: "JUEVES"
-        },
-
-        {
-            nombre: "KATHERIN MARTINEZ",
-            descanso: "DOMINGO"
-        }
-
-    ];
-
-
-    /* =========================================================
-       CONFIGURACION
-    ========================================================= */
-
-    const nombresDias = [
-        "DOMINGO",
-        "LUNES",
-        "MARTES",
-        "MIERCOLES",
-        "JUEVES",
-        "VIERNES",
-        "SABADO"
-    ];
-
-
-    const nombresDiasCortos = [
-        "Dom",
-        "Lun",
-        "Mar",
-        "Mié",
-        "Jue",
-        "Vie",
-        "Sáb"
-    ];
-
-
-    const nombresMeses = [
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
-        "diciembre"
-    ];
-
-
-    /*
-     * IMPORTANTE:
-     *
-     * YA NO EXISTE SEPTIEMBRE.
-     * YA NO EXISTE DICIEMBRE.
-     *
-     * EL ÚNICO PERÍODO ES:
-     *
-     * 01 OCTUBRE 2026
-     * HASTA
-     * 30 NOVIEMBRE 2026
-     */
-
-    const fechaInicio = new Date(
-        2026,
-        9,
-        1
+    const primerMartes = new Date(2026, 9, 6);
+    const diferenciaDias = Math.round(
+        (fecha.getTime() - primerMartes.getTime()) /
+        (1000 * 60 * 60 * 24)
     );
 
+    const numeroMartes = Math.floor(diferenciaDias / 7);
+    return numeroMartes % 2 === 0;
+}
 
-    const fechaFin = new Date(
-        2026,
-        10,
-        30
-    );
+function cobradorDescansa(cobrador, fecha) {
+    const dia = nombresDias[fecha.getDay()];
 
+    if (cobrador.descanso === "MARTES_ALTERNADO") {
+        return franEstaDescansando(fecha);
+    }
 
-    /* =========================================================
-       MARTES ALTERNADOS DE FRAN
-    =========================================================
+    return cobrador.descanso === dia;
+}
 
-       OCTUBRE:
+/* =========================================================
+   ASIGNACIONES
+========================================================= */
 
-       06 -> DESCANSA
-       13 -> TRABAJA
-       20 -> DESCANSA
-       27 -> TRABAJA
+function obtenerAsignacionPOS(fecha) {
+    return cobradoresPOS.map(cobrador => {
+        return cobradorDescansa(cobrador, fecha)
+            ? null
+            : cobrador.nombre;
+    });
+}
 
+function convertirFechaISO(fecha) {
+    const año = fecha.getFullYear();
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+    const dia = String(fecha.getDate()).padStart(2, "0");
+    return `${año}-${mes}-${dia}`;
+}
 
-       NOVIEMBRE:
+const calendario = [];
+let fechaActual = new Date(fechaInicio);
 
-       03 -> DESCANSA
-       10 -> TRABAJA
-       17 -> DESCANSA
-       24 -> TRABAJA
+while (fechaActual <= fechaFin) {
+    calendario.push({
+        fecha: new Date(fechaActual),
+        iso: convertirFechaISO(fechaActual),
+        diaSemana: nombresDias[fechaActual.getDay()],
+        asignados: obtenerAsignacionPOS(fechaActual)
+    });
 
-    ========================================================= */
+    fechaActual.setDate(fechaActual.getDate() + 1);
+}
 
-    function franEstaDescansando(fecha) {
+function fechaBonita(fecha) {
+    const dia = fecha.getDate();
+    const mes = nombresMeses[fecha.getMonth()];
+    const año = fecha.getFullYear();
+    const nombreDia = nombresDiasCortos[fecha.getDay()];
 
-        if (
-            fecha.getDay() !== 2
-        ) {
+    return `${nombreDia} ${dia} de ${mes} de ${año}`;
+}
 
-            return false;
+let añoCalendario = 2026;
+let mesCalendario = 9;
+let fechaSeleccionada = convertirFechaISO(fechaInicio);
 
+/* =========================================================
+   REFERENCIAS HTML
+========================================================= */
+
+const fechasGrid = document.getElementById("fechasGrid");
+const mesActual = document.getElementById("mesActual");
+const mesAnterior = document.getElementById("mesAnterior");
+const mesSiguiente = document.getElementById("mesSiguiente");
+const fechaSeleccionadaTexto = document.getElementById("fechaSeleccionadaTexto");
+const fechaIndicador = document.getElementById("fechaIndicador");
+const tablaCalendario = document.getElementById("tablaCalendario");
+const cardsCalendario = document.getElementById("cardsCalendario");
+const resumenCobradores = document.getElementById("resumenCobradores");
+
+function buscarDia(iso) {
+    return calendario.find(item => item.iso === iso);
+}
+
+/* =========================================================
+   CALENDARIO VISUAL
+========================================================= */
+
+function generarCalendarioVisual() {
+    fechasGrid.innerHTML = "";
+    mesActual.textContent = `${nombresMeses[mesCalendario]} ${añoCalendario}`;
+
+    const primerDia = new Date(añoCalendario, mesCalendario, 1);
+    let posicionPrimerDia = primerDia.getDay();
+
+    if (posicionPrimerDia === 0) {
+        posicionPrimerDia = 6;
+    } else {
+        posicionPrimerDia--;
+    }
+
+    for (let i = 0; i < posicionPrimerDia; i++) {
+        const vacio = document.createElement("div");
+        vacio.className = "fecha-vacia";
+        fechasGrid.appendChild(vacio);
+    }
+
+    const cantidadDias = new Date(
+        añoCalendario, mesCalendario + 1, 0
+    ).getDate();
+
+    for (let dia = 1; dia <= cantidadDias; dia++) {
+        const fecha = new Date(añoCalendario, mesCalendario, dia);
+        const iso = convertirFechaISO(fecha);
+        const estaDentro = fecha >= fechaInicio && fecha <= fechaFin;
+
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.className = "boton-fecha";
+
+        if (!estaDentro) {
+            boton.disabled = true;
+            boton.style.opacity = "0.28";
+            boton.style.cursor = "not-allowed";
         }
 
+        if (fecha.getDay() === 0) boton.classList.add("domingo");
+        if (iso === fechaSeleccionada) boton.classList.add("seleccionado");
+        if (iso === convertirFechaISO(fechaInicio)) boton.classList.add("inicio");
+        if (iso === convertirFechaISO(fechaFin)) boton.classList.add("fin");
 
-        const primerMartes =
-            new Date(
-                2026,
-                9,
-                6
-            );
+        boton.innerHTML = `
+            <span class="numero">${dia}</span>
+            <span class="mini-dia">${nombresDiasCortos[fecha.getDay()]}</span>
+            ${estaDentro ? '<span class="punto-dia"></span>' : ''}
+        `;
 
-
-        const diferenciaMilisegundos =
-            fecha.getTime() -
-            primerMartes.getTime();
-
-
-        const diferenciaDias =
-            Math.round(
-                diferenciaMilisegundos /
-                (1000 * 60 * 60 * 24)
-            );
-
-
-        const numeroMartes =
-            Math.floor(
-                diferenciaDias / 7
-            );
-
-
-        return (
-            numeroMartes % 2 === 0
-        );
-
-    }
-
-
-    /* =========================================================
-       VERIFICAR DESCANSO
-    ========================================================= */
-
-    function cobradorDescansa(
-        cobrador,
-        fecha
-    ) {
-
-        const dia =
-            nombresDias[
-                fecha.getDay()
-            ];
-
-
-        if (
-            cobrador.descanso ===
-            "MARTES_ALTERNADO"
-        ) {
-
-            return franEstaDescansando(
-                fecha
-            );
-
+        if (estaDentro) {
+            boton.addEventListener("click", () => seleccionarFecha(iso));
         }
 
-
-        return (
-            cobrador.descanso === dia
-        );
-
+        fechasGrid.appendChild(boton);
     }
 
+    actualizarBotonesMes();
+}
 
-    /* =========================================================
-       OBTENER ASIGNACION DEL DÍA
-    ========================================================= */
+function actualizarBotonesMes() {
+    const mesInicio = fechaInicio.getFullYear() * 12 + fechaInicio.getMonth();
+    const mesFin = fechaFin.getFullYear() * 12 + fechaFin.getMonth();
+    const mesActualNumero = añoCalendario * 12 + mesCalendario;
 
-    function obtenerAsignacionPOS(
-        fecha
-    ) {
+    mesAnterior.disabled = mesActualNumero <= mesInicio;
+    mesSiguiente.disabled = mesActualNumero >= mesFin;
+}
 
-        return cobradoresPOS.map(
-            function (
-                cobrador
-            ) {
+mesAnterior.addEventListener("click", () => {
+    if (mesAnterior.disabled) return;
 
-                if (
-                    cobradorDescansa(
-                        cobrador,
-                        fecha
-                    )
-                ) {
-
-                    return null;
-
-                }
-
-
-                return cobrador.nombre;
-
-            }
-        );
-
+    if (mesCalendario === 0) {
+        mesCalendario = 11;
+        añoCalendario--;
+    } else {
+        mesCalendario--;
     }
-
-
-    /* =========================================================
-       FECHA ISO
-    ========================================================= */
-
-    function convertirFechaISO(
-        fecha
-    ) {
-
-        const año =
-            fecha.getFullYear();
-
-
-        const mes =
-            String(
-                fecha.getMonth() + 1
-            ).padStart(
-                2,
-                "0"
-            );
-
-
-        const dia =
-            String(
-                fecha.getDate()
-            ).padStart(
-                2,
-                "0"
-            );
-
-
-        return `${año}-${mes}-${dia}`;
-
-    }
-
-
-    /* =========================================================
-       CALENDARIO
-    ========================================================= */
-
-    const calendario = [];
-
-
-    let fechaActual =
-        new Date(
-            fechaInicio
-        );
-
-
-    while (
-        fechaActual <= fechaFin
-    ) {
-
-        calendario.push({
-
-            fecha:
-                new Date(
-                    fechaActual
-                ),
-
-            iso:
-                convertirFechaISO(
-                    fechaActual
-                ),
-
-            diaSemana:
-                nombresDias[
-                    fechaActual.getDay()
-                ],
-
-            asignados:
-                obtenerAsignacionPOS(
-                    fechaActual
-                )
-
-        });
-
-
-        fechaActual.setDate(
-            fechaActual.getDate() + 1
-        );
-
-    }
-
-
-    /* =========================================================
-       FORMATEAR FECHA
-    ========================================================= */
-
-    function fechaBonita(
-        fecha
-    ) {
-
-        const dia =
-            fecha.getDate();
-
-
-        const mes =
-            nombresMeses[
-                fecha.getMonth()
-            ];
-
-
-        const año =
-            fecha.getFullYear();
-
-
-        const nombreDia =
-            nombresDiasCortos[
-                fecha.getDay()
-            ];
-
-
-        return `${nombreDia} ${dia} de ${mes} de ${año}`;
-
-    }
-
-
-    /* =========================================================
-       VARIABLES CALENDARIO VISUAL
-    ========================================================= */
-
-    let añoCalendario =
-        2026;
-
-
-    /*
-     * OCTUBRE = 9
-     */
-
-    let mesCalendario =
-        9;
-
-
-    let fechaSeleccionada =
-        convertirFechaISO(
-            fechaInicio
-        );
-
-
-    /* =========================================================
-       REFERENCIAS HTML
-    ========================================================= */
-
-    const fechasGrid =
-        document.getElementById(
-            "fechasGrid"
-        );
-
-
-    const mesActual =
-        document.getElementById(
-            "mesActual"
-        );
-
-
-    const mesAnterior =
-        document.getElementById(
-            "mesAnterior"
-        );
-
-
-    const mesSiguiente =
-        document.getElementById(
-            "mesSiguiente"
-        );
-
-
-    const fechaSeleccionadaTexto =
-        document.getElementById(
-            "fechaSeleccionadaTexto"
-        );
-
-
-    const fechaIndicador =
-        document.getElementById(
-            "fechaIndicador"
-        );
-
-
-    const tablaCalendario =
-        document.getElementById(
-            "tablaCalendario"
-        );
-
-
-    const cardsCalendario =
-        document.getElementById(
-            "cardsCalendario"
-        );
-
-
-    const resumenCobradores =
-        document.getElementById(
-            "resumenCobradores"
-        );
-
-
-    /* =========================================================
-       BUSCAR DÍA
-    ========================================================= */
-
-    function buscarDia(
-        iso
-    ) {
-
-        return calendario.find(
-            function (
-                item
-            ) {
-
-                return item.iso === iso;
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       GENERAR CALENDARIO VISUAL
-    ========================================================= */
-
-    function generarCalendarioVisual() {
-
-        fechasGrid.innerHTML = "";
-
-
-        mesActual.textContent =
-            `${nombresMeses[
-                mesCalendario
-            ]} ${añoCalendario}`;
-
-
-        const primerDia =
-            new Date(
-                añoCalendario,
-                mesCalendario,
-                1
-            );
-
-
-        let posicionPrimerDia =
-            primerDia.getDay();
-
-
-        if (
-            posicionPrimerDia === 0
-        ) {
-
-            posicionPrimerDia = 6;
-
-        } else {
-
-            posicionPrimerDia--;
-
-        }
-
-
-        for (
-            let i = 0;
-            i < posicionPrimerDia;
-            i++
-        ) {
-
-            const vacio =
-                document.createElement(
-                    "div"
-                );
-
-
-            vacio.className =
-                "fecha-vacia";
-
-
-            fechasGrid.appendChild(
-                vacio
-            );
-
-        }
-
-
-        const cantidadDias =
-            new Date(
-                añoCalendario,
-                mesCalendario + 1,
-                0
-            ).getDate();
-
-
-        for (
-            let dia = 1;
-            dia <= cantidadDias;
-            dia++
-        ) {
-
-            const fecha =
-                new Date(
-                    añoCalendario,
-                    mesCalendario,
-                    dia
-                );
-
-
-            const iso =
-                convertirFechaISO(
-                    fecha
-                );
-
-
-            const estaDentro =
-                fecha >= fechaInicio &&
-                fecha <= fechaFin;
-
-
-            const boton =
-                document.createElement(
-                    "button"
-                );
-
-
-            boton.type = "button";
-
-
-            boton.className =
-                "boton-fecha";
-
-
-            if (
-                !estaDentro
-            ) {
-
-                boton.disabled = true;
-
-                boton.style.opacity =
-                    "0.28";
-
-                boton.style.cursor =
-                    "not-allowed";
-
-            }
-
-
-            if (
-                fecha.getDay() === 0
-            ) {
-
-                boton.classList.add(
-                    "domingo"
-                );
-
-            }
-
-
-            if (
-                iso === fechaSeleccionada
-            ) {
-
-                boton.classList.add(
-                    "seleccionado"
-                );
-
-            }
-
-
-            if (
-                iso ===
-                convertirFechaISO(
-                    fechaInicio
-                )
-            ) {
-
-                boton.classList.add(
-                    "inicio"
-                );
-
-            }
-
-
-            if (
-                iso ===
-                convertirFechaISO(
-                    fechaFin
-                )
-            ) {
-
-                boton.classList.add(
-                    "fin"
-                );
-
-            }
-
-
-            boton.innerHTML = `
-
-                <span class="numero">
-                    ${dia}
-                </span>
-
-                <span class="mini-dia">
-                    ${nombresDiasCortos[
-                        fecha.getDay()
-                    ]}
-                </span>
-
-                ${
-                    estaDentro
-                        ? '<span class="punto-dia"></span>'
-                        : ''
-                }
-
-            `;
-
-
-            if (
-                estaDentro
-            ) {
-
-                boton.addEventListener(
-                    "click",
-                    function () {
-
-                        seleccionarFecha(
-                            iso
-                        );
-
-                    }
-                );
-
-            }
-
-
-            fechasGrid.appendChild(
-                boton
-            );
-
-        }
-
-
-        actualizarBotonesMes();
-
-    }
-
-
-    /* =========================================================
-       SOLO OCTUBRE Y NOVIEMBRE
-    ========================================================= */
-
-    function actualizarBotonesMes() {
-
-        const mesInicio =
-            fechaInicio.getFullYear() * 12 +
-            fechaInicio.getMonth();
-
-
-        const mesFin =
-            fechaFin.getFullYear() * 12 +
-            fechaFin.getMonth();
-
-
-        const mesActualNumero =
-            añoCalendario * 12 +
-            mesCalendario;
-
-
-        mesAnterior.disabled =
-            mesActualNumero <= mesInicio;
-
-
-        mesSiguiente.disabled =
-            mesActualNumero >= mesFin;
-
-    }
-
-
-    /* =========================================================
-       MES ANTERIOR
-    ========================================================= */
-
-    mesAnterior.addEventListener(
-        "click",
-        function () {
-
-            if (
-                mesAnterior.disabled
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                mesCalendario === 0
-            ) {
-
-                mesCalendario = 11;
-
-                añoCalendario--;
-
-            } else {
-
-                mesCalendario--;
-
-            }
-
-
-            generarCalendarioVisual();
-
-        }
-    );
-
-
-    /* =========================================================
-       MES SIGUIENTE
-    ========================================================= */
-
-    mesSiguiente.addEventListener(
-        "click",
-        function () {
-
-            if (
-                mesSiguiente.disabled
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                mesCalendario === 11
-            ) {
-
-                mesCalendario = 0;
-
-                añoCalendario++;
-
-            } else {
-
-                mesCalendario++;
-
-            }
-
-
-            generarCalendarioVisual();
-
-        }
-    );
-
-
-    /* =========================================================
-       SELECCIONAR FECHA
-    ========================================================= */
-
-    function seleccionarFecha(
-        iso
-    ) {
-
-        const dia =
-            buscarDia(
-                iso
-            );
-
-
-        if (
-            !dia
-        ) {
-
-            return;
-
-        }
-
-
-        fechaSeleccionada =
-            iso;
-
-
-        fechaSeleccionadaTexto.textContent =
-            fechaBonita(
-                dia.fecha
-            );
-
-
-        const asignacionesValidas =
-            dia.asignados.filter(
-                function (
-                    nombre
-                ) {
-
-                    return nombre !== null;
-
-                }
-            ).length;
-
-
-        const sinAsignacion =
-            dia.asignados.filter(
-                function (
-                    nombre
-                ) {
-
-                    return nombre === null;
-
-                }
-            ).length;
-
-
-        if (
-            sinAsignacion > 0
-        ) {
-
-            fechaIndicador.textContent =
-                `${asignacionesValidas} POS asignados · ${sinAsignacion} sin asignación`;
-
-        } else {
-
-            fechaIndicador.textContent =
-                "8 POS asignados";
-
-        }
-
-
-        /*
-         * Si seleccionamos noviembre,
-         * cambiamos automáticamente
-         * el calendario visual.
-         */
-
-        añoCalendario =
-            dia.fecha.getFullYear();
-
-
-        mesCalendario =
-            dia.fecha.getMonth();
-
-
-        generarCalendarioVisual();
-
-
-        const fila =
-            document.querySelector(
-                `[data-fecha="${iso}"]`
-            );
-
-
-        if (
-            fila
-        ) {
-
-            fila.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "center"
-
-            });
-
-
-            fila.style.transition =
-                "background 0.3s";
-
-
-            fila.style.background =
-                "#fff7d6";
-
-
-            setTimeout(
-                function () {
-
-                    fila.style.background =
-                        "";
-
-                },
-                1800
-            );
-
-        }
-
-
-        const card =
-            document.querySelector(
-                `.dia-card[data-fecha="${iso}"]`
-            );
-
-
-        if (
-            card
-        ) {
-
-            card.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-
-            card.style.transition =
-                "box-shadow 0.3s";
-
-
-            card.style.boxShadow =
-                "0 0 0 3px #f2b705, 0 12px 30px rgba(18,59,93,.16)";
-
-
-            setTimeout(
-                function () {
-
-                    card.style.boxShadow =
-                        "";
-
-                },
-                1800
-            );
-
-        }
-
-    }
-
-
-    /* =========================================================
-       ESCAPAR HTML
-    ========================================================= */
-
-    function escapar(
-        texto
-    ) {
-
-        return String(
-            texto
-        )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-    }
-
-
-    /* =========================================================
-       GENERAR TABLA DESKTOP
-    ========================================================= */
-
-    function generarTabla() {
-
-        tablaCalendario.innerHTML = "";
-
-
-        let ultimoMes = -1;
-
-
-        calendario.forEach(
-            function (
-                item
-            ) {
-
-                if (
-                    item.fecha.getMonth() !==
-                    ultimoMes
-                ) {
-
-                    ultimoMes =
-                        item.fecha.getMonth();
-
-
-                    const separador =
-                        document.createElement(
-                            "tr"
-                        );
-
-
-                    separador.className =
-                        "separador-mes";
-
-
-                    separador.innerHTML = `
-
-                        <td colspan="9">
-
-                            📅
-                            ${nombresMeses[
-                                item.fecha.getMonth()
-                            ].toUpperCase()}
-                            ${item.fecha.getFullYear()}
-
-                        </td>
-
-                    `;
-
-
-                    tablaCalendario.appendChild(
-                        separador
-                    );
-
-                }
-
-
-                const tr =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                tr.dataset.fecha =
-                    item.iso;
-
-
-                if (
-                    item.fecha.getDay() === 0
-                ) {
-
-                    tr.classList.add(
-                        "dia-domingo"
-                    );
-
-                }
-
-
-                if (
-                    item.iso ===
-                    convertirFechaISO(
-                        fechaInicio
-                    )
-                ) {
-
-                    tr.classList.add(
-                        "fila-inicio"
-                    );
-
-                }
-
-
-                if (
-                    item.iso ===
-                    convertirFechaISO(
-                        fechaFin
-                    )
-                ) {
-
-                    tr.classList.add(
-                        "fila-fin"
-                    );
-
-                }
-
-
-                let html = `
-
-                    <td class="celda-fecha">
-
-                        <span class="fecha-numero-tabla">
-
-                            ${String(
-                                item.fecha.getDate()
-                            ).padStart(
-                                2,
-                                "0"
-                            )}
-                            /
-                            ${String(
-                                item.fecha.getMonth() + 1
-                            ).padStart(
-                                2,
-                                "0"
-                            )}
-                            /
-                            ${item.fecha.getFullYear()}
-
-                        </span>
-
-                        <span class="fecha-dia-tabla">
-
-                            ${item.diaSemana}
-
-                        </span>
-
-                    </td>
-
-                `;
-
-
-                item.asignados.forEach(
-                    function (
-                        nombre,
-                        indice
-                    ) {
-
-                        if (
-                            nombre === null
-                        ) {
-
-                            html += `
-
-                                <td class="celda-pos pos-${indice + 1}">
-
-                                    <span class="sin-asignacion">
-
-                                        SIN ASIGNACIÓN
-
-                                    </span>
-
-                                </td>
-
-                            `;
-
-                        } else {
-
-                            html += `
-
-                                <td class="celda-pos pos-${indice + 1}">
-
-                                    <span class="cobrador">
-
-                                        ${escapar(
-                                            nombre
-                                        )}
-
-                                    </span>
-
-                                </td>
-
-                            `;
-
-                        }
-
-                    }
-                );
-
-
-                tr.innerHTML =
-                    html;
-
-
-                tablaCalendario.appendChild(
-                    tr
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       GENERAR CARDS MOBILE
-    ========================================================= */
-
-    function generarCardsMobile() {
-
-        cardsCalendario.innerHTML = "";
-
-
-        calendario.forEach(
-            function (
-                item
-            ) {
-
-                const card =
-                    document.createElement(
-                        "article"
-                    );
-
-
-                card.className =
-                    "dia-card";
-
-
-                card.dataset.fecha =
-                    item.iso;
-
-
-                let listaPOS = "";
-
-
-                item.asignados.forEach(
-                    function (
-                        nombre,
-                        indice
-                    ) {
-
-                        if (
-                            nombre === null
-                        ) {
-
-                            listaPOS += `
-
-                                <div class="pos-item sin-asignacion-item">
-
-                                    <div class="pos-numero">
-
-                                        POS ${indice + 1}
-
-                                    </div>
-
-                                    <div class="pos-nombre">
-
-                                        SIN ASIGNACIÓN
-                                        <br>
-
-                                        <small>
-                                            Día de descanso
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            `;
-
-                        } else {
-
-                            listaPOS += `
-
-                                <div class="pos-item">
-
-                                    <div class="pos-numero">
-
-                                        POS ${indice + 1}
-
-                                    </div>
-
-                                    <div class="pos-nombre">
-
-                                        ${escapar(
-                                            nombre
-                                        )}
-
-                                    </div>
-
-                                </div>
-
-                            `;
-
-                        }
-
-                    }
-                );
-
-
-                const cantidadAsignados =
-                    item.asignados.filter(
-                        function (
-                            nombre
-                        ) {
-
-                            return nombre !== null;
-
-                        }
-                    ).length;
-
-
-                const cantidadSinAsignacion =
-                    item.asignados.filter(
-                        function (
-                            nombre
-                        ) {
-
-                            return nombre === null;
-
-                        }
-                    ).length;
-
-
-                let badge =
-                    "8 POS";
-
-
-                if (
-                    cantidadSinAsignacion > 0
-                ) {
-
-                    badge =
-                        `${cantidadAsignados} asignados`;
-
-                }
-
-
-                card.innerHTML = `
-
-                    <div class="dia-card-cabecera">
-
-                        <div>
-
-                            <div class="dia-card-fecha">
-
-                                ${fechaBonita(
-                                    item.fecha
-                                )}
-
-                            </div>
-
-                            <div class="dia-card-numero">
-
-                                ${item.iso}
-
-                            </div>
-
-                        </div>
-
-                        <div class="dia-card-badge">
-
-                            ${badge}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="pos-lista">
-
-                        ${listaPOS}
-
-                    </div>
-
-                `;
-
-
-                cardsCalendario.appendChild(
-                    card
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       RESUMEN
-    ========================================================= */
-
-    function generarResumen() {
-
-        const participaciones = {};
-
-
-        cobradoresPOS.forEach(
-            function (
-                cobrador
-            ) {
-
-                participaciones[
-                    cobrador.nombre
-                ] = 0;
-
-            }
-        );
-
-
-        calendario.forEach(
-            function (
-                dia
-            ) {
-
-                dia.asignados.forEach(
-                    function (
-                        nombre
-                    ) {
-
-                        if (
-                            nombre !== null
-                        ) {
-
-                            participaciones[
-                                nombre
-                            ]++;
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        resumenCobradores.innerHTML = "";
-
-
-        const encabezado =
-            document.createElement(
-                "div"
-            );
-
-
-        encabezado.style.gridColumn =
-            "1 / -1";
-
-
-        encabezado.style.padding =
-            "12px";
-
-
-        encabezado.style.marginBottom =
-            "5px";
-
-
-        encabezado.style.background =
-            "#eaf4fb";
-
-
-        encabezado.style.borderRadius =
-            "10px";
-
-
-        encabezado.style.color =
-            "#123b5d";
-
-
-        encabezado.style.fontWeight =
-            "800";
-
-
-        encabezado.textContent =
-            "💳 8 cobradores fijos de POS · Octubre y noviembre 2026";
-
-
-        resumenCobradores.appendChild(
-            encabezado
-        );
-
-
-        cobradoresPOS.forEach(
-            function (
-                cobrador
-            ) {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "resumen-persona";
-
-
-                item.innerHTML = `
-
-                    <div class="resumen-persona-nombre">
-
-                        ${escapar(
-                            cobrador.nombre
-                        )}
-
-                    </div>
-
-                    <div class="resumen-persona-numero">
-
-                        ${participaciones[
-                            cobrador.nombre
-                        ]} asignaciones
-
-                    </div>
-
-                `;
-
-
-                resumenCobradores.appendChild(
-                    item
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       ACTUALIZAR ESTADISTICAS
-    ========================================================= */
-
-    function actualizarEstadisticas() {
-
-        const totalDias =
-            calendario.length;
-
-
-        let totalAsignaciones =
-            0;
-
-
-        calendario.forEach(
-            function (
-                dia
-            ) {
-
-                totalAsignaciones +=
-                    dia.asignados.filter(
-                        function (
-                            nombre
-                        ) {
-
-                            return nombre !== null;
-
-                        }
-                    ).length;
-
-            }
-        );
-
-
-        document.getElementById(
-            "totalDias"
-        ).textContent =
-            totalDias;
-
-
-        document.getElementById(
-            "totalAsignaciones"
-        ).textContent =
-            totalAsignaciones;
-
-
-        document.getElementById(
-            "contadorAsignaciones"
-        ).textContent =
-            `${totalDias} días`;
-
-
-        document.getElementById(
-            "contadorMobile"
-        ).textContent =
-            `${totalDias} días`;
-
-    }
-
-
-    /* =========================================================
-       INICIALIZAR
-    ========================================================= */
-
-    generarTabla();
-
-    generarCardsMobile();
-
-    generarResumen();
-
-    actualizarEstadisticas();
 
     generarCalendarioVisual();
+});
 
+mesSiguiente.addEventListener("click", () => {
+    if (mesSiguiente.disabled) return;
 
-    fechaSeleccionadaTexto.textContent =
-        fechaBonita(
-            fechaInicio
-        );
+    if (mesCalendario === 11) {
+        mesCalendario = 0;
+        añoCalendario++;
+    } else {
+        mesCalendario++;
+    }
 
+    generarCalendarioVisual();
+});
 
-    /* =========================================================
-       BOTÓN VOLVER AL INICIO
-    ========================================================= */
+/* =========================================================
+   SELECCIONAR FECHA
+========================================================= */
 
-    const btnInicio =
-        document.getElementById(
-            "btnInicio"
-        );
+function seleccionarFecha(iso) {
+    const dia = buscarDia(iso);
+    if (!dia) return;
 
+    fechaSeleccionada = iso;
+    fechaSeleccionadaTexto.textContent = fechaBonita(dia.fecha);
 
-    window.addEventListener(
-        "scroll",
-        function () {
+    const asignacionesValidas = dia.asignados.filter(nombre => nombre !== null).length;
+    const sinAsignacion = dia.asignados.filter(nombre => nombre === null).length;
 
-            if (
-                window.scrollY > 500
-            ) {
+    fechaIndicador.textContent = sinAsignacion > 0
+        ? `${asignacionesValidas} POS asignados · ${sinAsignacion} sin asignación`
+        : `${asignacionesValidas} POS asignados`;
 
-                btnInicio.classList.add(
-                    "visible"
-                );
+    añoCalendario = dia.fecha.getFullYear();
+    mesCalendario = dia.fecha.getMonth();
+    generarCalendarioVisual();
 
+    const fila = document.querySelector(`[data-fecha="${iso}"]`);
+
+    if (fila) {
+        fila.scrollIntoView({ behavior: "smooth", block: "center" });
+        fila.style.background = "#fff7d6";
+        setTimeout(() => fila.style.background = "", 1800);
+    }
+
+    const card = document.querySelector(`.dia-card[data-fecha="${iso}"]`);
+
+    if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        card.style.boxShadow = "0 0 0 3px #f2b705, 0 12px 30px rgba(18,59,93,.16)";
+        setTimeout(() => card.style.boxShadow = "", 1800);
+    }
+}
+
+function escapar(texto) {
+    return String(texto)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+/* =========================================================
+   TABLA DE ESCRITORIO: 10 POS
+========================================================= */
+
+function generarTabla() {
+    tablaCalendario.innerHTML = "";
+    let ultimoMes = -1;
+
+    calendario.forEach(item => {
+        if (item.fecha.getMonth() !== ultimoMes) {
+            ultimoMes = item.fecha.getMonth();
+
+            const separador = document.createElement("tr");
+            separador.className = "separador-mes";
+            separador.innerHTML = `
+                <td colspan="${cobradoresPOS.length + 1}">
+                    📅 ${nombresMeses[item.fecha.getMonth()].toUpperCase()}
+                    ${item.fecha.getFullYear()}
+                </td>
+            `;
+            tablaCalendario.appendChild(separador);
+        }
+
+        const tr = document.createElement("tr");
+        tr.dataset.fecha = item.iso;
+
+        if (item.fecha.getDay() === 0) tr.classList.add("dia-domingo");
+        if (item.iso === convertirFechaISO(fechaInicio)) tr.classList.add("fila-inicio");
+        if (item.iso === convertirFechaISO(fechaFin)) tr.classList.add("fila-fin");
+
+        let html = `
+            <td class="celda-fecha">
+                <span class="fecha-numero-tabla">
+                    ${String(item.fecha.getDate()).padStart(2, "0")}/
+                    ${String(item.fecha.getMonth() + 1).padStart(2, "0")}/
+                    ${item.fecha.getFullYear()}
+                </span>
+                <span class="fecha-dia-tabla">${item.diaSemana}</span>
+            </td>
+        `;
+
+        item.asignados.forEach((nombre, indice) => {
+            if (nombre === null) {
+                html += `
+                    <td class="celda-pos pos-${indice + 1}">
+                        <span class="sin-asignacion">SIN ASIGNACIÓN</span>
+                    </td>
+                `;
             } else {
-
-                btnInicio.classList.remove(
-                    "visible"
-                );
-
+                html += `
+                    <td class="celda-pos pos-${indice + 1}">
+                        <span class="cobrador">${escapar(nombre)}</span>
+                    </td>
+                `;
             }
+        });
 
-        }
-    );
+        tr.innerHTML = html;
+        tablaCalendario.appendChild(tr);
+    });
+}
 
+/* =========================================================
+   TARJETAS PARA CELULARES: 10 POS
+========================================================= */
 
-    btnInicio.addEventListener(
-        "click",
-        function () {
+function generarCardsMobile() {
+    cardsCalendario.innerHTML = "";
 
-            window.scrollTo({
+    calendario.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "dia-card";
+        card.dataset.fecha = item.iso;
 
-                top: 0,
+        let listaPOS = "";
 
-                behavior: "smooth"
+        item.asignados.forEach((nombre, indice) => {
+            if (nombre === null) {
+                listaPOS += `
+                    <div class="pos-item sin-asignacion-item">
+                        <div class="pos-numero">POS ${indice + 1}</div>
+                        <div class="pos-nombre">
+                            SIN ASIGNACIÓN<br>
+                            <small>Día de descanso</small>
+                        </div>
+                    </div>
+                `;
+            } else {
+                listaPOS += `
+                    <div class="pos-item">
+                        <div class="pos-numero">POS ${indice + 1}</div>
+                        <div class="pos-nombre">${escapar(nombre)}</div>
+                    </div>
+                `;
+            }
+        });
 
-            });
+        const cantidadAsignados = item.asignados.filter(nombre => nombre !== null).length;
+        const cantidadSinAsignacion = item.asignados.filter(nombre => nombre === null).length;
 
-        }
-    );
+        const badge = cantidadSinAsignacion > 0
+            ? `${cantidadAsignados} asignados`
+            : `${cantidadAsignados} POS`;
 
+        card.innerHTML = `
+            <div class="dia-card-cabecera">
+                <div>
+                    <div class="dia-card-fecha">${fechaBonita(item.fecha)}</div>
+                    <div class="dia-card-numero">${item.iso}</div>
+                </div>
+                <div class="dia-card-badge">${badge}</div>
+            </div>
+            <div class="pos-lista">${listaPOS}</div>
+        `;
+
+        cardsCalendario.appendChild(card);
+    });
+}
+
+/* =========================================================
+   RESUMEN DE PARTICIPACIÓN
+========================================================= */
+
+function generarResumen() {
+    const participaciones = {};
+
+    cobradoresPOS.forEach(cobrador => {
+        participaciones[cobrador.nombre] = 0;
+    });
+
+    calendario.forEach(dia => {
+        dia.asignados.forEach(nombre => {
+            if (nombre !== null) participaciones[nombre]++;
+        });
+    });
+
+    resumenCobradores.innerHTML = "";
+
+    const encabezado = document.createElement("div");
+    encabezado.style.gridColumn = "1 / -1";
+    encabezado.style.padding = "12px";
+    encabezado.style.marginBottom = "5px";
+    encabezado.style.background = "#eaf4fb";
+    encabezado.style.borderRadius = "10px";
+    encabezado.style.color = "#123b5d";
+    encabezado.style.fontWeight = "800";
+    encabezado.textContent = "💳 10 cobradores fijos de POS · Octubre y noviembre 2026";
+    resumenCobradores.appendChild(encabezado);
+
+    cobradoresPOS.forEach(cobrador => {
+        const item = document.createElement("div");
+        item.className = "resumen-persona";
+        item.innerHTML = `
+            <div class="resumen-persona-nombre">${escapar(cobrador.nombre)}</div>
+            <div class="resumen-persona-numero">
+                ${participaciones[cobrador.nombre]} asignaciones
+            </div>
+        `;
+        resumenCobradores.appendChild(item);
+    });
+}
+
+/* =========================================================
+   ESTADÍSTICAS AUTOMÁTICAS
+========================================================= */
+
+function actualizarEstadisticas() {
+    let totalAsignaciones = 0;
+
+    calendario.forEach(dia => {
+        totalAsignaciones += dia.asignados.filter(nombre => nombre !== null).length;
+    });
+
+    document.getElementById("totalDias").textContent = calendario.length;
+    document.getElementById("totalCobradores").textContent = cobradoresPOS.length;
+    document.getElementById("totalPOS").textContent = cobradoresPOS.length;
+    document.getElementById("totalAsignaciones").textContent = totalAsignaciones;
+    document.getElementById("contadorAsignaciones").textContent = `${calendario.length} días`;
+    document.getElementById("contadorMobile").textContent = `${calendario.length} días`;
+}
+
+/* =========================================================
+   INICIALIZAR
+========================================================= */
+
+generarTabla();
+generarCardsMobile();
+generarResumen();
+actualizarEstadisticas();
+generarCalendarioVisual();
+
+const primerDia = buscarDia(fechaSeleccionada);
+if (primerDia) {
+    fechaSeleccionadaTexto.textContent = fechaBonita(primerDia.fecha);
+
+    const asignadosIniciales = primerDia.asignados.filter(nombre => nombre !== null).length;
+    const vacantesIniciales = primerDia.asignados.filter(nombre => nombre === null).length;
+
+    fechaIndicador.textContent = vacantesIniciales > 0
+        ? `${asignadosIniciales} POS asignados · ${vacantesIniciales} sin asignación`
+        : `${asignadosIniciales} POS asignados`;
+}
+
+/* =========================================================
+   BOTÓN VOLVER AL INICIO
+========================================================= */
+
+const btnInicio = document.getElementById("btnInicio");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+        btnInicio.classList.add("visible");
+    } else {
+        btnInicio.classList.remove("visible");
+    }
+});
+
+btnInicio.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
 </script>
 
 </body>
